@@ -1,0 +1,9 @@
+﻿<Window x:Class="WpfCombControl1.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:aaa="clr-namespace:WpfCombControl1"
+    Title="Window1">
+    <Grid>
+        <aaa:Comb/>
+    </Grid>
+</Window>
