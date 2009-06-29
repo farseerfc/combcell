@@ -46,13 +46,34 @@ namespace WpfCombControl1
     public class Comb : Control
     {
         public static DependencyProperty CellSizeProperty=
-            DependencyProperty.Register("CellSize", typeof(Comb), typeof(Comb));
+            DependencyProperty.Register(
+            "CellSize", typeof(double), typeof(Comb),
+            new FrameworkPropertyMetadata(30.0,
+                FrameworkPropertyMetadataOptions.AffectsRender));
         
-        public int CellSize{
+        public double CellSize{
             get{
-                return (int)GetValue(Comb.CellSizeProperty) ;
+                return (double)GetValue(Comb.CellSizeProperty);
             }
             set{
+                SetValue(Comb.CellSizeProperty, value);
+            }
+        }
+
+        public static DependencyProperty MouseLocationProperty =
+            DependencyProperty.Register(
+                "MouseLocation", typeof(Point), typeof(Comb),
+                new FrameworkPropertyMetadata(new Point(0,0),
+                    FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public Point MouseLocation
+        {
+            get
+            {
+                return (Point)GetValue(Comb.CellSizeProperty);
+            }
+            set
+            {
                 SetValue(Comb.CellSizeProperty, value);
             }
         }
@@ -62,18 +83,43 @@ namespace WpfCombControl1
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Comb), new FrameworkPropertyMetadata(typeof(Comb)));
         }
 
-        protected override void OnRender(DrawingContext drawingContext)
+        protected override void OnRender(DrawingContext dc)
         {
-            base.OnRender(drawingContext);
+            base.OnRender(dc);
 
-            double radix=RenderSize.Width>RenderSize.Height?RenderSize.Height:RenderSize.Width;
-            radix = radix / 2;
-            if (IsMouseOver)
-            drawingContext.DrawEllipse(Brushes.Blue, new Pen(Brushes.Brown,3),
-                new Point(RenderSize.Width / 2, RenderSize.Height / 2), radix, radix);
-            else
-                drawingContext.DrawEllipse(Brushes.Green, new Pen(Brushes.Red, 3),
-                new Point(RenderSize.Width / 2, RenderSize.Height / 2), radix, radix);
+            double r = CellSize, r2 = r / 2, r3 = r2 * Math.Sqrt(3);
+            PolyLineSegment pl = new PolyLineSegment();
+            pl.Points.Add(new Point(-r2, -r3));
+            pl.Points.Add(new Point(r2, -r3));
+            pl.Points.Add(new Point(r, 0));
+            pl.Points.Add(new Point(r2, r3));
+            pl.Points.Add(new Point(-r2, r3));
+            pl.Points.Add(new Point(-r, 0));
+            
+            PathFigure figure = new PathFigure();
+            figure.StartPoint = new Point(-r, 0);
+            figure.Segments.Add(pl);
+
+            PathGeometry geo = new PathGeometry();
+            geo.Figures.Add(figure);
+
+
+            Pen normalPen = new Pen(Brushes.Black, 3.0);
+            Brush normalBrush = Brushes.White;
+            Pen selectPen = new Pen(Brushes.Blue, 3.0);
+            Brush selectBrush = Brushes.PowderBlue;
+
+            bool isOdd = false;
+            for (double dy = 0; dy < this.RenderSize.Height; dy += r3)
+            {
+                isOdd = !isOdd;
+                for (double dx = isOdd ? r * 1.5 : 0; dx < this.RenderSize.Width; dx += 3 * r)
+                {
+                    geo.Transform = new TranslateTransform(dx, dy);
+                    
+                    dc.DrawGeometry(normalBrush, normalPen, geo.Clone());
+                }
+            }
         }
     }
 }

@@ -82,7 +82,7 @@ namespace FormsCombControl
         {
             MouseLocation = e.Location;
             Rectangle rc = new Rectangle(e.X - (int)CellSize * 3, e.Y - (int)CellSize * 3, (int)CellSize * 6, (int)CellSize * 6);
-            this.Invalidate(rc);
+            this.Invalidate();
         }
 
 
