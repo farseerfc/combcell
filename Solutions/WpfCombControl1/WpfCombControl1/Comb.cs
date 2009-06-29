@@ -70,11 +70,11 @@ namespace WpfCombControl1
         {
             get
             {
-                return (Point)GetValue(Comb.CellSizeProperty);
+                return (Point)GetValue(Comb.MouseLocationProperty);
             }
             set
             {
-                SetValue(Comb.CellSizeProperty, value);
+                SetValue(Comb.MouseLocationProperty, value);
             }
         }
 
@@ -110,16 +110,37 @@ namespace WpfCombControl1
             Brush selectBrush = Brushes.PowderBlue;
 
             bool isOdd = false;
-            for (double dy = 0; dy < this.RenderSize.Height; dy += r3)
+            PathGeometry selected = geo.Clone();
+            for (double dy = 0; dy < this.RenderSize.Height+r3; dy += r3)
             {
                 isOdd = !isOdd;
-                for (double dx = isOdd ? r * 1.5 : 0; dx < this.RenderSize.Width; dx += 3 * r)
+                for (double dx = isOdd ? r * 1.5 : 0; dx < this.RenderSize.Width+3*r; dx += 3 * r)
                 {
                     geo.Transform = new TranslateTransform(dx, dy);
-                    
-                    dc.DrawGeometry(normalBrush, normalPen, geo.Clone());
+                    if (geo.FillContains( MouseLocation))
+                    {
+                        selected = geo.Clone();
+                    }
+                    else
+                    {
+                        dc.DrawGeometry(normalBrush, normalPen, geo.Clone());
+                    }
                 }
             }
+            dc.DrawGeometry(selectBrush, selectPen, selected.Clone());
+        }
+
+        protected override void OnMouseWheel(MouseWheelEventArgs e){
+            base.OnMouseWheel(e);
+
+            double scale = 1 + (e.Delta / 1200.0);
+            CellSize *= scale;
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e){
+            base.OnMouseMove(e);
+
+            MouseLocation = e.GetPosition(this);
         }
     }
 }

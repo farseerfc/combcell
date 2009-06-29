@@ -19,7 +19,7 @@ namespace FormsCombControl
             InitializeComponent();
             CellSize = 30.0f;
             this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseWheel);
-
+            this.DoubleBuffered = true;
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -44,12 +44,12 @@ namespace FormsCombControl
             Brush selectBrush = Brushes.PowderBlue;
 
             float sdx=0, sdy=0;
-            using(Graphics g = e.Graphics){
+            Graphics g = e.Graphics;
                 bool isOdd = false;
-                for (float dy = 0; dy < this.Height; dy += r3)
+                for (float dy = 0; dy < this.Height+r3; dy += r3)
                 {
                     isOdd = !isOdd;
-                    for (float dx = isOdd?r*1.5f:0; dx < this.Width; dx += 3 * r)
+                    for (float dx = isOdd?r*1.5f:0; dx < this.Width+3*r; dx += 3 * r)
                     {
                         GraphicsPath p = (GraphicsPath)path.Clone();
                         Matrix matrix = new Matrix();
@@ -75,7 +75,7 @@ namespace FormsCombControl
                 g.FillPath(selectBrush, ps);
                 g.DrawPath(selectPen, ps);
 
-            }
+            
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
