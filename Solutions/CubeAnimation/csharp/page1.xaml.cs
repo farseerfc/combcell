@@ -1,32 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System;
 using System.Data;
+using System.Windows;
+using System.Windows.Data;
 using System.Configuration;
+using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using System.Reflection;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Threading;
 using System.IO;
+using DemoDev;
 
-namespace WpfCombControl1
+namespace Ribbon
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
-    public partial class Window1 : Window
+
+    public partial class Page1 : Page
     {
-        public Window1()
+        public Page1()
         {
             InitializeComponent();
         }
@@ -57,4 +50,9 @@ namespace WpfCombControl1
 
         #endregion
     }
+
+   
 }
+
+
+

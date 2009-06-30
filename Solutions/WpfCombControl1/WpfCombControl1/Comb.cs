@@ -86,7 +86,6 @@ namespace WpfCombControl1
         protected override void OnRender(DrawingContext dc)
         {
             base.OnRender(dc);
-
             double r = CellSize, r2 = r / 2, r3 = r2 * Math.Sqrt(3);
             PolyLineSegment pl = new PolyLineSegment();
             pl.Points.Add(new Point(-r2, -r3));
@@ -104,9 +103,9 @@ namespace WpfCombControl1
             geo.Figures.Add(figure);
 
 
-            Pen normalPen = new Pen(Brushes.Black, 3.0);
+            Pen normalPen = new Pen(Brushes.Yellow, r /5.0);
             Brush normalBrush = Brushes.White;
-            Pen selectPen = new Pen(Brushes.Blue, 3.0);
+            Pen selectPen = new Pen(Brushes.Blue, r / 5.0);
             Brush selectBrush = Brushes.PowderBlue;
 
             bool isOdd = false;
