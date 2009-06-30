@@ -52,7 +52,7 @@
         <fc:Comb x:Key="Comb"  CellSize="15"></fc:Comb>
     </Window.Resources>
 
-    <Grid Background="DarkGreen"  >
+    <Grid Background="Black"  >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*" />
