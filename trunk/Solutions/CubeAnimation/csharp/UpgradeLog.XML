@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="cubeanimation_xbap">
+</Property><Property Name="Solution File" Value="C:\sjtu24d\trunk\Private\Hyacinth\CubeAnimation\csharp\cubeanimation_xbap.sln">
+</Property><Property Name="Date" Value="2009年3月15日">
+</Property><Property Name="Time" Value="10:43:48">
+</Property></Properties><Event ErrorLevel="0" Project="cubeanimation_xbap" Source="cubeanimation_xbap.csproj" Description="Project file successfully backed up as C:\sjtu24d\trunk\Private\Hyacinth\CubeAnimation\csharp\Backup\cubeanimation_xbap.csproj">
+</Event><Event ErrorLevel="0" Project="cubeanimation_xbap" Source="app.xaml.cs" Description="File successfully backed up as C:\sjtu24d\trunk\Private\Hyacinth\CubeAnimation\csharp\Backup\app.xaml.cs">
+</Event><Event ErrorLevel="0" Project="cubeanimation_xbap" Source="Trackball.cs" Description="File successfully backed up as C:\sjtu24d\trunk\Private\Hyacinth\CubeAnimation\csharp\Backup\Trackball.cs">
+</Event><Event ErrorLevel="0" Project="cubeanimation_xbap" Source="Page1.xaml.cs" Description="File successfully backed up as C:\sjtu24d\trunk\Private\Hyacinth\CubeAnimation\csharp\Backup\Page1.xaml.cs">
+</Event><Event ErrorLevel="0" Project="cubeanimation_xbap" Source="CubeAnimation_TemporaryKey.pfx" Description="File successfully backed up as C:\sjtu24d\trunk\Private\Hyacinth\CubeAnimation\csharp\Backup\CubeAnimation_TemporaryKey.pfx">
+</Event><Event ErrorLevel="0" Project="cubeanimation_xbap" Source="Properties\app.manifest" Description="File successfully backed up as C:\sjtu24d\trunk\Private\Hyacinth\CubeAnimation\csharp\Backup\Properties\app.manifest">
+</Event><Event ErrorLevel="0" Project="cubeanimation_xbap" Source="app.xaml" Description="File successfully backed up as C:\sjtu24d\trunk\Private\Hyacinth\CubeAnimation\csharp\Backup\app.xaml">
+</Event><Event ErrorLevel="0" Project="cubeanimation_xbap" Source="Page1.xaml" Description="File successfully backed up as C:\sjtu24d\trunk\Private\Hyacinth\CubeAnimation\csharp\Backup\Page1.xaml">
+</Event><Event ErrorLevel="0" Project="cubeanimation_xbap" Source="cubeanimation_xbap.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="cubeanimation_xbap" Source="cubeanimation_xbap.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="cubeanimation_xbap" Source="cubeanimation_xbap.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
