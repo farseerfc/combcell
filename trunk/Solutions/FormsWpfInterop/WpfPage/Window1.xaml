@@ -1,0 +1,10 @@
+﻿<Window x:Class="WpfPage.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:my="clr-namespace:WpfPage"
+    Title="Window1" Height="300" Width="300">
+    <my:Page1/>
+    <Window.Effect>
+        <DropShadowEffect/>
+    </Window.Effect>
+</Window>
