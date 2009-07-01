@@ -56,5 +56,40 @@ namespace WpfCombControl1
         Trackball _trackball;
 
         #endregion
+
+        private void HitTest3D(object sender, MouseEventArgs e)
+        {
+            Point point2d = e.GetPosition(myViewport3D);
+            Point3D testpoint3D = new Point3D(point2d.X, point2d.Y, 0);
+            Vector3D testdirection = new Vector3D(point2d.X, point2d.Y, 10);
+            PointHitTestParameters pointparams = new PointHitTestParameters(point2d);
+            RayHitTestParameters rayparams = new RayHitTestParameters(testpoint3D, testdirection);
+
+            //test for a result in the Viewport3D
+            VisualTreeHelper.HitTest(myViewport3D, null, HTResult, pointparams);
+        }
+
+        public HitTestResultBehavior HTResult(System.Windows.Media.HitTestResult rawresult)
+        {
+            //MessageBox.Show(rawresult.ToString());
+            RayHitTestResult rayResult = rawresult as RayHitTestResult;
+
+            if (rayResult != null)
+            {
+                RayMeshGeometry3DHitTestResult rayMeshResult = rayResult as RayMeshGeometry3DHitTestResult;
+
+                if (rayMeshResult != null)
+                {
+                    GeometryModel3D hitgeo = rayMeshResult.ModelHit as GeometryModel3D;
+                    Comb comb=(Comb)this.Resources["comb"];
+                    comb.MouseLocation = new Point((rayMeshResult.PointHit.X + 0.5) * comb.ActualWidth, (rayMeshResult.PointHit.Y + 0.5) * comb.ActualHeight);
+                    //MessageBox.Show("" + comb.MouseLocation);
+                    
+                }
+            }
+
+            return HitTestResultBehavior.Continue;
+        }
+
     }
 }
