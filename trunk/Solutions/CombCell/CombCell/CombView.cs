@@ -84,9 +84,9 @@ namespace CombCell
             children = new List<CellShape>();
         }
 
-        protected override Size ArrangeOverride(Size size)
+        protected override Size ArrangeOverride(Size finalSize)
         {
-            Size result = base.ArrangeOverride(size);
+            Size result = base.ArrangeOverride(finalSize);
             for (int j = 0; j < Arranger.YCount; ++j)
             {
                 for (int i = 0; i < Arranger.XCount; ++i)
@@ -109,19 +109,13 @@ namespace CombCell
             base.OnMouseWheel(e);
             double scale = 1 + (e.Delta / 1200.0);
             Arranger.CellSize *= scale;
-            if (Arranger.NeedAddChild(RenderSize))
-            {
-                EnsureChildren(RenderSize);
-            }
+            EnsureChildren(RenderSize);
         }
 
-        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        protected override void OnRenderSizeChanged(SizeChangedInfo info)
         {
-            base.OnRenderSizeChanged(sizeInfo);
-            if (Arranger.NeedAddChild(sizeInfo.NewSize))
-            {
-                EnsureChildren(sizeInfo.NewSize);
-            }
+            base.OnRenderSizeChanged(info);
+            EnsureChildren(info.NewSize);
         }
 
         protected override Visual GetVisualChild(int index)
@@ -131,19 +125,22 @@ namespace CombCell
 
         private void EnsureChildren(Size size)
         {
-            int count = Arranger.XCount * Arranger.YCount;
-            bool isAdded = false;
-            while (count >= children.Count)
+            if (Arranger.NeedAddChild(size))
             {
-                CellShape child = new HexCell();
-                children.Add(child);
-                AddLogicalChild(child);
-                AddVisualChild(child);
-                isAdded = true;
-            }
-            if (isAdded)
-            {
-                InvalidateArrange();
+                int count = Arranger.XCount * Arranger.YCount;
+                bool isAdded = false;
+                while (count >= children.Count)
+                {
+                    CellShape child = new HexCell();
+                    children.Add(child);
+                    AddLogicalChild(child);
+                    AddVisualChild(child);
+                    isAdded = true;
+                }
+                if (isAdded)
+                {
+                    InvalidateArrange();
+                }
             }
         }
 

@@ -16,12 +16,31 @@ namespace CombCell
                 typeof(CellShape),
                 new FrameworkPropertyMetadata(
                     "",
-                    FrameworkPropertyMetadataOptions.AffectsRender));
+                    FrameworkPropertyMetadataOptions.AffectsRender
+                    )
+            );
 
         public string Index
         {
             get { return (string)GetValue(IndexProperty); }
             set { SetValue(IndexProperty, value); }
+        }
+
+        public static readonly DependencyProperty SchemeProperty =
+            DependencyProperty.Register(
+                "Scheme",
+                typeof(Scheme),
+                typeof(CellShape),
+                new FrameworkPropertyMetadata(
+                    null,
+                    FrameworkPropertyMetadataOptions.AffectsRender
+                    )
+            );
+
+        public Scheme Scheme
+        {
+            get { return (Scheme)GetValue(SchemeProperty); }
+            set { SetValue(SchemeProperty, value); }
         }
 
 

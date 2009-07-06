@@ -17,7 +17,7 @@ namespace CombCell
     /// <summary>
     /// Interaction logic for CombCellWindow.xaml
     /// </summary>
-    public partial class CombCellWindow : Window
+    public sealed partial class CombCellWindow : Window
     {
         public CombCellWindow()
         {
