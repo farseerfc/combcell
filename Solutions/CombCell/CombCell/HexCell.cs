@@ -18,7 +18,7 @@ namespace CombCell
             base.OnRender(dc);
 
             double r = Math.Min(RenderSize.Width/2, RenderSize.Height/Math.Sqrt(3));
-            double r1 = r * 0.1;
+            double r1 = r * 0.08;
             double r2 = r / 2;
             double r3 = r2 * Math.Sqrt(3);
 

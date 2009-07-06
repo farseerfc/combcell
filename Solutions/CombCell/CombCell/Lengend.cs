@@ -7,15 +7,13 @@ using System.Windows.Media;
 
 namespace CombCell
 {
-    public class Scheme
-    {
-        public Pen Pen;
-        public Brush Brushes;
-        public String Key;
-    }
 
     public class Lengend
     {
+        public Lengend(){
+            schemes = new Dictionary<string, Scheme>();
+        }
+
         private Dictionary<String, Scheme> schemes;
 
         public IEnumerable<Scheme> Schemes
