@@ -7,8 +7,30 @@ using System.Windows.Controls;
 
 namespace CombCell
 {
-    public abstract class CellShape : ContentControl 
+    public abstract class CellShape : Control 
     {
+        public static readonly DependencyProperty IndexProperty =
+            DependencyProperty.Register(
+                "Index",
+                typeof(String),
+                typeof(CellShape),
+                new FrameworkPropertyMetadata(
+                    "",
+                    FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public string Index
+        {
+            get { return (string)GetValue(IndexProperty); }
+            set { SetValue(IndexProperty, value); }
+        }
+
+
+        protected override void OnIsMouseDirectlyOverChanged(DependencyPropertyChangedEventArgs e)
+        {
+            base.OnIsMouseDirectlyOverChanged(e);
+            this.InvalidateVisual();
+        }
+            
         
     }
 }
