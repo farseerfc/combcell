@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CombCell.DSAlgo
 {
-    class Vertax
+    class Vertex
     {
     }
 }

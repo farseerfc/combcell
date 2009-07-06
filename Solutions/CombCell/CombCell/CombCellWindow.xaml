@@ -1,8 +1,9 @@
 ﻿<Window x:Class="CombCell.CombCellWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="CombCellWindow" Height="480" Width="640">
+    xmlns:cc="clr-namespace:CombCell"
+    Title="CombCellWindow" Height="524.392" Width="596.607">
     <Grid>
-        
+        <cc:CombView/>
     </Grid>
 </Window>
