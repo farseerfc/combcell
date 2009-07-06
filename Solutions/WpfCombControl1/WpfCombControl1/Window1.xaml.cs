@@ -81,8 +81,8 @@ namespace WpfCombControl1
                 if (rayMeshResult != null)
                 {
                     GeometryModel3D hitgeo = rayMeshResult.ModelHit as GeometryModel3D;
-                    Comb comb=(Comb)this.Resources["comb"];
-                    comb.MouseLocation = new Point((rayMeshResult.PointHit.X + 0.5) * comb.ActualWidth, (rayMeshResult.PointHit.Y + 0.5) * comb.ActualHeight);
+                    //Comb comb=(Comb)this.Resources["comb"];
+                    //comb.MouseLocation = new Point((rayMeshResult.PointHit.X + 0.5) * comb.ActualWidth, (rayMeshResult.PointHit.Y + 0.5) * comb.ActualHeight);
                     //MessageBox.Show("" + comb.MouseLocation);
                     
                 }

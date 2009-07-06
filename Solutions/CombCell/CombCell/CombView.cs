@@ -47,26 +47,11 @@ namespace CombCell
     {
         static CombView()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CombView), new FrameworkPropertyMetadata(typeof(CombView)));
+            DefaultStyleKeyProperty.OverrideMetadata(
+                typeof(CombView),
+                new FrameworkPropertyMetadata(typeof(CombView)));
         }
 
-        public static readonly DependencyProperty CellSizeProperty =
-           DependencyProperty.Register(
-           "CellSize", typeof(double), typeof(CombView),
-           new FrameworkPropertyMetadata(15.0,
-               FrameworkPropertyMetadataOptions.AffectsRender));
-
-        public double CellSize
-        {
-            get
-            {
-                return (double)GetValue(CellSizeProperty);
-            }
-            set
-            {
-                SetValue(CellSizeProperty, value);
-            }
-        }
 
         public static readonly DependencyProperty ArrangerProperty =
             DependencyProperty.Register(
@@ -80,36 +65,34 @@ namespace CombCell
 
         public Arranger Arranger
         {
-            set
-            {
-                SetValue(ArrangerProperty, value);
-            }
-            get
-            {
-                return (Arranger)GetValue(ArrangerProperty);
-            }
+            set { SetValue(ArrangerProperty, value); }
+            get { return (Arranger)GetValue(ArrangerProperty); }
         }
+
+        public static readonly DependencyProperty LengendProperty =
+            DependencyProperty.Register(
+                "Lengend",
+                typeof(Lengend),
+                typeof(CombView),
+                new FrameworkPropertyMetadata(null,
+                    FrameworkPropertyMetadataOptions.AffectsRender));
 
         private readonly List<CellShape> children;
 
         public CombView()
         {
-            children = new List<CellShape>(); xCount = yCount = 0;
+            children = new List<CellShape>();
         }
 
         protected override Size ArrangeOverride(Size size)
         {
             Size result = base.ArrangeOverride(size);
-            for (int j = 0; j < yCount; ++j)
+            for (int j = 0; j < Arranger.YCount; ++j)
             {
-                for (int i = 0; i < xCount; ++i)
+                for (int i = 0; i < Arranger.XCount; ++i)
                 {
-                    Rect rect = new Rect(
-                            CellSize * (i * 6 + j % 2 * 3),
-                            CellSize * Math.Sqrt(3) * j,
-                            CellSize * 4,
-                            CellSize * Math.Sqrt(12));
-                    children[i + j * xCount].Arrange(rect);
+                    children[i + j * Arranger.XCount].Arrange(Arranger.Arrange(j, i));
+                    children[i + j * Arranger.XCount].Index = Arranger.MarkIndex(j, i);
                 }
             }
 
@@ -118,16 +101,27 @@ namespace CombCell
 
         protected override int VisualChildrenCount
         {
-            get
+            get { return children.Count; }
+        }
+
+        protected override void OnMouseWheel(MouseWheelEventArgs e)
+        {
+            base.OnMouseWheel(e);
+            double scale = 1 + (e.Delta / 1200.0);
+            Arranger.CellSize *= scale;
+            if (Arranger.NeedAddChild(RenderSize))
             {
-                return children.Count;
+                EnsureChildren(RenderSize);
             }
         }
 
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             base.OnRenderSizeChanged(sizeInfo);
-            EnsureChildren(sizeInfo.NewSize);
+            if (Arranger.NeedAddChild(sizeInfo.NewSize))
+            {
+                EnsureChildren(sizeInfo.NewSize);
+            }
         }
 
         protected override Visual GetVisualChild(int index)
@@ -137,20 +131,11 @@ namespace CombCell
 
         private void EnsureChildren(Size size)
         {
-            xCount = (int)Math.Ceiling(size.Width / CellSize / 6.0);
-            yCount = (int)Math.Ceiling(size.Height / CellSize / Math.Sqrt(3.0));
-            int count = xCount * yCount;
+            int count = Arranger.XCount * Arranger.YCount;
             bool isAdded = false;
             while (count >= children.Count)
             {
                 CellShape child = new HexCell();
-                TextBlock tb = new TextBlock();
-                tb.Text = ""+children.Count;
-                tb.FontSize = CellSize;
-                tb.Foreground = Brushes.Black;
-                tb.HorizontalAlignment = HorizontalAlignment.Center;
-                tb.VerticalAlignment = VerticalAlignment.Center;
-                child.Content = tb;
                 children.Add(child);
                 AddLogicalChild(child);
                 AddVisualChild(child);
@@ -162,8 +147,6 @@ namespace CombCell
             }
         }
 
-        private int xCount;
-        private int yCount;
 
     }
 }
