@@ -16,7 +16,7 @@ namespace CombCell
 
         private Dictionary<String, Scheme> schemes;
 
-        public IEnumerable<Scheme> Schemes
+        public ICollection<Scheme> Schemes
         {
             get { return schemes.Values; }
             set 

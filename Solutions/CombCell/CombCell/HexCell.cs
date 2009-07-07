@@ -12,6 +12,7 @@ namespace CombCell
 {
     class HexCell:CellShape
     {
+
         
         protected override void OnRender(DrawingContext dc)
         {
