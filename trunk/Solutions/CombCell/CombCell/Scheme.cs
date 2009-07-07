@@ -10,7 +10,7 @@ namespace CombCell
     public class Scheme
     {
         public Pen Pen;
-        public Brush Brushes;
+        public Brush Brush;
         public String Key;
     }
 

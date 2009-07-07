@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace CombCell
 {
-    public abstract class CellShape : Control 
+    public abstract class CellShape : Control
     {
+        
+        
         public static readonly DependencyProperty IndexProperty =
             DependencyProperty.Register(
                 "Index",
@@ -44,12 +43,16 @@ namespace CombCell
         }
 
 
+
         protected override void OnIsMouseDirectlyOverChanged(DependencyPropertyChangedEventArgs e)
         {
             base.OnIsMouseDirectlyOverChanged(e);
             this.InvalidateVisual();
         }
             
+        public CellShape(){
+            this.OverridesDefaultStyle = true;
+        }
         
     }
 }
