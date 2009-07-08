@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace CombCell
 {
@@ -67,20 +63,23 @@ namespace CombCell
             get { return (Comb)GetValue(CombProperty); }
             set { SetValue(CombProperty, value); }
         }
-
         public static readonly DependencyProperty CombProperty =
             DependencyProperty.Register(
             "Comb", typeof(Comb), typeof(Arranger),
-            new FrameworkPropertyMetadata(new Comb()));
+            new FrameworkPropertyMetadata(null));
 
 
         #endregion
 
         /////////////////////////////////////////////////////////////////////
-
+        public Arranger()
+        {
+            Comb = new Comb(this);
+        }
 
         public abstract Rect Arrange(int row, int column);
         public abstract string MarkIndex(int row, int column);
+        public abstract List<Pair<int>> NearBy(int row, int column);
         public abstract int FromPointToIndex(Point point);
         public abstract CellShape CreateCellShape();
 

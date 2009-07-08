@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CombCell
 {
@@ -88,10 +80,12 @@ namespace CombCell
             set 
             {
                 CellShape lastCell = (CellShape)GetValue(MouseOverCellProperty);
-                if(lastCell!=null&&lastCell!=value){
-                    lastCell.Scheme = Lengend["Normal"];
+                if(lastCell!=null&&lastCell!=value&&
+                    lastCell.Cell.State==CellState.MouseOver){
+                    lastCell.Cell.State = CellState.Normal;
                 }
-                value.Scheme = Lengend["MouseOver"];
+                if(value.Cell.State==CellState.Normal)
+                    value.Cell.State = CellState.MouseOver;
                 SetValue(MouseOverCellProperty, value); 
             }
         }
@@ -146,6 +140,7 @@ namespace CombCell
                 {
                     children[i + j * Arranger.XCount].Arrange(Arranger.Arrange(j, i));
                     children[i + j * Arranger.XCount].Index = Arranger.MarkIndex(j, i);
+                    children[i + j * Arranger.XCount].Cell = Arranger.Comb[i, j];
                 }
             }
 
@@ -205,6 +200,16 @@ namespace CombCell
             MousePosition = e.GetPosition(this);
         }
 
+        protected override void OnMouseUp(MouseButtonEventArgs e)
+        {
+            base.OnMouseUp(e);
+            MousePosition = e.GetPosition(this);
+            if(MouseOverCell.Cell.State==CellState.MouseOver){
+                MouseOverCell.Cell.State = CellState.Selected;
+            }else{
+                MouseOverCell.Cell.State = CellState.MouseOver;
+            }
+        }
 
     }
 }

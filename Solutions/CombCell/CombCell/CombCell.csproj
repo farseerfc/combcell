@@ -82,7 +82,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CellState.cs" />
     <Compile Include="Lengend.cs" />
+    <Compile Include="Pair.cs" />
     <Compile Include="PathAlgorithm.cs" />
     <Compile Include="Arranger.cs" />
     <Compile Include="Cell.cs" />
