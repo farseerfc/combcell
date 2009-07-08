@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Shapes;
-using System.Windows.Controls;
-using System.Globalization;
 
 namespace CombCell
 {
     public class HexCell:CellShape
     {
 
-        protected override void OnRender(DrawingContext dc)
+        protected override void OnRenderOverride(DrawingContext drawingContext)
         {
            
 
@@ -46,14 +40,13 @@ namespace CombCell
             {
                 Pen pen = Scheme.Pen.Clone();
                 pen.Thickness = r / 10.0;
-                dc.DrawGeometry(Scheme.Brush, pen, geo);
+                drawingContext.DrawGeometry(Scheme.Brush, pen, geo);
             }
             else
             {
-                dc.DrawGeometry(normalBrush, normalPen, geo);
+                drawingContext.DrawGeometry(normalBrush, normalPen, geo);
             }
 
-            base.OnRender(dc);
         }
     }
 }

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows.Markup;
 
 namespace CombCell
 {
@@ -23,6 +18,12 @@ namespace CombCell
             normal.Brush = Brushes.Transparent;
             normal.Pen = new Pen(Brushes.Yellow, 1);
             Add(normal);
+
+            Scheme selected = new Scheme();
+            selected.Key = "Selected";
+            selected.Brush = Brushes.LightPink;
+            selected.Pen = new Pen(Brushes.Red, 1);
+            Add(selected);
         }
 
 
@@ -38,6 +39,15 @@ namespace CombCell
         public static void Add(Scheme scheme)
         {
             Application.Current.Resources.Add(scheme.Key+ "Scheme", scheme);
+        }
+
+        private static Lengend current;
+        public static Lengend Current{
+            get{
+                if (current != null) return current;
+                current = new Lengend();
+                return current;
+            }
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace CombCell
@@ -22,9 +20,8 @@ namespace CombCell
                 return false;
             }
             this.XCount = xCount;
-
             this.YCount = yCount;
-
+            Comb.EnsureCells(xCount, yCount);
             return true;
         }
 
@@ -55,6 +52,18 @@ namespace CombCell
         public override CellShape CreateCellShape()
         {
             return new HexCell();
+        }
+
+        public override List<Pair<int>> NearBy(int row, int column)
+        {
+            List<Pair<int>> result = new List<Pair<int>>();
+            result.Add(new Pair<int>(row - 2, column));
+            result.Add(new Pair<int>(row - 1, column));
+            result.Add(new Pair<int>(row + 1, column));
+            result.Add(new Pair<int>(row + 2, column));
+            result.Add(new Pair<int>(row - 1, column + (row % 2) - (row + 1) % 2));
+            result.Add(new Pair<int>(row + 1, column + (row % 2) - (row + 1) % 2));
+            return result;
         }
     }
 }
