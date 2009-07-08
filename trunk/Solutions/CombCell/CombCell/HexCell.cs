@@ -13,13 +13,12 @@ namespace CombCell
     class HexCell:CellShape
     {
 
-        
         protected override void OnRender(DrawingContext dc)
         {
             base.OnRender(dc);
 
             double r = Math.Min(RenderSize.Width/2, RenderSize.Height/Math.Sqrt(3));
-            double r1 = r * 0.08;
+            double r1 = r * 0.1;
             double r2 = r / 2;
             double r3 = r2 * Math.Sqrt(3);
 
@@ -39,14 +38,15 @@ namespace CombCell
             PathGeometry geo = new PathGeometry();
             geo.Figures.Add(figure);
 
-            Pen normalPen = new Pen(Brushes.Yellow, r /5.0);
+            Pen normalPen = new Pen(Brushes.Yellow, r /10.0);
             Brush normalBrush = Brushes.White;
-            Pen selectPen = new Pen(Brushes.Blue, r / 5.0);
-            Brush selectBrush = Brushes.PowderBlue;
+            
 
-            if (IsMouseDirectlyOver)
+            if (Scheme!=null)
             {
-                dc.DrawGeometry(selectBrush, selectPen, geo);
+                Pen pen = Scheme.Pen.Clone();
+                pen.Thickness = r / 10.0;
+                dc.DrawGeometry(Scheme.Brush, pen, geo);
             }
             else
             {

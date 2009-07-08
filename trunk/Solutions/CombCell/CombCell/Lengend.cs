@@ -4,38 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Markup;
 
 namespace CombCell
 {
-
     public class Lengend
     {
-        public Lengend(){
-            schemes = new Dictionary<string, Scheme>();
-        }
-
-        private Dictionary<String, Scheme> schemes;
-
-        public ICollection<Scheme> Schemes
+        static Lengend()
         {
-            get { return schemes.Values; }
-            set 
-            {
-                schemes.Clear();
-                foreach(Scheme scheme in value){
-                    schemes.Add(scheme.Key, scheme);
-                }
-            }
+            Scheme mouseOver = new Scheme();
+            mouseOver.Key = "MouseOver";
+            mouseOver.Brush = Brushes.LightBlue;
+            mouseOver.Pen = new Pen(Brushes.Blue, 1);
+            Add(mouseOver);
+
+            Scheme normal = new Scheme();
+            normal.Key = "Normal";
+            normal.Brush = Brushes.Transparent;
+            normal.Pen = new Pen(Brushes.Yellow, 1);
+            Add(normal);
         }
+
 
         public Scheme this[string key]{
             get{
-                return schemes[key];
+                return Application.Current.Resources[key + "Scheme"] as Scheme;
             }
             set{
-                schemes[key]=value;
+                Application.Current.Resources.Add(key + "Scheme", value);
             }
         }
         
+        public static void Add(Scheme scheme)
+        {
+            Application.Current.Resources.Add(scheme.Key+ "Scheme", scheme);
+        }
     }
 }
