@@ -5,7 +5,14 @@ using System.Text;
 
 namespace CombCell.DSAlgo
 {
-    class Vertex
+    public class Vertex
     {
+        public string Key;
+        public List<Edge> Edges;
+
+        public Vertex()
+        {
+            Edges = new List<Edge>();
+        }
     }
 }

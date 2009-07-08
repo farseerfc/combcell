@@ -5,7 +5,10 @@ using System.Text;
 
 namespace CombCell.DSAlgo
 {
-    class Edge
+    public class Edge
     {
+        public Vertex From;
+        public Vertex To;
+        public string Key;
     }
 }

@@ -44,11 +44,12 @@ namespace CombCell
 
 
 
-        protected override void OnIsMouseDirectlyOverChanged(DependencyPropertyChangedEventArgs e)
-        {
-            base.OnIsMouseDirectlyOverChanged(e);
-            this.InvalidateVisual();
-        }
+//         protected override void OnIsMouseDirectlyOverChanged(DependencyPropertyChangedEventArgs e)
+//         {
+//             base.OnIsMouseDirectlyOverChanged(e);
+//             this.InvalidateVisual();
+//         }
+        
             
         public CellShape(){
             this.OverridesDefaultStyle = true;

@@ -74,8 +74,60 @@ namespace CombCell
                 "Lengend",
                 typeof(Lengend),
                 typeof(CombView),
-                new FrameworkPropertyMetadata(null,
+                new FrameworkPropertyMetadata(new Lengend(),
                     FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public Lengend Lengend
+        {
+            set { SetValue(LengendProperty, value); }
+            get { return (Lengend)GetValue(LengendProperty); }
+        }
+
+
+
+        public CellShape MouseOverCell
+        {
+            get { return (CellShape)GetValue(MouseOverCellProperty); }
+            set 
+            {
+                CellShape lastCell = (CellShape)GetValue(MouseOverCellProperty);
+                if(lastCell!=null&&lastCell!=value){
+                    lastCell.Scheme = Lengend["Normal"];
+                }
+                value.Scheme = Lengend["MouseOver"];
+                SetValue(MouseOverCellProperty, value); 
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for MouseOverCell.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MouseOverCellProperty =
+            DependencyProperty.Register("MouseOverCell", typeof(CellShape), typeof(CombView), 
+            new FrameworkPropertyMetadata(null,
+                    FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public Point MousePosition
+        {
+            get { return (Point)GetValue(MousePositionProperty); }
+            set 
+            {
+                int index = Arranger.FromPointToIndex(value);
+                if (index >= 0 && index < children.Count)
+                {
+                    MouseOverCell = children[index];
+                }
+                SetValue(MousePositionProperty, value); 
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for MousePosition.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MousePositionProperty =
+            DependencyProperty.Register("MousePosition", typeof(Point), typeof(CombView), 
+            new FrameworkPropertyMetadata(new Point(0,0),
+                    FrameworkPropertyMetadataOptions.AffectsRender));
+
+
+
+
 
         private readonly List<CellShape> children;
 
@@ -127,11 +179,13 @@ namespace CombCell
         {
             if (Arranger.NeedAddChild(size))
             {
+                Scheme scheme = Lengend["Normal"];
                 int count = Arranger.XCount * Arranger.YCount;
                 bool isAdded = false;
                 while (count >= children.Count)
                 {
                     CellShape child = new HexCell();
+                    child.Scheme = scheme;
                     children.Add(child);
                     AddLogicalChild(child);
                     AddVisualChild(child);
@@ -142,6 +196,12 @@ namespace CombCell
                     InvalidateArrange();
                 }
             }
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            MousePosition = e.GetPosition(this);
         }
 
 

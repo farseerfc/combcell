@@ -44,7 +44,12 @@ namespace CombCell
 
         public override int FromPointToIndex(Point point)
         {
-            return 0;
+            int x = (int)Math.Floor((point.X - CellSize * 0.5) / CellSize / 3);
+            int y = (int)Math.Floor((point.Y-(x%2*CellSize*1.5)) / CellSize / Math.Sqrt(12))*2;
+            y += x % 2;
+            x /= 2;
+            
+            return y * XCount + x;
         }
     }
 }
