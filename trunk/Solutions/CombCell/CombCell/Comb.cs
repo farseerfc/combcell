@@ -7,7 +7,13 @@ using System.Windows.Documents;
 
 namespace CombCell
 {
-    class Comb:FrameworkContentElement
+    public class Comb
     {
+        private List<List<Cell>> cells;
+
+        public Comb()
+        {
+            cells = new List<List<Cell>>();
+        }
     }
 }

@@ -8,9 +8,7 @@
     </Window.Resources>
     
     <Grid>
-        <Grid.Effect>
-            <DropShadowEffect/>
-        </Grid.Effect>
+        <!--<Grid.Effect><DropShadowEffect/></Grid.Effect>-->
         <cc:CombView Arranger="{StaticResource Arranger}"/>
     </Grid>
 </Window>

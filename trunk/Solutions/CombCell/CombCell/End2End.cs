@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CombCell.DSAlgo
 {
-    class End2End:PathAlgorithm
+    public class End2End:PathAlgorithm
     {
     }
 }

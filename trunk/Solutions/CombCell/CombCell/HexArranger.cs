@@ -51,5 +51,10 @@ namespace CombCell
             
             return y * XCount + x;
         }
+
+        public override CellShape CreateCellShape()
+        {
+            return new HexCell();
+        }
     }
 }

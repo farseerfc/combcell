@@ -7,7 +7,7 @@ using System.Windows.Documents;
 
 namespace CombCell
 {
-    class CombPath:FrameworkContentElement
+    public class CombPath:FrameworkContentElement
     {
     }
 }
