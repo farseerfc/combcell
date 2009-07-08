@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Controls;
+using System.Globalization;
 
 namespace CombCell
 {
@@ -41,18 +43,28 @@ namespace CombCell
             get { return (Scheme)GetValue(SchemeProperty); }
             set { SetValue(SchemeProperty, value); }
         }
-
-
-
-//         protected override void OnIsMouseDirectlyOverChanged(DependencyPropertyChangedEventArgs e)
-//         {
-//             base.OnIsMouseDirectlyOverChanged(e);
-//             this.InvalidateVisual();
-//         }
-        
             
         public CellShape(){
             this.OverridesDefaultStyle = true;
+        }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+
+            double r2 = Math.Min(RenderSize.Width / 2, RenderSize.Height / Math.Sqrt(3))/2;
+
+            FormattedText txt = new FormattedText(
+                Index,
+                CultureInfo.CurrentCulture,
+                FlowDirection,
+                new Typeface(FontFamily, FontStyle, FontWeight, FontStretch),
+                r2, Foreground);
+
+            Point txtPosition = new Point(
+                (RenderSize.Width - txt.Width - Padding.Left - Padding.Right) / 2,
+                (RenderSize.Height - txt.Height - Padding.Top - Padding.Bottom) / 2);
+            drawingContext.DrawText(txt, txtPosition);
         }
         
     }

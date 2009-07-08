@@ -21,14 +21,14 @@ namespace CombCell
     /// Add this XmlNamespace attribute to the root element of the markup file where it is 
     /// to be used:
     ///
-    ///     xmlns:MyNamespace="clr-namespace:CombCell"
+    ///     xmlns:cc="clr-namespace:CombCell"
     ///
     ///
     /// Step 1b) Using this custom control in a XAML file that exists in a different project.
     /// Add this XmlNamespace attribute to the root element of the markup file where it is 
     /// to be used:
     ///
-    ///     xmlns:MyNamespace="clr-namespace:CombCell;assembly=CombCell"
+    ///     xmlns:cc="clr-namespace:CombCell;assembly=CombCell"
     ///
     /// You will also need to add a project reference from the project where the XAML file lives
     /// to this project and Rebuild to avoid compilation errors:
@@ -39,12 +39,14 @@ namespace CombCell
     ///
     /// Step 2)
     /// Go ahead and use your control in the XAML file.
-    ///
-    ///     <MyNamespace:CombView/>
-    ///
+    ///<![CDATA[
+    ///     <cc:CombView/>
+    ///]]>
     /// </summary>
     public class CombView : Control
     {
+
+        #region Dependency Properties
         static CombView()
         {
             DefaultStyleKeyProperty.OverrideMetadata(
@@ -52,7 +54,11 @@ namespace CombCell
                 new FrameworkPropertyMetadata(typeof(CombView)));
         }
 
-
+        public Arranger Arranger
+        {
+            set { SetValue(ArrangerProperty, value); }
+            get { return (Arranger)GetValue(ArrangerProperty); }
+        }
         public static readonly DependencyProperty ArrangerProperty =
             DependencyProperty.Register(
                 "Arranger",
@@ -63,12 +69,11 @@ namespace CombCell
                     FrameworkPropertyMetadataOptions.AffectsRender |
                     FrameworkPropertyMetadataOptions.AffectsParentMeasure));
 
-        public Arranger Arranger
+        public Lengend Lengend
         {
-            set { SetValue(ArrangerProperty, value); }
-            get { return (Arranger)GetValue(ArrangerProperty); }
+            set { SetValue(LengendProperty, value); }
+            get { return (Lengend)GetValue(LengendProperty); }
         }
-
         public static readonly DependencyProperty LengendProperty =
             DependencyProperty.Register(
                 "Lengend",
@@ -76,14 +81,6 @@ namespace CombCell
                 typeof(CombView),
                 new FrameworkPropertyMetadata(new Lengend(),
                     FrameworkPropertyMetadataOptions.AffectsRender));
-
-        public Lengend Lengend
-        {
-            set { SetValue(LengendProperty, value); }
-            get { return (Lengend)GetValue(LengendProperty); }
-        }
-
-
 
         public CellShape MouseOverCell
         {
@@ -98,10 +95,11 @@ namespace CombCell
                 SetValue(MouseOverCellProperty, value); 
             }
         }
-
-        // Using a DependencyProperty as the backing store for MouseOverCell.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MouseOverCellProperty =
-            DependencyProperty.Register("MouseOverCell", typeof(CellShape), typeof(CombView), 
+            DependencyProperty.Register(
+            "MouseOverCell",
+            typeof(CellShape),
+            typeof(CombView), 
             new FrameworkPropertyMetadata(null,
                     FrameworkPropertyMetadataOptions.AffectsRender));
 
@@ -118,15 +116,18 @@ namespace CombCell
                 SetValue(MousePositionProperty, value); 
             }
         }
-
-        // Using a DependencyProperty as the backing store for MousePosition.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MousePositionProperty =
-            DependencyProperty.Register("MousePosition", typeof(Point), typeof(CombView), 
+            DependencyProperty.Register(
+            "MousePosition",
+            typeof(Point),
+            typeof(CombView), 
             new FrameworkPropertyMetadata(new Point(0,0),
                     FrameworkPropertyMetadataOptions.AffectsRender));
 
+        #endregion
 
 
+/////////////////////////////////////////////////////////////////////////////////////
 
 
         private readonly List<CellShape> children;
@@ -184,7 +185,7 @@ namespace CombCell
                 bool isAdded = false;
                 while (count >= children.Count)
                 {
-                    CellShape child = new HexCell();
+                    CellShape child = Arranger.CreateCellShape();
                     child.Scheme = scheme;
                     children.Add(child);
                     AddLogicalChild(child);
