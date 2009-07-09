@@ -23,5 +23,26 @@ namespace CombCell
         {
             InitializeComponent();
         }
+
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.Close();
+        }
+
+        private void Ready_Checked(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void radioButton2_Checked(object sender, RoutedEventArgs e)
+        {
+            combView.State = CombViewState.MarkIndex;
+        }
+
+        private void radioButton3_Checked(object sender, RoutedEventArgs e)
+        {
+            combView.State = CombViewState.SelectCells;
+        }
     }
 }

@@ -15,7 +15,8 @@ namespace CombCell
 
             Scheme normal = new Scheme();
             normal.Key = "Normal";
-            normal.Brush = Brushes.Transparent;
+            normal.Brush = Brushes.White.Clone();
+            normal.Brush.Opacity = 0.9;
             normal.Pen = new Pen(Brushes.Yellow, 1);
             Add(normal);
 
@@ -38,7 +39,10 @@ namespace CombCell
         
         public static void Add(Scheme scheme)
         {
-            Application.Current.Resources.Add(scheme.Key+ "Scheme", scheme);
+            if (!Application.Current.Resources.Contains(scheme.Key + "Scheme"))
+            {
+                Application.Current.Resources.Add(scheme.Key + "Scheme", scheme);
+            }
         }
 
         private static Lengend current;

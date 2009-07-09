@@ -7,30 +7,8 @@ using System.Windows.Media;
 namespace CombCell
 {
     /// <summary>
-    /// Follow steps 1a or 1b and then 2 to use this custom control in a XAML file.
-    ///
-    /// Step 1a) Using this custom control in a XAML file that exists in the current project.
-    /// Add this XmlNamespace attribute to the root element of the markup file where it is 
-    /// to be used:
-    ///
+    /// CombView is a Control that contains a <![CDATA[ List<CellShape> ]]> .
     ///     xmlns:cc="clr-namespace:CombCell"
-    ///
-    ///
-    /// Step 1b) Using this custom control in a XAML file that exists in a different project.
-    /// Add this XmlNamespace attribute to the root element of the markup file where it is 
-    /// to be used:
-    ///
-    ///     xmlns:cc="clr-namespace:CombCell;assembly=CombCell"
-    ///
-    /// You will also need to add a project reference from the project where the XAML file lives
-    /// to this project and Rebuild to avoid compilation errors:
-    ///
-    ///     Right click on the target project in the Solution Explorer and
-    ///     "Add Reference"->"Projects"->[Browse to and select this project]
-    ///
-    ///
-    /// Step 2)
-    /// Go ahead and use your control in the XAML file.
     ///<![CDATA[
     ///     <cc:CombView/>
     ///]]>
@@ -46,6 +24,9 @@ namespace CombCell
                 new FrameworkPropertyMetadata(typeof(CombView)));
         }
 
+        /// <summary>
+        /// The Arranger of the CombView defines the may between the Points and the CellShapes
+        /// </summary>
         public Arranger Arranger
         {
             set { SetValue(ArrangerProperty, value); }
@@ -60,19 +41,6 @@ namespace CombCell
                     FrameworkPropertyMetadataOptions.AffectsArrange |
                     FrameworkPropertyMetadataOptions.AffectsRender |
                     FrameworkPropertyMetadataOptions.AffectsParentMeasure));
-
-        public Lengend Lengend
-        {
-            set { SetValue(LengendProperty, value); }
-            get { return (Lengend)GetValue(LengendProperty); }
-        }
-        public static readonly DependencyProperty LengendProperty =
-            DependencyProperty.Register(
-                "Lengend",
-                typeof(Lengend),
-                typeof(CombView),
-                new FrameworkPropertyMetadata(new Lengend(),
-                    FrameworkPropertyMetadataOptions.AffectsRender));
 
         public CellShape MouseOverCell
         {
@@ -117,6 +85,16 @@ namespace CombCell
             typeof(CombView), 
             new FrameworkPropertyMetadata(new Point(0,0),
                     FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public CombViewState State
+        {
+            get { return (CombViewState)GetValue(StateProperty);}
+            set { SetValue(StateProperty,value);}
+        }
+        public static readonly DependencyProperty StateProperty=
+            DependencyProperty.Register(
+                "State",typeof(CombViewState),typeof(CombView),
+                new FrameworkPropertyMetadata(CombViewState.Ready));
 
         #endregion
 
@@ -173,7 +151,7 @@ namespace CombCell
         {
             if (Arranger.NeedAddChild(size))
             {
-                Scheme scheme = Lengend["Normal"];
+                Scheme scheme = Lengend.Current["Normal"];
                 int count = Arranger.XCount * Arranger.YCount;
                 bool isAdded = false;
                 while (count >= children.Count)
@@ -202,23 +180,24 @@ namespace CombCell
         {
             base.OnMouseUp(e);
             MousePosition = e.GetPosition(this);
-            if(MouseOverCell.Cell.State==CellState.MouseOver){
-                MouseOverCell.Cell.State = CellState.Selected;
-            }else{
-                MouseOverCell.Cell.State = CellState.MouseOver;
+            if (State == CombViewState.SelectCells)
+            {
+                if (MouseOverCell.Cell.State == CellState.MouseOver)
+                {
+                    MouseOverCell.Cell.State = CellState.Selected;
+                }
+                else
+                {
+                    MouseOverCell.Cell.State = CellState.MouseOver;
+                }
             }
 
-            Pair<int> pos=Arranger.FromPointToPair(MousePosition);
-            Arranger.Comb.StartMarkIndex(pos.first, pos.second);
+            if (State == CombViewState.MarkIndex)
+            {
+                Pair<int> pos = Arranger.FromPointToPair(MousePosition);
+                Arranger.Comb.StartMarkIndex(pos.first, pos.second);
+            }
 
-
-//             for (int j = 0; j < Arranger.YCount; ++j)
-//             {
-//                 for (int i = 0; i < Arranger.XCount; ++i)
-//                 {
-//                     children[i + j * Arranger.XCount].Index = Arranger.MarkIndex(j, i);
-//                 }
-//             }
         }
 
     }
