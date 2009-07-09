@@ -6,59 +6,63 @@ using System.Text;
 namespace CombCell.DSAlgo
 {
     
-    public class Graph
+    public class Graph<T>
     {
-        public List<Vertex> Vertexes;
-        public List<Edge> Edges;
-        public Dictionary<string, Vertex> VertexMap;
-        public Dictionary<string, Edge> EdgeMap;
+        public List<Vertex<T>> Vertexes;
+        public List<Edge<T>> Edges;
+        public Dictionary<T, Vertex<T>> VertexMap;
+        //public Dictionary<T, Edge> EdgeMap;
 
         public Graph()
         {
-            Vertexes = new List<Vertex>();
-            Edges = new List<Edge>();
-            VertexMap = new Dictionary<string, Vertex>();
-            EdgeMap = new Dictionary<string, Edge>();
+            Vertexes = new List<Vertex<T>>();
+            Edges = new List<Edge<T>>();
+            VertexMap = new Dictionary<T, Vertex<T>>();
         }
 
-        public Vertex CreateVertex(string key)
+        public Vertex<T> CreateVertex(T key)
         {
-            Vertex vertex = new Vertex();
+            Vertex<T> vertex = new Vertex<T>();
             vertex.Key = key;
             Vertexes.Add(vertex);
             VertexMap.Add(key, vertex);
             return vertex;
         }
 
-        public Edge CreateEdge(string key,Vertex v1,Vertex v2)
+        public Edge<T> CreateEdge(Vertex<T> v1, Vertex<T> v2)
         {
-            Edge edge = new Edge();
-            edge.Key = key;
+            Edge<T> edge = new Edge<T>();
             edge.From = v1;
             edge.To = v2;
             v1.Edges.Add(edge);
             v2.Edges.Add(edge);
             Edges.Add(edge);
-            EdgeMap.Add(key, edge);
             return edge;
         }
 
-        public void RemoveEdge(Edge edge)
+        public void RemoveEdge(Edge<T> edge)
         {
             edge.From.Edges.Remove(edge);
             edge.To.Edges.Remove(edge);
-            EdgeMap.Remove(edge.Key);
             Edges.Remove(edge);
         }
 
-        public void RemoveVertex(Vertex vertex)
+        public void RemoveVertex(Vertex<T> vertex)
         {
-            foreach (Edge edge in vertex.Edges)
+            foreach (Edge<T> edge in vertex.Edges)
             {
                 RemoveEdge(edge);
             }
             Vertexes.Remove(vertex);
             VertexMap.Remove(vertex.Key);
+        }
+
+        public void ClearAccessed()
+        {
+            foreach (Vertex<T> v in Vertexes)
+            {
+                v.Accessed = false;
+            }
         }
     }
 }

@@ -80,7 +80,7 @@ namespace CombCell
         public abstract Rect Arrange(int row, int column);
         public abstract string MarkIndex(int row, int column);
         public abstract List<Pair<int>> NearBy(int row, int column);
-        public abstract int FromPointToIndex(Point point);
+        public abstract Pair<int> FromPointToPair(Point point);
         public abstract CellShape CreateCellShape();
 
         public virtual bool NeedAddChild(Size newSize)
@@ -89,6 +89,11 @@ namespace CombCell
             return RecalcCount();
         }
 
+        public virtual int FromPointToIndex(Point point)
+        {
+            Pair<int> pair = FromPointToPair(point);
+            return pair.first * XCount + pair.second;
+        }
 
         protected abstract bool RecalcCount();
 

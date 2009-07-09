@@ -132,19 +132,17 @@ namespace CombCell
         }
 
         protected override Size ArrangeOverride(Size finalSize)
-        {
-            Size result = base.ArrangeOverride(finalSize);
+        {       
             for (int j = 0; j < Arranger.YCount; ++j)
             {
                 for (int i = 0; i < Arranger.XCount; ++i)
                 {
-                    children[i + j * Arranger.XCount].Arrange(Arranger.Arrange(j, i));
+                    children[i + j * Arranger.XCount].Cell = Arranger.Comb[j, i];
                     children[i + j * Arranger.XCount].Index = Arranger.MarkIndex(j, i);
-                    children[i + j * Arranger.XCount].Cell = Arranger.Comb[i, j];
+                    children[i + j * Arranger.XCount].Arrange(Arranger.Arrange(j, i));
                 }
             }
-
-            return result;
+            return finalSize;
         }
 
         protected override int VisualChildrenCount
@@ -209,6 +207,18 @@ namespace CombCell
             }else{
                 MouseOverCell.Cell.State = CellState.MouseOver;
             }
+
+            Pair<int> pos=Arranger.FromPointToPair(MousePosition);
+            Arranger.Comb.StartMarkIndex(pos.first, pos.second);
+
+
+//             for (int j = 0; j < Arranger.YCount; ++j)
+//             {
+//                 for (int i = 0; i < Arranger.XCount; ++i)
+//                 {
+//                     children[i + j * Arranger.XCount].Index = Arranger.MarkIndex(j, i);
+//                 }
+//             }
         }
 
     }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CombCell
 {
-    public class Pair<T>
+    public struct Pair<T>
     {
         public T first;
         public T second;
@@ -14,6 +14,11 @@ namespace CombCell
         {
             this.first = first;
             this.second = second;
+        }
+
+        public override string ToString()
+        {
+            return String.Format("<{0},{1}>", first, second);
         }
     }
 }
