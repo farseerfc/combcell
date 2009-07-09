@@ -13,8 +13,8 @@ namespace CombCell
 
         protected override bool RecalcCount()
         {
-            int xCount = (int)Math.Ceiling(RenderSize.Width / CellSize / 6.0);
-            int yCount = (int)Math.Ceiling(RenderSize.Height / CellSize / Math.Sqrt(3.0));
+            int xCount = (int)Math.Floor(RenderSize.Width / CellSize / 6.0);
+            int yCount = (int)Math.Floor(RenderSize.Height / CellSize / Math.Sqrt(3.0));
             if (xCount <= this.XCount && yCount <= this.YCount)
             {
                 return false;

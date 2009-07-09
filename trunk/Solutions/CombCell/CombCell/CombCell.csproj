@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CellState.cs" />
+    <Compile Include="CombViewState.cs" />
     <Compile Include="Lengend.cs" />
     <Compile Include="Pair.cs" />
     <Compile Include="PathAlgorithm.cs" />
