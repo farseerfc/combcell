@@ -56,15 +56,7 @@ namespace CombCell
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
-
-            if (Cell == null)
-            {
-                Scheme = Lengend.Current["Normal"];
-            }
-            else
-            {
-                Scheme = Lengend.Current[Cell.State.ToString()];
-            }
+            Scheme = Lengend.Current[Cell.State.ToString()];
 
             OnRenderOverride(drawingContext);
 

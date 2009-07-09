@@ -36,17 +36,23 @@ namespace CombCell
 
         public override string MarkIndex(int row, int column)
         {
-            return "" + row + ":" + column;
+            if (Comb[row, column].Index == 0)
+            {
+                return "" + row + ":" + column;
+            }
+            else
+            {
+                return "" + Comb[row, column].Index;
+            }
         }
 
-        public override int FromPointToIndex(Point point)
+        public override Pair<int> FromPointToPair(Point point)
         {
             int x = (int)Math.Floor((point.X - CellSize * 0.5) / CellSize / 3);
-            int y = (int)Math.Floor((point.Y-(x%2*CellSize*1.5)) / CellSize / Math.Sqrt(12))*2;
+            int y = (int)Math.Floor((point.Y - (x % 2 * CellSize * 1.5)) / CellSize / Math.Sqrt(12)) * 2;
             y += x % 2;
             x /= 2;
-            
-            return y * XCount + x;
+            return new Pair<int>(y, x);
         }
 
         public override CellShape CreateCellShape()
@@ -57,12 +63,26 @@ namespace CombCell
         public override List<Pair<int>> NearBy(int row, int column)
         {
             List<Pair<int>> result = new List<Pair<int>>();
-            result.Add(new Pair<int>(row - 2, column));
-            result.Add(new Pair<int>(row - 1, column));
-            result.Add(new Pair<int>(row + 1, column));
-            result.Add(new Pair<int>(row + 2, column));
-            result.Add(new Pair<int>(row - 1, column + (row % 2) - (row + 1) % 2));
-            result.Add(new Pair<int>(row + 1, column + (row % 2) - (row + 1) % 2));
+
+            if(row%2==0)
+            {
+                result.Add(new Pair<int>(row - 2, column));
+                result.Add(new Pair<int>(row - 1, column));
+                result.Add(new Pair<int>(row + 1, column));
+                result.Add(new Pair<int>(row + 2, column));
+                result.Add(new Pair<int>(row + 1, column - 1));
+                result.Add(new Pair<int>(row - 1, column - 1));     
+            }
+            else
+            {
+                result.Add(new Pair<int>(row - 2, column));
+                result.Add(new Pair<int>(row - 1, column + 1));
+                result.Add(new Pair<int>(row + 1, column + 1));
+                result.Add(new Pair<int>(row + 2, column));
+                result.Add(new Pair<int>(row + 1, column));
+                result.Add(new Pair<int>(row - 1, column));
+                
+            }
             return result;
         }
     }

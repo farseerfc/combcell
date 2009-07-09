@@ -96,7 +96,22 @@ namespace FormsCombControl
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            textBox1.Focus();
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            label1.Text = textBox1.Text;
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            textBox1.Focus();
         }
 
        
