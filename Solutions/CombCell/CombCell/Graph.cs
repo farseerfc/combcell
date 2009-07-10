@@ -49,9 +49,9 @@ namespace CombCell.DSAlgo
 
         public void RemoveVertex(Vertex<T> vertex)
         {
-            foreach (Edge<T> edge in vertex.Edges)
+            while(vertex.Edges.Count>0)
             {
-                RemoveEdge(edge);
+                RemoveEdge(vertex.Edges[0]);
             }
             Vertexes.Remove(vertex);
             VertexMap.Remove(vertex.Key);

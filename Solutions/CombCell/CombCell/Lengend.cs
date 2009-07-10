@@ -16,7 +16,7 @@ namespace CombCell
             Scheme normal = new Scheme();
             normal.Key = "Normal";
             normal.Brush = Brushes.White.Clone();
-            normal.Brush.Opacity = 0.9;
+            normal.Brush.Opacity = 0;
             normal.Pen = new Pen(Brushes.Yellow, 1);
             Add(normal);
 
@@ -25,6 +25,12 @@ namespace CombCell
             selected.Brush = Brushes.LightPink;
             selected.Pen = new Pen(Brushes.Red, 1);
             Add(selected);
+
+            Scheme block = new Scheme();
+            block.Key = "Blocked";
+            block.Brush = Brushes.Black;
+            block.Pen = new Pen(Brushes.DarkCyan, 1);
+            Add(block);
         }
 
 

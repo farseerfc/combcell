@@ -10,13 +10,29 @@ namespace CombCell
         private List<List<Cell>> cells;
         private Graph<Pair<int>> graph;
         private Arranger arranger;
+        private List<Pair<int>> blockList;
+        private List<Pair<int>> selectList;
+
+        public Cell this[int row, int column]
+        {
+            get { return cells[row][column]; }
+        }
+
+
+        protected override Freezable CreateInstanceCore()
+        {
+            return new Comb(arranger);
+        }
 
         public Comb(Arranger arranger)
         {
             cells = new List<List<Cell>>();
             graph = new Graph<Pair<int>>();
+            blockList = new List<Pair<int>>();
+            selectList = new List<Pair<int>>();
             this.arranger = arranger;
         }
+
 
         public void EnsureCells(int xCount, int yCount)
         {
@@ -39,7 +55,7 @@ namespace CombCell
                         if ((c.first < i || (c.first == i && c.second < j)) &&
                             c.first >= 0 && c.second >= 0 && c.first < yCount && c.second < xCount) //assure that the cell refered by c is exist
                         {
-                            Vertex<Pair<int>> nearByVertex = graph.VertexMap[new Pair<int>(c.first, c.second)];
+                            Vertex<Pair<int>> nearByVertex = graph.VertexMap[c];
                             Edge<Pair<int>> edge = graph.CreateEdge(vertex, nearByVertex);
                         }
                     }
@@ -47,18 +63,54 @@ namespace CombCell
             }
         }
 
-        public Cell this[int row, int column]
+        public void Block(Pair<int> pos)
         {
-            get { return cells[row][column]; }
+            cells[pos.first][pos.second].State = CellState.Blocked;
+            cells[pos.first][pos.second].Index = 0;
+            blockList.Add(pos);
+            graph.RemoveVertex(graph.VertexMap[pos]);
+
         }
 
-        protected override Freezable CreateInstanceCore()
+        public void Unblock(Pair<int> pos)
         {
-            return new Comb(arranger);
+            cells[pos.first][pos.second].State = CellState.MouseOver;
+            blockList.Remove(pos);
+            Vertex<Pair<int>> v=graph.CreateVertex(pos);
+            List<Pair<int>> nearBy = arranger.NearBy(pos.first,pos.second);
+            foreach (Pair<int> c in nearBy)
+            {
+                if (c.first >= 0 && c.second >= 0 && c.first < arranger.YCount && c.second < arranger.XCount) //assure that the cell refered by c is exist
+                {
+                    if (graph.VertexMap.ContainsKey(c))
+                    {
+                        Vertex<Pair<int>> nearByVertex = graph.VertexMap[c];
+                        Edge<Pair<int>> edge = graph.CreateEdge(v, nearByVertex);
+                    }
+                }
+            }
         }
+
+        public void Select(Pair<int> pos)
+        {
+            cells[pos.first][pos.second].State = CellState.Selected;
+            selectList.Add(pos);
+        }
+
+        public void Unselect(Pair<int> pos)
+        {
+            cells[pos.first][pos.second].State = CellState.MouseOver;
+            selectList.Remove(pos);
+        }
+
 
         public void StartMarkIndex(int row, int column)
         {
+            foreach(List<Cell> line in cells){
+                foreach(Cell cell in line){
+                    cell.Index = 0;
+                }
+            }
             int index = 1;
             graph.ClearAccessed();
             List<Vertex<Pair<int>>> queue = new List<Vertex<Pair<int>>>();
@@ -80,6 +132,11 @@ namespace CombCell
                         {
                             nearByCells.Remove(nearByCells[i--]);
                         }
+                    }
+
+                    if(nearByCells.Count==0)
+                    {
+                        continue;
                     }
 
                     int circleCount = 0;
