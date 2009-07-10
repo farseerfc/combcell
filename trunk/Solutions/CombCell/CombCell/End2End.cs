@@ -32,6 +32,13 @@ namespace CombCell.DSAlgo
         public override void Calc()
         {
             if (Selected.Count < 1) return;
+            Initialize();
+            Dijkstra();
+            GeneratePath();
+        }
+
+        private void Initialize()
+        {
             startPos = Selected[0];
             start = Graph.VertexMap[startPos];
 
@@ -46,12 +53,7 @@ namespace CombCell.DSAlgo
             }
 
             distance[start] = 0;
-
             undetermined = new List<Vertex<T>>(Graph.Vertexes);
-
-            Dijkstra();
-            GeneratePath();
-
         }
 
         private void Relax(Vertex<T> u, Vertex<T> v)

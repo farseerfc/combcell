@@ -52,12 +52,15 @@ namespace CombCell
             {
                 if (value.Cell == null) return;
                 CellShape lastCell = (CellShape)GetValue(MouseOverCellProperty);
-                if(lastCell!=null&&lastCell!=value&&
-                    lastCell.Cell.State==CellState.MouseOver){
+                if(lastCell!=null&&lastCell.Cell.State==CellState.MouseOver){
                     lastCell.Cell.State = CellState.Normal;
                 }
-                if(value.Cell.State==CellState.Normal)
+                
+                if (value.Cell.State == CellState.Normal)
+                {
                     value.Cell.State = CellState.MouseOver;
+                }
+                
                 SetValue(MouseOverCellProperty, value); 
             }
         }

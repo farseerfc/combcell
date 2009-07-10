@@ -52,5 +52,11 @@ namespace CombCell
         {
             combView.State = CombViewState.BlockCells;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            combView.AnimateChildrenByRow();
+        }
     }
 }
