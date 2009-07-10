@@ -32,7 +32,10 @@ namespace CombCell
 
         private void Ready_Checked(object sender, RoutedEventArgs e)
         {
-            
+            if (combView != null)
+            {
+                combView.AnimateChildrenByRow();
+            }
         }
 
         private void radioButton2_Checked(object sender, RoutedEventArgs e)
@@ -43,6 +46,11 @@ namespace CombCell
         private void radioButton3_Checked(object sender, RoutedEventArgs e)
         {
             combView.State = CombViewState.SelectCells;
+        }
+
+        private void radioButton4_Checked(object sender, RoutedEventArgs e)
+        {
+            combView.State = CombViewState.BlockCells;
         }
     }
 }

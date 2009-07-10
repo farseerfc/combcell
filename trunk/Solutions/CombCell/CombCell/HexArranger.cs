@@ -38,7 +38,7 @@ namespace CombCell
         {
             if (Comb[row, column].Index == 0)
             {
-                return "" + row + ":" + column;
+                return "";// +row + ":" + column;
             }
             else
             {

@@ -5,22 +5,13 @@
     Title="CombCellWindow" Height="322" Width="670">
     <Window.Resources>
         <cc:HexArranger x:Key="Arranger"/>
-        <Storyboard x:Key="OnChecked1">
-        	<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="combView" Storyboard.TargetProperty="(UIElement.Opacity)">
-        		<SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-        		<SplineDoubleKeyFrame KeyTime="00:00:01" Value="1"/>
-        	</DoubleAnimationUsingKeyFrames>
-        </Storyboard>
+        
     </Window.Resources>
 	<Window.Triggers>
-		<EventTrigger RoutedEvent="ToggleButton.Checked" SourceName="radioButton1">
-			<BeginStoryboard Storyboard="{StaticResource OnChecked1}" x:Name="OnChecked1_BeginStoryboard"/>
-            
-		</EventTrigger>
+		
 	</Window.Triggers>
     
     <DockPanel>
-<!--<cc:CombView Arranger="{StaticResource Arranger}" Width="382" Height="240"/>-->
     	<Menu DockPanel.Dock="Top">
 			<MenuItem Header="File" >
 				<MenuItem Header="Exit" Click="MenuItem_Click_1" />
@@ -57,6 +48,13 @@
                                 </cc:HexCell.Cell>
                             </cc:HexCell>
 						</RadioButton>
+                        <RadioButton Name="radioButton4"  Checked="radioButton4_Checked">
+                            <cc:HexCell Width="60" Height="50" Index="1">
+                                <cc:HexCell.Cell>
+                                    <cc:Cell State="Blocked"/>
+                                </cc:HexCell.Cell>
+                            </cc:HexCell>
+                        </RadioButton>
                         <RadioButton Name="radioButton3"  Checked="radioButton3_Checked">
                             <cc:HexCell Width="60" Height="50" Index="1">
                                 <cc:HexCell.Cell>
@@ -64,19 +62,17 @@
                                 </cc:HexCell.Cell>
                             </cc:HexCell>
                         </RadioButton>
+                        
                     </StackPanel>
                
             </GroupBox>
             </StackPanel>
             <GridSplitter Grid.Column="0" Width="5"/>
-            <cc:CombView Grid.Column="2" Arranger="{StaticResource Arranger}" x:Name="combView"/>
+            <cc:CombView Grid.Column="2" Arranger="{StaticResource Arranger}" x:Name="combView">
+                <cc:CombView.Effect>
+                    <DropShadowEffect/>
+                </cc:CombView.Effect>
+            </cc:CombView>
         </Grid>
-    	
-    	
-    	
-		
-    	
-		
-		<!--<cc:CombView Arranger="{StaticResource Arranger}" DockPanel.Dock="Bottom"/>-->
 	</DockPanel>
 </Window>

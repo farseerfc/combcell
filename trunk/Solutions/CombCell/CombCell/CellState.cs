@@ -5,6 +5,7 @@ namespace CombCell
     {
         Normal,
         MouseOver,
-        Selected
+        Selected,
+        Blocked
     }
 }

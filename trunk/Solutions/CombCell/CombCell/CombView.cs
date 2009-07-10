@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace CombCell
 {
@@ -47,6 +50,7 @@ namespace CombCell
             get { return (CellShape)GetValue(MouseOverCellProperty); }
             set 
             {
+                if (value.Cell == null) return;
                 CellShape lastCell = (CellShape)GetValue(MouseOverCellProperty);
                 if(lastCell!=null&&lastCell!=value&&
                     lastCell.Cell.State==CellState.MouseOver){
@@ -103,10 +107,14 @@ namespace CombCell
 
 
         private readonly List<CellShape> children;
+        private readonly List<CellShape> animatedChildren;
+        private readonly List<CellShape> animatingChildren;
 
         public CombView()
         {
             children = new List<CellShape>();
+            animatedChildren = new List<CellShape>();
+            animatingChildren = new List<CellShape>();
         }
 
         protected override Size ArrangeOverride(Size finalSize)
@@ -147,6 +155,62 @@ namespace CombCell
             return children[index];
         }
 
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            MousePosition = e.GetPosition(this);
+        }
+
+        protected override void OnMouseUp(MouseButtonEventArgs e)
+        {
+            base.OnMouseUp(e);
+            MousePosition = e.GetPosition(this);
+            Pair<int> pos=Arranger.FromPointToPair(MousePosition);
+            if (State == CombViewState.SelectCells)
+            {
+                if (MouseOverCell.Cell.State != CellState.Selected)
+                {
+                    if(MouseOverCell.Cell.State==CellState.Blocked)
+                    {
+                        Arranger.Comb.Unblock(pos);
+                    }
+                    Arranger.Comb.Select(pos);
+                }
+                else
+                {
+                    Arranger.Comb.Unselect(pos);
+                }
+            }
+
+            if (State == CombViewState.BlockCells)
+            {
+                if (MouseOverCell.Cell.State != CellState.Blocked)
+                {
+                    if (MouseOverCell.Cell.State == CellState.Selected)
+                    {
+                        Arranger.Comb.Unselect(pos);
+                    }
+                    Arranger.Comb.Block(pos);
+                }
+                else
+                {
+                    Arranger.Comb.Unblock(pos);
+                }
+            }
+
+            if (State == CombViewState.MarkIndex)
+            {
+                if (MouseOverCell.Cell.State != CellState.Blocked)
+                {
+                    Arranger.Comb.StartMarkIndex(pos.first, pos.second);
+                    InvalidateVisual();
+                    AnimateChildrenByIndex();
+                }
+            }
+
+        }
+
         private void EnsureChildren(Size size)
         {
             if (Arranger.NeedAddChild(size))
@@ -170,34 +234,78 @@ namespace CombCell
             }
         }
 
-        protected override void OnMouseMove(MouseEventArgs e)
+        private void AnimateChildren()
         {
-            base.OnMouseMove(e);
-            MousePosition = e.GetPosition(this);
+            foreach(CellShape cell in animatedChildren){
+                if (cell != null)
+                {
+                    cell.Opacity = 0;
+                }
+            }
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval =new TimeSpan(0, 0, 0, 0, 50);
+            timer.Tag = 0.02 * animatedChildren.Count;
+            timer.Tick+=delegate(object sender,EventArgs e){
+                DispatcherTimer t = sender as DispatcherTimer;
+                int c = 0;
+                int tag=(int)Math.Ceiling((double)t.Tag);
+                while(c<tag&&animatedChildren.Count>0)
+                {
+                    DoubleAnimation da = new DoubleAnimation();
+                    da.From = 0;
+                    da.To = 1;
+                    da.Duration =new TimeSpan(0, 0, 0, 0, 500);
+                    da.FillBehavior = FillBehavior.Stop;
+                    da.Completed += delegate(object sender1, EventArgs e1)
+                    {
+                        if(animatingChildren.Count>0)
+                        {
+                            animatingChildren[0].Opacity = 1;
+                            animatingChildren.RemoveAt(0);
+                        }
+                    };
+                    animatedChildren[0].BeginAnimation(CellShape.OpacityProperty, da);
+                    animatingChildren.Add(animatedChildren[0]);
+                    animatedChildren.RemoveAt(0);
+                    c++;
+                }
+                if(animatedChildren.Count==0){
+                    t.IsEnabled = false;
+                }
+            };
+            timer.IsEnabled = true;
         }
 
-        protected override void OnMouseUp(MouseButtonEventArgs e)
+        public void AnimateChildrenByRow()
         {
-            base.OnMouseUp(e);
-            MousePosition = e.GetPosition(this);
-            if (State == CombViewState.SelectCells)
+            animatingChildren.Clear();
+            foreach (CellShape cell in children)
             {
-                if (MouseOverCell.Cell.State == CellState.MouseOver)
+                animatedChildren.Add(cell);
+            }
+            AnimateChildren();
+        }
+
+        public void AnimateChildrenByIndex()
+        {
+            animatingChildren.Clear();
+            foreach (CellShape cell in children)
+            {
+                if (cell.Cell != null)
                 {
-                    MouseOverCell.Cell.State = CellState.Selected;
-                }
-                else
-                {
-                    MouseOverCell.Cell.State = CellState.MouseOver;
+                    while (animatedChildren.Count <= cell.Cell.Index)
+                    {
+                        animatedChildren.Add(null);
+                    }
+                    animatedChildren[cell.Cell.Index] = cell;
                 }
             }
-
-            if (State == CombViewState.MarkIndex)
-            {
-                Pair<int> pos = Arranger.FromPointToPair(MousePosition);
-                Arranger.Comb.StartMarkIndex(pos.first, pos.second);
+            if(animatedChildren.Count>0){
+                animatedChildren.RemoveAt(0);
             }
-
+            
+            AnimateChildren();
         }
 
     }

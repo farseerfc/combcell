@@ -9,6 +9,7 @@ namespace CombCell
     {
         Ready,
         MarkIndex,
-        SelectCells
+        SelectCells,
+        BlockCells
     }
 }

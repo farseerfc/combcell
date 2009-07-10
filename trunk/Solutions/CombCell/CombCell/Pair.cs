@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CombCell
 {
-    public struct Pair<T>
+    public struct Pair<T>:IEquatable<Pair<T>>
     {
         public T first;
         public T second;
@@ -19,6 +19,25 @@ namespace CombCell
         public override string ToString()
         {
             return String.Format("<{0},{1}>", first, second);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is Pair<int>){
+                return Equals((Pair<int>)obj);
+            }
+            return false;
+        }
+
+        public bool Equals(Pair<T> obj)
+        {
+            return this.first.Equals(obj.first) 
+                && this.second.Equals(obj.second);
+        }
+
+        public override int GetHashCode()
+        {
+            return (first.GetHashCode()*97)^second.GetHashCode();
         }
     }
 }
