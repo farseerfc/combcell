@@ -13,6 +13,7 @@ namespace CombCell
         private List<Pair<int>> blockList;
         private List<Pair<int>> selectList;
         private List<Pair<int>> pathList;
+        private Pair<int> initial;
 
         public Cell this[int row, int column]
         {
@@ -59,8 +60,8 @@ namespace CombCell
                     List<Pair<int>> nearBy = arranger.NearBy(i, j);
                     foreach (Pair<int> c in nearBy)
                     {
-                        if ((c.first < i || (c.first == i && c.second < j)) &&
-                            c.first >= 0 && c.second >= 0 && c.first < yCount && c.second < xCount) //assure that the cell refered by c is exist
+                        if (graph.VertexMap.ContainsKey(c))
+                            //assure that the cell referred by c is exist
                         {
                             Vertex<Pair<int>> nearByVertex = graph.VertexMap[c];
                             Edge<Pair<int>> edge = graph.CreateEdge(vertex, nearByVertex);
@@ -68,6 +69,8 @@ namespace CombCell
                     }
                 }
             }
+            MarkIndex();
+            UpdatePath();
         }
 
         public void Block(Pair<int> pos)
@@ -76,7 +79,7 @@ namespace CombCell
             cells[pos.first][pos.second].Index = 0;
             blockList.Add(pos);
             graph.RemoveVertex(graph.VertexMap[pos]);
-
+            MarkIndex();
             UpdatePath();
         }
 
@@ -97,11 +100,13 @@ namespace CombCell
                     }
                 }
             }
+            MarkIndex();
             UpdatePath();
         }
 
         public void Select(Pair<int> pos)
         {
+            
             cells[pos.first][pos.second].State = CellState.Selected;
             selectList.Add(pos);
 
@@ -148,8 +153,7 @@ namespace CombCell
             }
         }
 
-
-        public void StartMarkIndex(Pair<int> pos)
+        private void MarkIndex()
         {
             //clear marked indexes
             foreach (List<Cell> line in cells)
@@ -166,7 +170,7 @@ namespace CombCell
             List<Vertex<Pair<int>>> queue = new List<Vertex<Pair<int>>>();
 
             //first vertex enqueue
-            queue.Add(graph.VertexMap[pos]);
+            queue.Add(graph.VertexMap[initial]);
             while (queue.Count > 0)
             {
                 //next vertex dequeue
@@ -220,6 +224,13 @@ namespace CombCell
 
                 }
             }
+        }
+
+
+        public void StartMarkIndex(Pair<int> pos)
+        {
+            initial = pos;
+            MarkIndex();
         }
     }
 }

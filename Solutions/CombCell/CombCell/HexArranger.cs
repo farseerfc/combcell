@@ -52,6 +52,8 @@ namespace CombCell
             int y = (int)Math.Floor((point.Y - (x % 2 * CellSize * 1.5)) / CellSize / Math.Sqrt(12)) * 2;
             y += x % 2;
             x /= 2;
+            if (x >= XCount) x = XCount - 1;
+            if (y >= YCount) y = YCount - 1;
             return new Pair<int>(y, x);
         }
 
