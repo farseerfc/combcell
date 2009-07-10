@@ -32,10 +32,10 @@ namespace CombCell
 
         private void Ready_Checked(object sender, RoutedEventArgs e)
         {
-            if (combView != null)
-            {
-                combView.AnimateChildrenByRow();
-            }
+            if (combView == null) return;
+
+            combView.AnimateChildrenByRow();
+
         }
 
         private void radioButton2_Checked(object sender, RoutedEventArgs e)

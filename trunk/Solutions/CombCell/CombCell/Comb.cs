@@ -76,8 +76,8 @@ namespace CombCell
         {
             cells[pos.first][pos.second].State = CellState.MouseOver;
             blockList.Remove(pos);
-            Vertex<Pair<int>> v=graph.CreateVertex(pos);
-            List<Pair<int>> nearBy = arranger.NearBy(pos.first,pos.second);
+            Vertex<Pair<int>> v = graph.CreateVertex(pos);
+            List<Pair<int>> nearBy = arranger.NearBy(pos.first, pos.second);
             foreach (Pair<int> c in nearBy)
             {
                 if (c.first >= 0 && c.second >= 0 && c.first < arranger.YCount && c.second < arranger.XCount) //assure that the cell refered by c is exist
@@ -104,74 +104,76 @@ namespace CombCell
         }
 
 
-        public void StartMarkIndex(int row, int column)
+        public void StartMarkIndex(Pair<int> pos)
         {
-            foreach(List<Cell> line in cells){
-                foreach(Cell cell in line){
+            //clear marked indexes
+            foreach (List<Cell> line in cells)
+            {
+                foreach (Cell cell in line)
+                {
                     cell.Index = 0;
                 }
             }
+
+            //prepare for the algorithm
             int index = 1;
             graph.ClearAccessed();
             List<Vertex<Pair<int>>> queue = new List<Vertex<Pair<int>>>();
-            queue.Add(graph.VertexMap[new Pair<int>(row, column)]);
-            Vertex<Pair<int>> lastVertex = null;
+
+            //first vertex enqueue
+            queue.Add(graph.VertexMap[pos]);
             while (queue.Count > 0)
             {
+                //next vertex dequeue
                 Vertex<Pair<int>> v = queue[0];
                 queue.RemoveAt(0);
-                if (!v.Accessed)
+                if (v.Accessed) continue;
+
+                //access and mark index
+                cells[v.Key.first][v.Key.second].Index = index++;
+                v.Accessed = true;
+
+                //get accessible nearby cells
+                List<Pair<int>> nearByCells = arranger.NearBy(v.Key.first, v.Key.second);
+                for (int i = 0; i < nearByCells.Count; ++i)
                 {
-                    cells[v.Key.first][v.Key.second].Index = index++;
-                    v.Accessed = true;
-                    List<Pair<int>> nearByCells = arranger.NearBy(v.Key.first, v.Key.second);
-
-                    for (int i = 0; i < nearByCells.Count; ++i)
+                    if (!graph.VertexMap.ContainsKey(nearByCells[i]))
                     {
-                        if (!graph.VertexMap.ContainsKey(nearByCells[i]))
-                        {
-                            nearByCells.Remove(nearByCells[i--]);
-                        }
+                        nearByCells.Remove(nearByCells[i--]);
                     }
+                }
+                if (nearByCells.Count == 0) continue;
 
-                    if(nearByCells.Count==0)
-                    {
-                        continue;
-                    }
-
-                    int circleCount = 0;
-                    while (!graph.VertexMap[nearByCells[0]].Accessed &&
-                        !queue.Contains(graph.VertexMap[nearByCells[0]]))
-                    {
-                        nearByCells.Add(nearByCells[0]);
-                        nearByCells.RemoveAt(0);
-                        if (++circleCount >= nearByCells.Count) break;
-                    }
-                    circleCount = 0;
-                    while (graph.VertexMap[nearByCells[0]].Accessed ||
-                        queue.Contains(graph.VertexMap[nearByCells[0]]))
-                    {
-                        nearByCells.Add(nearByCells[0]);
-                        nearByCells.RemoveAt(0);
-                        if (++circleCount >= nearByCells.Count) break;
-                    }
-
-                    foreach (Pair<int> nearBy in nearByCells)
-                    {
-                        Pair<int> pair = new Pair<int>(nearBy.first, nearBy.second);
-
-                        Vertex<Pair<int>> otherEnd = graph.VertexMap[pair];
-                        if (!otherEnd.Accessed)
-                        {
-                            if (!queue.Contains(otherEnd))
-                                queue.Add(otherEnd);
-                        }
-
-                    }
-                    lastVertex = v;
-
+                //rotate the order of nearby list to ensure clock-wise
+                //firstly jump all non-accessed cells
+                int circleCount = 0;
+                while (!graph.VertexMap[nearByCells[0]].Accessed &&
+                    !queue.Contains(graph.VertexMap[nearByCells[0]]))
+                {
+                    nearByCells.Add(nearByCells[0]);
+                    nearByCells.RemoveAt(0);
+                    if (++circleCount >= nearByCells.Count) break;
+                }
+                //secondly jump all accessed cells
+                circleCount = 0;
+                while (graph.VertexMap[nearByCells[0]].Accessed ||
+                    queue.Contains(graph.VertexMap[nearByCells[0]]))
+                {
+                    nearByCells.Add(nearByCells[0]);
+                    nearByCells.RemoveAt(0);
+                    if (++circleCount >= nearByCells.Count) break;
                 }
 
+                //then enqueue the nearby cells in order
+                foreach (Pair<int> nearBy in nearByCells)
+                {
+                    Vertex<Pair<int>> otherEnd = graph.VertexMap[nearBy];
+                    if (!otherEnd.Accessed && !queue.Contains(otherEnd))
+                    {
+                        queue.Add(otherEnd);
+                    }
+
+                }
             }
         }
     }
