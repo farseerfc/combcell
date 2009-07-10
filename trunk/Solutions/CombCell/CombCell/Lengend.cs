@@ -26,11 +26,17 @@ namespace CombCell
             selected.Pen = new Pen(Brushes.Red, 1);
             Add(selected);
 
-            Scheme block = new Scheme();
-            block.Key = "Blocked";
-            block.Brush = Brushes.Black;
-            block.Pen = new Pen(Brushes.DarkCyan, 1);
-            Add(block);
+            Scheme blocked = new Scheme();
+            blocked.Key = "Blocked";
+            blocked.Brush = Brushes.Black;
+            blocked.Pen = new Pen(Brushes.DarkCyan, 1);
+            Add(blocked);
+
+            Scheme passed = new Scheme();
+            passed.Key = "Passed";
+            passed.Brush = Brushes.LightGreen;
+            passed.Pen = new Pen(Brushes.LimeGreen, 1);
+            Add(passed);
         }
 
 

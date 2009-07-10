@@ -12,10 +12,16 @@ namespace CombCell
         private Arranger arranger;
         private List<Pair<int>> blockList;
         private List<Pair<int>> selectList;
+        private List<Pair<int>> pathList;
 
         public Cell this[int row, int column]
         {
             get { return cells[row][column]; }
+        }
+
+        public Cell this[Pair<int> pos]
+        {
+            get { return cells[pos.first][pos.second];}
         }
 
 
@@ -30,6 +36,7 @@ namespace CombCell
             graph = new Graph<Pair<int>>();
             blockList = new List<Pair<int>>();
             selectList = new List<Pair<int>>();
+            pathList = new List<Pair<int>>();
             this.arranger = arranger;
         }
 
@@ -70,6 +77,7 @@ namespace CombCell
             blockList.Add(pos);
             graph.RemoveVertex(graph.VertexMap[pos]);
 
+            UpdatePath();
         }
 
         public void Unblock(Pair<int> pos)
@@ -89,18 +97,55 @@ namespace CombCell
                     }
                 }
             }
+            UpdatePath();
         }
 
         public void Select(Pair<int> pos)
         {
             cells[pos.first][pos.second].State = CellState.Selected;
             selectList.Add(pos);
+
+            UpdatePath();
         }
 
         public void Unselect(Pair<int> pos)
         {
             cells[pos.first][pos.second].State = CellState.MouseOver;
             selectList.Remove(pos);
+
+            UpdatePath();
+        }
+
+        private void UpdatePath()
+        {
+            foreach (Pair<int> passed in pathList)
+            {
+                Cell cell = cells[passed.first][passed.second];
+                if(blockList.Contains(passed))
+                {
+                    cell.State = CellState.Blocked;
+                }else if(selectList.Contains(passed))
+                {
+                    cell.State = CellState.Selected;
+                }
+                else
+                {
+                    cell.State = CellState.Normal;
+                }
+            }
+
+            PathAlgorithm<Pair<int>> algo = new End2End<Pair<int>>();
+            algo.Graph = graph;
+            algo.Selected = selectList;
+            if(algo.CanCalc)
+            {
+                algo.Calc();
+                pathList = algo.Path;
+                foreach (Pair<int> passed in pathList)
+                {
+                    cells[passed.first][passed.second].State = CellState.Passed;
+                }
+            }
         }
 
 

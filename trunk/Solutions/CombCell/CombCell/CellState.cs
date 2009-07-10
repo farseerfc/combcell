@@ -6,6 +6,7 @@ namespace CombCell
         Normal,
         MouseOver,
         Selected,
-        Blocked
+        Blocked,
+        Passed
     }
 }
