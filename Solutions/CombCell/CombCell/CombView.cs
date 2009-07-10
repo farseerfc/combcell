@@ -203,7 +203,7 @@ namespace CombCell
             {
                 if (MouseOverCell.Cell.State != CellState.Blocked)
                 {
-                    Arranger.Comb.StartMarkIndex(pos.first, pos.second);
+                    Arranger.Comb.StartMarkIndex(pos);
                     InvalidateVisual();
                     AnimateChildrenByIndex();
                 }
