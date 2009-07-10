@@ -13,6 +13,20 @@ namespace CombCell.DSAlgo
         public Dictionary<T, Vertex<T>> VertexMap;
         //public Dictionary<T, Edge> EdgeMap;
 
+        /// <summary>
+        /// Returns a number larger than count of vertexes and edges,
+        /// which can be consider as positive infinitive in algorithms
+        /// </summary>
+        public int Infinitive
+        {
+            get 
+            {
+                int v = Vertexes.Count;
+                int e = Edges.Count;
+                return v + e + 1;
+            }
+        }
+
         public Graph()
         {
             Vertexes = new List<Vertex<T>>();
