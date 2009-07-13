@@ -56,3 +56,4 @@ using System;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: CLSCompliant(true)]
+[assembly: InternalsVisibleTo("CombCell.Tests")]
