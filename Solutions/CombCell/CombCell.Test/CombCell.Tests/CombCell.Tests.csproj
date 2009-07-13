@@ -67,19 +67,75 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrangerTest.CellSizeGetSet.g.cs">
+      <DependentUpon>ArrangerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArrangerTest.CombGetSet.g.cs">
+      <DependentUpon>ArrangerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArrangerTest.cs" />
+    <Compile Include="ArrangerTest.FromPointToIndex.g.cs">
+      <DependentUpon>ArrangerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArrangerTest.FromPointToPair.g.cs">
+      <DependentUpon>ArrangerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArrangerTest.NearBy.g.cs">
+      <DependentUpon>ArrangerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArrangerTest.NeedAddChild.g.cs">
+      <DependentUpon>ArrangerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArrangerTest.XCountGet.g.cs">
+      <DependentUpon>ArrangerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArrangerTest.YCountGet.g.cs">
+      <DependentUpon>ArrangerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CellTest.cs" />
+    <Compile Include="CellTest.IndexGetSet.g.cs">
+      <DependentUpon>CellTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CellTest.PositionGetSet.g.cs">
+      <DependentUpon>CellTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CellTest.StateGetSet.g.cs">
+      <DependentUpon>CellTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="CombCell.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>CombCell.stubx</DependentUpon>
     </Compile>
+    <Compile Include="EdgeTTest.Constructor.g.cs">
+      <DependentUpon>EdgeTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EdgeTTest.Constructor01.g.cs">
+      <DependentUpon>EdgeTTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="EdgeTTest.cs" />
+    <Compile Include="EdgeTTest.FromGetSet.g.cs">
+      <DependentUpon>EdgeTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EdgeTTest.ToGetSet.g.cs">
+      <DependentUpon>EdgeTTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="EdgeTTest.ToString.g.cs">
       <DependentUpon>EdgeTTest.cs</DependentUpon>
     </Compile>
     <Compile Include="End2EndTTest.Calc.g.cs">
       <DependentUpon>End2EndTTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="End2EndTTest.Calc001.g.cs">
+      <DependentUpon>End2EndTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="End2EndTTest.CanCalc1.g.cs">
+      <DependentUpon>End2EndTTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="End2EndTTest.CanCalcGet.g.cs">
+      <DependentUpon>End2EndTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="End2EndTTest.Constructor.g.cs">
       <DependentUpon>End2EndTTest.cs</DependentUpon>
     </Compile>
     <Compile Include="End2EndTTest.cs" />
@@ -96,10 +152,22 @@
       <DependentUpon>GraphTTest.cs</DependentUpon>
     </Compile>
     <Compile Include="GraphTTest.cs" />
+    <Compile Include="GraphTTest.EdgesGet.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.InfinitiveGet.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="GraphTTest.RemoveEdge.g.cs">
       <DependentUpon>GraphTTest.cs</DependentUpon>
     </Compile>
     <Compile Include="GraphTTest.RemoveVertex.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.VertexesGet.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.VertexMapGet.g.cs">
       <DependentUpon>GraphTTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
