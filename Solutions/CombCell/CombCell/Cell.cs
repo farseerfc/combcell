@@ -32,11 +32,18 @@ namespace CombCell
             get { return (int)GetValue(IndexProperty); }
             set { SetValue(IndexProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for Index.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IndexProperty =
             DependencyProperty.Register("Index", typeof(int), typeof(Cell),
                 new FrameworkPropertyMetadata(0));
+
+        public Pair<int> Position
+        {
+            get { return (Pair<int>)GetValue(PositionProperty); }
+            set { SetValue(PositionProperty, value); }
+        }
+        public static readonly DependencyProperty PositionProperty =
+            DependencyProperty.Register("Position", typeof(Pair<int>), typeof(Cell),
+                new FrameworkPropertyMetadata(new Pair<int>()));
 
 
 

@@ -54,6 +54,7 @@ namespace CombCell
                 {
                     //Add new cell into comb
                     Cell cell = new Cell();
+                    cell.Position = new Pair<int>(i, j);
                     cells[i].Add(cell);
                     //maps a vertex to it
                     Vertex<Pair<int>> vertex = graph.CreateVertex(new Pair<int>(i, j));

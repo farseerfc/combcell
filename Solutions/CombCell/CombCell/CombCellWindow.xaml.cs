@@ -56,8 +56,8 @@ namespace CombCell
         private void TriArranger_Checked(object sender, RoutedEventArgs e)
         {
             if (combView == null) return;
-            Arranger arranger = new HexArranger();
-            arranger.CellSize = 15;
+            Arranger arranger = new TriArranger();
+            arranger.CellSize = 70;
             ResetArranger(arranger);
         }
         private void RectArranger_Checked(object sender, RoutedEventArgs e)
