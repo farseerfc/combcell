@@ -7,13 +7,31 @@ namespace CombCell.DSAlgo
 {
     public class Vertex <T>
     {
-        public bool Accessed;
-        public T Key;
-        public List<Edge<T>> Edges;
+        private bool accessed;
+        private T key;
+        private List<Edge<T>> edges;
+
+
+        public bool Accessed
+        {
+            set { accessed = value; }
+            get { return accessed; }
+        }
+
+        public T Key
+        {
+            set { key = value; }
+            get { return key; }
+        }
+
+        public List<Edge<T>> Edges
+        {
+            get { return edges; }
+        }
 
         public Vertex()
         {
-            Edges = new List<Edge<T>>();
+            edges = new List<Edge<T>>();
         }
 
         public override string ToString()

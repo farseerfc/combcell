@@ -8,9 +8,25 @@ namespace CombCell.DSAlgo
     
     public class Graph<T>
     {
-        public List<Vertex<T>> Vertexes;
-        public List<Edge<T>> Edges;
-        public Dictionary<T, Vertex<T>> VertexMap;
+        private List<Vertex<T>> vertexes;
+        private List<Edge<T>> edges;
+        private Dictionary<T, Vertex<T>> vertexMap;
+
+
+        public List<Vertex<T>> Vertexes
+        {
+            get { return vertexes; }
+        }
+
+        public List<Edge<T>> Edges
+        {
+            get { return edges; }
+        }
+
+        public Dictionary<T, Vertex<T>> VertexMap
+        {
+            get { return vertexMap; }
+        }
         //public Dictionary<T, Edge> EdgeMap;
 
         /// <summary>
@@ -29,9 +45,9 @@ namespace CombCell.DSAlgo
 
         public Graph()
         {
-            Vertexes = new List<Vertex<T>>();
-            Edges = new List<Edge<T>>();
-            VertexMap = new Dictionary<T, Vertex<T>>();
+            vertexes = new List<Vertex<T>>();
+            edges = new List<Edge<T>>();
+            vertexMap = new Dictionary<T, Vertex<T>>();
         }
 
         public Vertex<T> CreateVertex(T key)
@@ -45,9 +61,14 @@ namespace CombCell.DSAlgo
 
         public Edge<T> CreateEdge(Vertex<T> v1, Vertex<T> v2)
         {
-            Edge<T> edge = new Edge<T>();
-            edge.From = v1;
-            edge.To = v2;
+            if(v1==v2||v1==null||v2==null)
+            {
+                if (v1 == null) throw new ArgumentNullException("v1");
+                if (v2 == null) throw new ArgumentNullException("v2");
+                throw new ArgumentException("Vertex should not be the same");
+            }
+
+            Edge<T> edge = new Edge<T>(v1,v2);
             v1.Edges.Add(edge);
             v2.Edges.Add(edge);
             Edges.Add(edge);
@@ -56,6 +77,7 @@ namespace CombCell.DSAlgo
 
         public void RemoveEdge(Edge<T> edge)
         {
+            if (edge == null) throw new ArgumentNullException("edge");
             edge.From.Edges.Remove(edge);
             edge.To.Edges.Remove(edge);
             Edges.Remove(edge);
@@ -63,6 +85,7 @@ namespace CombCell.DSAlgo
 
         public void RemoveVertex(Vertex<T> vertex)
         {
+            if (vertex == null) throw new ArgumentNullException("vertex");
             while(vertex.Edges.Count>0)
             {
                 RemoveEdge(vertex.Edges[0]);

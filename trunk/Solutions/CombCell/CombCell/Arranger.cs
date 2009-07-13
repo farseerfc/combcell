@@ -4,7 +4,7 @@ using System.Windows;
 namespace CombCell
 {
     /// <summary>
-    /// Arranger is to arrange the cells on a comb
+    /// Arranger is to arrange the cells on a comb.
     /// </summary>
     public abstract class Arranger : Freezable
     {
