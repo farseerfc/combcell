@@ -155,6 +155,8 @@ namespace CombCell
 
         private void MarkIndex()
         {
+            if (!graph.VertexMap.ContainsKey(initial)) return;
+
             //clear marked indexes
             foreach (List<Cell> line in cells)
             {
