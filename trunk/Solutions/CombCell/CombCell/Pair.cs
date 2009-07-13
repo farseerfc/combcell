@@ -23,8 +23,9 @@ namespace CombCell
 
         public override bool Equals(object obj)
         {
-            if(obj is Pair<int>){
-                return Equals((Pair<int>)obj);
+            if(obj is Pair<T>){
+                Pair<T> other = (Pair<T>)obj;
+                return Equals(other);
             }
             return false;
         }
