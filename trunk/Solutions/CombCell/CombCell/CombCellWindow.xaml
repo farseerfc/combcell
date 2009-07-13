@@ -34,19 +34,37 @@
                 <GroupBox Header="Arranger" Name="groupBox2" Margin="20,20,20,20">
 
                     <StackPanel Name="stackPanel3">
-                        <RadioButton Name="rdobtn1" Checked="TriArranger_Checked" Margin="10,10,10,10"/>
-                        <RadioButton Name="rdobtn2" Checked="RectArranger_Checked" Margin="10,10,10,10"/>
-                        <RadioButton Name="rdobtn3" Checked="HexArranger_Checked" Margin="10,10,10,10" IsChecked="True" />
+                        <RadioButton Name="rdobtn1" Checked="TriArranger_Checked" Margin="5">
+                            <cc:HexCell Width="60" Height="50">
+                                <cc:HexCell.Cell>
+                                    <cc:Cell State="Normal"/>
+                                </cc:HexCell.Cell>
+                            </cc:HexCell>
+                        </RadioButton>
+                        <RadioButton Name="rdobtn2" Checked="RectArranger_Checked" Margin="5">
+                            <cc:RectCell Width="50" Height="50">
+                                <cc:RectCell.Cell>
+                                    <cc:Cell State="Normal"/>
+                                </cc:RectCell.Cell>
+                            </cc:RectCell>
+                        </RadioButton>
+                        <RadioButton Name="rdobtn3" Checked="HexArranger_Checked" Margin="5" IsChecked="True" >
+                            <cc:HexCell Width="60" Height="50">
+                                <cc:HexCell.Cell>
+                                    <cc:Cell State="Normal"/>
+                                </cc:HexCell.Cell>
+                            </cc:HexCell>
+                        </RadioButton>
                     </StackPanel>
 
                 </GroupBox>
                 <GroupBox Header="Mouse Behavior" Name="groupBox1" Margin="20,20,20,20">
                 
                     <StackPanel Name="stackPanel2">
-                        <RadioButton Name="radioButton1" Checked="Ready_Checked" Margin="10,10,10,10" IsChecked="True" />
-                        <RadioButton Name="radioButton2" Checked="radioButton2_Checked" Margin="10,10,10,10"/>
-                        <RadioButton Name="radioButton4" Checked="radioButton4_Checked" Margin="10,10,10,10"/>
-                        <RadioButton Name="radioButton3" Checked="radioButton3_Checked" Margin="10,10,10,10"/>
+                        <RadioButton Name="radioButton1" Checked="Ready_Checked" Margin="5" IsChecked="True" />
+                        <RadioButton Name="radioButton2" Checked="radioButton2_Checked" Margin="5"/>
+                        <RadioButton Name="radioButton4" Checked="radioButton4_Checked" Margin="5"/>
+                        <RadioButton Name="radioButton3" Checked="radioButton3_Checked" Margin="5"/>
                     </StackPanel>
                
             </GroupBox>
