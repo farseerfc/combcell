@@ -113,6 +113,7 @@ namespace CombCell
             radioButton4.Content = cs4;
 
             combView.ResetArranger();
+            combView.AnimateChildrenByRow();
         }
 
 

@@ -48,8 +48,9 @@ namespace CombCell
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
 
-            
-        public CellShape(){
+
+        public CellShape()
+        {
             this.OverridesDefaultStyle = true;
         }
 
