@@ -9,12 +9,12 @@ using System;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("CombCell")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A sophomore summer project 2009 in SJTU")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("SJTU")]
 [assembly: AssemblyProduct("CombCell")]
 [assembly: AssemblyCopyright("Copyright ©  2009")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("SJTU")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

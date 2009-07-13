@@ -2898,6 +2898,538 @@ namespace CombCell.DSAlgo.Stubs
 }
 namespace CombCell.Stubs
 {
+    /// <summary>Stub of RectArranger</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Stubs", "0.14.40610.2")]
+    [global::System.Serializable]
+    [global::System.Diagnostics.DebuggerDisplay("Stub = RectArranger")]
+    [global::System.Diagnostics.DebuggerStepThrough]
+    public partial class SRectArranger
+      : global::CombCell.RectArranger
+      , global::Microsoft.Stubs.Framework.IStub
+      , global::Microsoft.Stubs.Framework.IPartialStub
+    {
+        [global::System.Diagnostics.DebuggerHidden]
+        public SRectArranger()
+        {
+            this.Initialize();
+        }
+
+        /// <summary>Stub of method System.Windows.Rect CombCell.Arranger.Arrange(System.Int32 row, System.Int32 column)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        public override global::System.Windows.Rect Arrange(int row, int column)
+        {
+            global::Microsoft.Stubs.Framework
+              .StubDelegates.Func<int, int, global::System.Windows.Rect> sh
+               = this.ArrangeInt32Int32;
+            if (sh != (global::Microsoft.Stubs.Framework
+              .StubDelegates.Func<int, int, global::System.Windows.Rect>)null)
+              return sh.Invoke(row, column);
+            else 
+            {
+              global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+              return stub.Result
+                  <global::CombCell.Stubs.SRectArranger, global::System.Windows.Rect>(this);
+            }
+        }
+
+        /// <summary>Stub of method System.Windows.Rect CombCell.Arranger.Arrange(System.Int32 row, System.Int32 column)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<int, int, global::System.Windows.Rect> ArrangeInt32Int32;
+
+        /// <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        public bool CallBase
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                return this.callBase;
+            }
+            [global::System.Diagnostics.DebuggerHidden]
+            set
+            {
+                this.callBase = value;
+            }
+        }
+
+        /// <summary>Stub of method System.Void System.Windows.Freezable.CloneCore(System.Windows.Freezable sourceFreezable)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        protected override void CloneCore(global::System.Windows.Freezable sourceFreezable)
+        {
+            global::Microsoft.Stubs.Framework
+              .StubDelegates.Action<global::System.Windows.Freezable> sh
+               = this.CloneCoreFreezable;
+            if (sh != (global::Microsoft.Stubs.Framework
+              .StubDelegates.Action<global::System.Windows.Freezable>)null)
+              sh.Invoke(sourceFreezable);
+            else 
+            {
+              if (this.callBase)
+                base.CloneCore(sourceFreezable);
+              else 
+              {
+                global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior
+                  ;
+                stub.VoidResult<global::CombCell.Stubs.SRectArranger>(this);
+              }
+            }
+        }
+
+        /// <summary>Stub of method System.Void System.Windows.Freezable.CloneCore(System.Windows.Freezable sourceFreezable)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Action<global::System.Windows.Freezable> CloneCoreFreezable;
+
+        /// <summary>Stub of method System.Void System.Windows.Freezable.CloneCurrentValueCore(System.Windows.Freezable sourceFreezable)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        protected override void CloneCurrentValueCore(global::System.Windows.Freezable sourceFreezable)
+        {
+            global::Microsoft.Stubs.Framework
+              .StubDelegates.Action<global::System.Windows.Freezable> sh
+               = this.CloneCurrentValueCoreFreezable;
+            if (sh != (global::Microsoft.Stubs.Framework
+              .StubDelegates.Action<global::System.Windows.Freezable>)null)
+              sh.Invoke(sourceFreezable);
+            else 
+            {
+              if (this.callBase)
+                base.CloneCurrentValueCore(sourceFreezable);
+              else 
+              {
+                global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior
+                  ;
+                stub.VoidResult<global::CombCell.Stubs.SRectArranger>(this);
+              }
+            }
+        }
+
+        /// <summary>Stub of method System.Void System.Windows.Freezable.CloneCurrentValueCore(System.Windows.Freezable sourceFreezable)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Action<global::System.Windows.Freezable> CloneCurrentValueCoreFreezable;
+
+        /// <summary>Stub of method CombCell.CellShape CombCell.Arranger.CreateCellShape()</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        public override global::CombCell.CellShape CreateCellShape()
+        {
+            global::Microsoft.Stubs.Framework.StubDelegates.Func<global::CombCell.CellShape>
+               sh = this.CreateCellShape01;
+            if (sh != (global::Microsoft.Stubs.Framework
+              .StubDelegates.Func<global::CombCell.CellShape>)null)
+              return sh.Invoke();
+            else 
+            {
+              global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+              return stub
+                .Result<global::CombCell.Stubs.SRectArranger, global::CombCell.CellShape>
+                  (this);
+            }
+        }
+
+        /// <summary>Stub of method CombCell.CellShape CombCell.Arranger.CreateCellShape()</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<global::CombCell.CellShape> CreateCellShape01;
+
+        /// <summary>Stub of method System.Windows.Freezable System.Windows.Freezable.CreateInstanceCore()</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        protected override global::System.Windows.Freezable CreateInstanceCore()
+        {
+            global::Microsoft.Stubs.Framework
+              .StubDelegates.Func<global::System.Windows.Freezable> sh
+               = this.CreateInstanceCore01;
+            if (sh != (global::Microsoft.Stubs.Framework
+              .StubDelegates.Func<global::System.Windows.Freezable>)null)
+              return sh.Invoke();
+            else 
+            {
+              global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+              return stub.Result<global::CombCell.Stubs.SRectArranger, 
+              global::System.Windows.Freezable>(this);
+            }
+        }
+
+        /// <summary>Stub of method System.Windows.Freezable System.Windows.Freezable.CreateInstanceCore()</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<global::System.Windows.Freezable> CreateInstanceCore01;
+
+        /// <summary>Gets or sets the fallback behavior.</summary>
+        public global::Microsoft.Stubs.Framework.IStubBehavior FallbackBehavior
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                return this.defaultStub;
+            }
+            [global::System.Diagnostics.DebuggerHidden]
+            set
+            {
+                this.defaultStub = value;
+            }
+        }
+
+        /// <summary>Stub of method System.Boolean System.Windows.Freezable.FreezeCore(System.Boolean isChecking)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        protected override bool FreezeCore(bool isChecking)
+        {
+            global::Microsoft.Stubs.Framework.StubDelegates.Func<bool, bool> sh
+               = this.FreezeCoreBoolean;
+            if (sh != (global::Microsoft.Stubs.Framework.StubDelegates.Func<bool, bool>)null
+              )
+              return sh.Invoke(isChecking);
+            else 
+            {
+              if (this.callBase)
+                return base.FreezeCore(isChecking);
+              global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+              return stub.Result<global::CombCell.Stubs.SRectArranger, bool>(this);
+            }
+        }
+
+        /// <summary>Stub of method System.Boolean System.Windows.Freezable.FreezeCore(System.Boolean isChecking)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<bool, bool> FreezeCoreBoolean;
+
+        /// <summary>Stub of method System.Int32 CombCell.Arranger.FromPointToIndex(System.Windows.Point point)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        public override int FromPointToIndex(global::System.Windows.Point point)
+        {
+            global::Microsoft.Stubs.Framework
+              .StubDelegates.Func<global::System.Windows.Point, int> sh
+               = this.FromPointToIndexPoint;
+            if (sh != (global::Microsoft.Stubs.Framework
+              .StubDelegates.Func<global::System.Windows.Point, int>)null)
+              return sh.Invoke(point);
+            else 
+            {
+              if (this.callBase)
+                return base.FromPointToIndex(point);
+              global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+              return stub.Result<global::CombCell.Stubs.SRectArranger, int>(this);
+            }
+        }
+
+        /// <summary>Stub of method System.Int32 CombCell.Arranger.FromPointToIndex(System.Windows.Point point)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<global::System.Windows.Point, int> FromPointToIndexPoint;
+
+        /// <summary>Stub of method CombCell.Pair`1&lt;System.Int32&gt; CombCell.Arranger.FromPointToPair(System.Windows.Point point)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        public override global::CombCell.Pair<int> FromPointToPair(global::System.Windows.Point point)
+        {
+            global::Microsoft.Stubs.Framework.StubDelegates
+              .Func<global::System.Windows.Point, global::CombCell.Pair<int>> sh
+               = this.FromPointToPairPoint;
+            if (sh != (global::Microsoft.Stubs.Framework
+              .StubDelegates.Func<global::System.Windows.Point, 
+              global::CombCell.Pair<int>>)null)
+              return sh.Invoke(point);
+            else 
+            {
+              global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+              return stub
+                .Result<global::CombCell.Stubs.SRectArranger, global::CombCell.Pair<int>>
+                  (this);
+            }
+        }
+
+        /// <summary>Stub of method CombCell.Pair`1&lt;System.Int32&gt; CombCell.Arranger.FromPointToPair(System.Windows.Point point)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<global::System.Windows.Point, global::CombCell.Pair<int>> FromPointToPairPoint;
+
+        /// <summary>Stub of method System.Void System.Windows.Freezable.GetAsFrozenCore(System.Windows.Freezable sourceFreezable)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        protected override void GetAsFrozenCore(global::System.Windows.Freezable sourceFreezable)
+        {
+            global::Microsoft.Stubs.Framework
+              .StubDelegates.Action<global::System.Windows.Freezable> sh
+               = this.GetAsFrozenCoreFreezable;
+            if (sh != (global::Microsoft.Stubs.Framework
+              .StubDelegates.Action<global::System.Windows.Freezable>)null)
+              sh.Invoke(sourceFreezable);
+            else 
+            {
+              if (this.callBase)
+                base.GetAsFrozenCore(sourceFreezable);
+              else 
+              {
+                global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior
+                  ;
+                stub.VoidResult<global::CombCell.Stubs.SRectArranger>(this);
+              }
+            }
+        }
+
+        /// <summary>Stub of method System.Void System.Windows.Freezable.GetAsFrozenCore(System.Windows.Freezable sourceFreezable)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Action<global::System.Windows.Freezable> GetAsFrozenCoreFreezable;
+
+        /// <summary>Stub of method System.Void System.Windows.Freezable.GetCurrentValueAsFrozenCore(System.Windows.Freezable sourceFreezable)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        protected override void GetCurrentValueAsFrozenCore(global::System.Windows.Freezable sourceFreezable)
+        {
+            global::Microsoft.Stubs.Framework
+              .StubDelegates.Action<global::System.Windows.Freezable> sh
+               = this.GetCurrentValueAsFrozenCoreFreezable;
+            if (sh != (global::Microsoft.Stubs.Framework
+              .StubDelegates.Action<global::System.Windows.Freezable>)null)
+              sh.Invoke(sourceFreezable);
+            else 
+            {
+              if (this.callBase)
+                base.GetCurrentValueAsFrozenCore(sourceFreezable);
+              else 
+              {
+                global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior
+                  ;
+                stub.VoidResult<global::CombCell.Stubs.SRectArranger>(this);
+              }
+            }
+        }
+
+        /// <summary>Stub of method System.Void System.Windows.Freezable.GetCurrentValueAsFrozenCore(System.Windows.Freezable sourceFreezable)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Action<global::System.Windows.Freezable> GetCurrentValueAsFrozenCoreFreezable;
+
+        /// <summary>Initializes a new instance of type SRectArranger</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        private void Initialize()
+        {
+            this.defaultStub =
+              global::Microsoft.Stubs.Framework.StubFallbackBehavior.Current;
+        }
+
+        /// <summary>Stub of method System.String CombCell.Arranger.MarkIndex(System.Int32 row, System.Int32 column)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        public override string MarkIndex(int row, int column)
+        {
+            global::Microsoft.Stubs.Framework.StubDelegates.Func<int, int, string> sh
+               = this.MarkIndexInt32Int32;
+            if (sh !=
+              (global::Microsoft.Stubs.Framework.StubDelegates.Func<int, int, string>)null)
+              return sh.Invoke(row, column);
+            else 
+            {
+              global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+              return stub.Result<global::CombCell.Stubs.SRectArranger, string>(this);
+            }
+        }
+
+        /// <summary>Stub of method System.String CombCell.Arranger.MarkIndex(System.Int32 row, System.Int32 column)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<int, int, string> MarkIndexInt32Int32;
+
+        /// <summary>Stub of method System.Collections.Generic.List`1&lt;CombCell.Pair`1&lt;System.Int32&gt;&gt; CombCell.Arranger.NearBy(System.Int32 row, System.Int32 column)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        public override global::System.Collections.Generic.List<global::CombCell.Pair<int>> NearBy(int row, int column)
+        {
+            global::Microsoft.Stubs.Framework
+              .StubDelegates.Func<int, int, global::System.Collections.Generic
+                .List<global::CombCell.Pair<int>>> sh = this.NearByInt32Int32;
+            if (sh != (global::Microsoft.Stubs.Framework
+              .StubDelegates.Func<int, int, global::System.Collections.Generic
+                .List<global::CombCell.Pair<int>>>)null)
+              return sh.Invoke(row, column);
+            else 
+            {
+              global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+              return stub.Result<global::CombCell.Stubs.SRectArranger, 
+              global::System.Collections.Generic.List<global::CombCell.Pair<int>>>(this);
+            }
+        }
+
+        /// <summary>Stub of method System.Collections.Generic.List`1&lt;CombCell.Pair`1&lt;System.Int32&gt;&gt; CombCell.Arranger.NearBy(System.Int32 row, System.Int32 column)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<int, int, global::System.Collections.Generic.List<global::CombCell.Pair<int>>> NearByInt32Int32;
+
+        /// <summary>Stub of method System.Boolean CombCell.Arranger.NeedAddChild(System.Windows.Size newSize)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        public override bool NeedAddChild(global::System.Windows.Size newSize)
+        {
+            global::Microsoft.Stubs.Framework
+              .StubDelegates.Func<global::System.Windows.Size, bool> sh
+               = this.NeedAddChildSize;
+            if (sh != (global::Microsoft.Stubs.Framework
+              .StubDelegates.Func<global::System.Windows.Size, bool>)null)
+              return sh.Invoke(newSize);
+            else 
+            {
+              if (this.callBase)
+                return base.NeedAddChild(newSize);
+              global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+              return stub.Result<global::CombCell.Stubs.SRectArranger, bool>(this);
+            }
+        }
+
+        /// <summary>Stub of method System.Boolean CombCell.Arranger.NeedAddChild(System.Windows.Size newSize)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<global::System.Windows.Size, bool> NeedAddChildSize;
+
+        /// <summary>Stub of method System.Void System.Windows.Freezable.OnChanged()</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        protected override void OnChanged()
+        {
+            global::Microsoft.Stubs.Framework.StubDelegates.Action sh = this.OnChanged01;
+            if (sh != (global::Microsoft.Stubs.Framework.StubDelegates.Action)null)
+              sh.Invoke();
+            else 
+            {
+              if (this.callBase)
+                base.OnChanged();
+              else 
+              {
+                global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior
+                  ;
+                stub.VoidResult<global::CombCell.Stubs.SRectArranger>(this);
+              }
+            }
+        }
+
+        /// <summary>Stub of method System.Void System.Windows.Freezable.OnChanged()</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Action OnChanged01;
+
+        /// <summary>Stub of method System.Void System.Windows.Freezable.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs e)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        protected override void OnPropertyChanged(global::System.Windows.DependencyPropertyChangedEventArgs e)
+        {
+            global::Microsoft.Stubs.Framework.StubDelegates.Action
+                <global::System.Windows.DependencyPropertyChangedEventArgs> sh
+               = this.OnPropertyChangedDependencyPropertyChangedEventArgs;
+            if (sh != (global::Microsoft.Stubs.Framework
+              .StubDelegates.Action<global::System.Windows
+                .DependencyPropertyChangedEventArgs>)null)
+              sh.Invoke(e);
+            else 
+            {
+              if (this.callBase)
+                base.OnPropertyChanged(e);
+              else 
+              {
+                global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior
+                  ;
+                stub.VoidResult<global::CombCell.Stubs.SRectArranger>(this);
+              }
+            }
+        }
+
+        /// <summary>Stub of method System.Void System.Windows.Freezable.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs e)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Action<global::System.Windows.DependencyPropertyChangedEventArgs> OnPropertyChangedDependencyPropertyChangedEventArgs;
+
+        /// <summary>Stub of method System.Boolean CombCell.Arranger.RecalcCount()</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        protected override bool RecalcCount()
+        {
+            global::Microsoft.Stubs.Framework.StubDelegates.Func<bool> sh
+               = this.RecalcCount01;
+            if (sh != (global::Microsoft.Stubs.Framework.StubDelegates.Func<bool>)null)
+              return sh.Invoke();
+            else 
+            {
+              global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+              return stub.Result<global::CombCell.Stubs.SRectArranger, bool>(this);
+            }
+        }
+
+        /// <summary>Stub of method System.Boolean CombCell.Arranger.RecalcCount()</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<bool> RecalcCount01;
+
+        private bool callBase;
+
+        private global::Microsoft.Stubs.Framework.IStubBehavior defaultStub;
+    }
+}
+namespace CombCell.Stubs
+{
+    /// <summary>Stub of RectCell</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Stubs", "0.14.40610.2")]
+    [global::System.Serializable]
+    [global::System.Diagnostics.DebuggerDisplay("Stub = RectCell")]
+    [global::System.Diagnostics.DebuggerStepThrough]
+    public partial class SRectCell
+      : global::CombCell.RectCell
+      , global::Microsoft.Stubs.Framework.IStub
+      , global::Microsoft.Stubs.Framework.IPartialStub
+    {
+        [global::System.Diagnostics.DebuggerHidden]
+        public SRectCell()
+        {
+            this.Initialize();
+        }
+
+        /// <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        public bool CallBase
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                return this.callBase;
+            }
+            [global::System.Diagnostics.DebuggerHidden]
+            set
+            {
+                this.callBase = value;
+            }
+        }
+
+        /// <summary>Gets or sets the fallback behavior.</summary>
+        public global::Microsoft.Stubs.Framework.IStubBehavior FallbackBehavior
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                return this.defaultStub;
+            }
+            [global::System.Diagnostics.DebuggerHidden]
+            set
+            {
+                this.defaultStub = value;
+            }
+        }
+
+        /// <summary>Initializes a new instance of type SRectCell</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        private void Initialize()
+        {
+            this.defaultStub =
+              global::Microsoft.Stubs.Framework.StubFallbackBehavior.Current;
+        }
+
+        /// <summary>Stub of method System.Void CombCell.CellShape.OnRender(System.Windows.Media.DrawingContext drawingContext)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        protected override void OnRender(global::System.Windows.Media.DrawingContext drawingContext)
+        {
+            global::Microsoft.Stubs.Framework
+              .StubDelegates.Action<global::System.Windows.Media.DrawingContext> sh
+               = this.OnRenderDrawingContext;
+            if (sh != (global::Microsoft.Stubs.Framework.StubDelegates
+              .Action<global::System.Windows.Media.DrawingContext>)null)
+              sh.Invoke(drawingContext);
+            else 
+            {
+              if (this.callBase)
+                base.OnRender(drawingContext);
+              else 
+              {
+                global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior
+                  ;
+                stub.VoidResult<global::CombCell.Stubs.SRectCell>(this);
+              }
+            }
+        }
+
+        /// <summary>Stub of method System.Void CombCell.CellShape.OnRender(System.Windows.Media.DrawingContext drawingContext)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Action<global::System.Windows.Media.DrawingContext> OnRenderDrawingContext;
+
+        /// <summary>Stub of method System.Void CombCell.CellShape.OnRenderOverride(System.Windows.Media.DrawingContext drawingContext)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        protected override void OnRenderOverride(global::System.Windows.Media.DrawingContext drawingContext)
+        {
+            global::Microsoft.Stubs.Framework
+              .StubDelegates.Action<global::System.Windows.Media.DrawingContext> sh
+               = this.OnRenderOverrideDrawingContext;
+            if (sh != (global::Microsoft.Stubs.Framework.StubDelegates
+              .Action<global::System.Windows.Media.DrawingContext>)null)
+              sh.Invoke(drawingContext);
+            else 
+            {
+              global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+              stub.VoidResult<global::CombCell.Stubs.SRectCell>(this);
+            }
+        }
+
+        /// <summary>Stub of method System.Void CombCell.CellShape.OnRenderOverride(System.Windows.Media.DrawingContext drawingContext)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Action<global::System.Windows.Media.DrawingContext> OnRenderOverrideDrawingContext;
+
+        private bool callBase;
+
+        private global::Microsoft.Stubs.Framework.IStubBehavior defaultStub;
+    }
+}
+namespace CombCell.Stubs
+{
     /// <summary>Stub of Scheme</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Stubs", "0.14.40610.2")]
     [global::System.Serializable]

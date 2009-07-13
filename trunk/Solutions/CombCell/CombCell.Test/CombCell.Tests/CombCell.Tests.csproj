@@ -111,6 +111,12 @@
     <Compile Include="VertexTTest.ToString.g.cs">
       <DependentUpon>VertexTTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="VertexTTest.ToStringbyString.g.cs">
+      <DependentUpon>VertexTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VertexTTest.ToStringbyString2.g.cs">
+      <DependentUpon>VertexTTest.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="CombCell.stubx">

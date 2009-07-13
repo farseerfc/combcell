@@ -20,7 +20,11 @@ namespace CombCell.DSAlgo
 
         public T Key
         {
-            set { key = value; }
+            set 
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                key = value; 
+            }
             get { return key; }
         }
 
