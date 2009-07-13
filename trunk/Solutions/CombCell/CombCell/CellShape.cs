@@ -6,14 +6,22 @@ using System.Windows.Media;
 
 namespace CombCell
 {
+    /// <summary>
+    /// A CellShape is a user visible control that represents a Cell.
+    /// </summary>
     public abstract class CellShape : Control
     {
-
+        /// <summary>
+        /// A string showed on the CellShape
+        /// </summary>
         public string Index
         {
             get { return (string)GetValue(IndexProperty); }
             set { SetValue(IndexProperty, value); }
         }
+        /// <summary>
+        /// Support dependency property of Index
+        /// </summary>
         public static readonly DependencyProperty IndexProperty =
             DependencyProperty.Register(
                 "Index",
@@ -22,6 +30,8 @@ namespace CombCell
                 new FrameworkPropertyMetadata(
                     "",
                     FrameworkPropertyMetadataOptions.AffectsRender));
+
+
 
         public Scheme Scheme
         {
