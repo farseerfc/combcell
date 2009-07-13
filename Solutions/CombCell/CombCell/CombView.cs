@@ -32,7 +32,10 @@ namespace CombCell
         /// </summary>
         public Arranger Arranger
         {
-            set { SetValue(ArrangerProperty, value); }
+            set 
+            {
+                SetValue(ArrangerProperty, value);
+            }
             get { return (Arranger)GetValue(ArrangerProperty); }
         }
         public static readonly DependencyProperty ArrangerProperty =
@@ -109,15 +112,28 @@ namespace CombCell
 /////////////////////////////////////////////////////////////////////////////////////
 
 
-        private readonly List<CellShape> children;
-        private readonly List<CellShape> animatedChildren;
-        private readonly List<CellShape> animatingChildren;
+        private List<CellShape> children;
+        private List<CellShape> animatedChildren;
+        private List<CellShape> animatingChildren;
 
         public CombView()
         {
             children = new List<CellShape>();
             animatedChildren = new List<CellShape>();
             animatingChildren = new List<CellShape>();
+        }
+
+        public void ResetArranger()
+        {
+            foreach (var child in children)
+            {
+                this.RemoveLogicalChild(child);
+                this.RemoveVisualChild(child);
+            }
+            children = new List<CellShape>();
+            animatedChildren = new List<CellShape>();
+            animatingChildren = new List<CellShape>();
+            EnsureChildren(this.RenderSize);
         }
 
         protected override Size ArrangeOverride(Size finalSize)

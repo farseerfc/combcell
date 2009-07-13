@@ -15,7 +15,7 @@ namespace CombCell
 
             double r = Math.Min(RenderSize.Width ,RenderSize.Height);
             double r1 = r * 0.1;
-            double r2 = r - r1 - r1;
+            double r2 = r - r1 ;
 
             PolyLineSegment pl = new PolyLineSegment();
             pl.Points.Add(new Point(r1, r2));
@@ -29,13 +29,13 @@ namespace CombCell
             PathGeometry geo = new PathGeometry();
             geo.Figures.Add(figure);
 
-            Pen normalPen = new Pen(Brushes.Yellow, r / 10.0);
+            Pen normalPen = new Pen(Brushes.Yellow, r / 15.0);
             Brush normalBrush = Brushes.White;
 
             if (Scheme != null)
             {
                 Pen pen = Scheme.Pen.Clone();
-                pen.Thickness = r / 10.0;
+                pen.Thickness = r / 15.0;
                 drawingContext.DrawGeometry(Scheme.Brush, pen, geo);
             }
             else

@@ -4,7 +4,7 @@
     xmlns:cc="clr-namespace:CombCell"
     Title="CombCellWindow" Height="322" Width="670" Loaded="Window_Loaded">
     <Window.Resources>
-        <cc:HexArranger x:Key="Arranger"/>
+        <!--<cc:HexArranger x:Key="Arranger" CellSize="20"/>-->
         
     </Window.Resources>
 	<Window.Triggers>
@@ -31,44 +31,28 @@
             			<GradientStop Color="{DynamicResource {x:Static SystemColors.ScrollBarColorKey}}" Offset="0.612"/>
             		</LinearGradientBrush>
             	</StackPanel.Background>
-            <GroupBox Header="Mouse Behavior" Name="groupBox1" Margin="20,20,20,20">
+                <GroupBox Header="Arranger" Name="groupBox2" Margin="20,20,20,20">
+
+                    <StackPanel Name="stackPanel3">
+                        <RadioButton Name="rdobtn1" Checked="TriArranger_Checked" Margin="10,10,10,10"/>
+                        <RadioButton Name="rdobtn2" Checked="RectArranger_Checked" Margin="10,10,10,10"/>
+                        <RadioButton Name="rdobtn3" Checked="HexArranger_Checked" Margin="10,10,10,10" IsChecked="True" />
+                    </StackPanel>
+
+                </GroupBox>
+                <GroupBox Header="Mouse Behavior" Name="groupBox1" Margin="20,20,20,20">
                 
                     <StackPanel Name="stackPanel2">
-                        <RadioButton Name="radioButton1"  VerticalAlignment="Top" Checked="Ready_Checked" IsChecked="True">
-                            <cc:HexCell Width="60" Height="50" Index="0:0">
-                                <cc:HexCell.Cell>
-                                    <cc:Cell State="MouseOver"/>
-                                </cc:HexCell.Cell>
-                            </cc:HexCell>
-                        </RadioButton>
-                        <RadioButton Name="radioButton2"  VerticalAlignment="Top" Checked="radioButton2_Checked">
-							<cc:HexCell Width="60" Height="50" Index="1">
-                                <cc:HexCell.Cell>
-                                    <cc:Cell State="Normal"/>
-                                </cc:HexCell.Cell>
-                            </cc:HexCell>
-						</RadioButton>
-                        <RadioButton Name="radioButton4"  Checked="radioButton4_Checked">
-                            <cc:HexCell Width="60" Height="50" Index="1">
-                                <cc:HexCell.Cell>
-                                    <cc:Cell State="Blocked"/>
-                                </cc:HexCell.Cell>
-                            </cc:HexCell>
-                        </RadioButton>
-                        <RadioButton Name="radioButton3"  Checked="radioButton3_Checked">
-                            <cc:HexCell Width="60" Height="50" Index="1">
-                                <cc:HexCell.Cell>
-                                    <cc:Cell State="Selected"/>
-                                </cc:HexCell.Cell>
-                            </cc:HexCell>
-                        </RadioButton>
-                        
+                        <RadioButton Name="radioButton1" Checked="Ready_Checked" Margin="10,10,10,10" IsChecked="True" />
+                        <RadioButton Name="radioButton2" Checked="radioButton2_Checked" Margin="10,10,10,10"/>
+                        <RadioButton Name="radioButton4" Checked="radioButton4_Checked" Margin="10,10,10,10"/>
+                        <RadioButton Name="radioButton3" Checked="radioButton3_Checked" Margin="10,10,10,10"/>
                     </StackPanel>
                
             </GroupBox>
             </StackPanel>
             <GridSplitter Grid.Column="0" Width="5"/>
-            <cc:CombView Grid.Column="2" Arranger="{StaticResource Arranger}" x:Name="combView">
+            <cc:CombView Grid.Column="2" x:Name="combView">
                 <cc:CombView.Effect>
                     <DropShadowEffect/>
                 </cc:CombView.Effect>

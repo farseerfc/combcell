@@ -69,6 +69,19 @@ namespace CombCell
             new FrameworkPropertyMetadata(null));
 
 
+
+        public CellShape CellShapeCreator
+        {
+            get { return CreateCellShape(); }
+            set { SetValue(CellShapeCreatorProperty, CreateCellShape()); }
+        }
+        // Using a DependencyProperty as the backing store for CellShapeCreator.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CellShapeCreatorProperty =
+            DependencyProperty.Register("CellShapeCreator", typeof(CellShape), typeof(Arranger));
+
+
+
+
         #endregion
 
         /////////////////////////////////////////////////////////////////////
