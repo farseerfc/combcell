@@ -113,15 +113,15 @@ namespace CombCell.DSAlgo
         }
 
         /// <summary>
-        /// Change a given item
+        /// Change the priority of a given item
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="newPriority"></param>
-        public void ChangePriority(TItem key,TPri newPriority)
+        /// <param name="item">the given item</param>
+        /// <param name="newPriority">the new priority</param>
+        public void ChangePriority(TItem item,TPri newPriority)
         {
-            int index = pos[key];
+            int index = pos[item];
             bool isGreater = comparer.Compare(newPriority,heap[index].Value)>0;
-            heap[index] = new KeyValuePair<TItem, TPri>(key,newPriority);
+            heap[index] = new KeyValuePair<TItem, TPri>(item,newPriority);
             if (isGreater) siftDown(index);
             else siftUp(index);
         }
