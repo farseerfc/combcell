@@ -7,6 +7,12 @@ namespace CombCell.DSAlgo
 {
     public abstract class PathAlgorithm<T>
     {
+        public PathAlgorithm()
+        {
+            selected = new List<T>();
+            path = new GraphPath<T>();
+        }
+
         public abstract bool CanCalc
         {
             get;

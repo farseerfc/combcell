@@ -53,6 +53,7 @@
     <Compile Include="PathAlgorithm.cs" />
     <Compile Include="PriorityQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Snake.cs" />
     <Compile Include="Vertex.cs" />
   </ItemGroup>
   <ItemGroup>
