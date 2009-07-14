@@ -61,6 +61,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CombCell.DSAlgo\CombCell.DSAlgo.csproj">
+      <Project>{5EE12729-BE63-44FC-B5F6-4F7D8028C332}</Project>
+      <Name>CombCell.DSAlgo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CombCell\CombCell.csproj">
       <Project>{91F62B30-5E42-462D-9E1F-D46344CC46F0}</Project>
       <Name>CombCell</Name>
