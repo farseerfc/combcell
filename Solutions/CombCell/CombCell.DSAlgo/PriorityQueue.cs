@@ -10,8 +10,8 @@ namespace CombCell.DSAlgo
     /// The default implement is a minimum heap. Can change to a maximum heap by given a greater comparer.
     /// Described in Introduction to Algorithm, 2nd edition, chapter 6.5.
     /// </summary>
-    /// <typeparam name="TPri">The type of priority, usually int, minimium of which is new TPri().</typeparam>
     /// <typeparam name="TObj">The type of item</typeparam>
+    /// <typeparam name="TPri">The type of priority, usually int, minimum is new TPri().</typeparam>
     public class PriorityQueue<TItem, TPri> : IDictionary<TItem, TPri>,
     ICollection<KeyValuePair<TItem, TPri>>, IEnumerable<KeyValuePair<TItem, TPri>> 
         where TPri : new() 
