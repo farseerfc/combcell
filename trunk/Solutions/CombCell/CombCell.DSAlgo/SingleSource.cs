@@ -14,7 +14,7 @@ namespace CombCell.DSAlgo
     ///     The type of the key on a vertex. 
     ///     Which is <![CDATA[ Pair<int> ]]> in CombCell. 
     /// </typeparam>
-    public class End2End<T> : PathAlgorithm<T>
+    public class SingleSource<T> : PathAlgorithm<T>
     {
         private T startPos;
         private Vertex<T> start;
