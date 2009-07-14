@@ -127,22 +127,7 @@
     <Compile Include="EdgeTTest.ToString.g.cs">
       <DependentUpon>EdgeTTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="End2EndTTest.Calc.g.cs">
-      <DependentUpon>End2EndTTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="End2EndTTest.Calc001.g.cs">
-      <DependentUpon>End2EndTTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="End2EndTTest.CanCalc1.g.cs">
-      <DependentUpon>End2EndTTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="End2EndTTest.CanCalcGet.g.cs">
-      <DependentUpon>End2EndTTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="End2EndTTest.Constructor.g.cs">
-      <DependentUpon>End2EndTTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="End2EndTTest.cs" />
+    <Compile Include="SingleSourceTTest.cs" />
     <Compile Include="GraphTTest.ClearAccessed.g.cs">
       <DependentUpon>GraphTTest.cs</DependentUpon>
     </Compile>
@@ -176,6 +161,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\PexAssemblyInfo.cs" />
+    <Compile Include="SingleSourceTTest.Calc001.g.cs">
+      <DependentUpon>SingleSourceTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSourceTTest.Constructor.g.cs">
+      <DependentUpon>SingleSourceTTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="VertexTTest.cs" />
     <Compile Include="VertexTTest.IsConnect.g.cs">
       <DependentUpon>VertexTTest.cs</DependentUpon>

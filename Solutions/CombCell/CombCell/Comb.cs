@@ -159,7 +159,7 @@ namespace CombCell
             }
             PathDiscription = "";
 
-            PathAlgorithm<Pair<int>> algo = new End2End<Pair<int>>();
+            PathAlgorithm<Pair<int>> algo = new SingleSource<Pair<int>>();
             algo.Graph = graph;
             algo.Selected = selectList;
             if(algo.CanCalc)
