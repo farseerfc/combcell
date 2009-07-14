@@ -5,10 +5,10 @@
   </TestList>
   <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d">
     <TestLinks>
-      <TestLink id="9f8d729c-e859-0df9-f928-38309cc3e808" name="Calc00114" storage="combcell.test\combcell.tests\bin\release\combcell.tests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="6adc3b85-d653-f2e6-1fc4-803b13b29ce9" name="Calc00109" storage="combcell.test\combcell.tests\bin\release\combcell.tests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="2731c9ea-498a-ff8e-de44-d5139ba9cdf3" name="Calc00113" storage="combcell.test\combcell.tests\bin\release\combcell.tests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="07bc307c-3ab4-41d3-f09f-4f187104bf83" name="Calc00105" storage="combcell.test\combcell.tests\bin\release\combcell.tests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="9f8d729c-e859-0df9-f928-38309cc3e808" name="Calc00114" storage="combcell.test\combcell.tests\bin\debug\combcell.tests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="6adc3b85-d653-f2e6-1fc4-803b13b29ce9" name="Calc00109" storage="combcell.test\combcell.tests\bin\debug\combcell.tests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="2731c9ea-498a-ff8e-de44-d5139ba9cdf3" name="Calc00113" storage="combcell.test\combcell.tests\bin\debug\combcell.tests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="07bc307c-3ab4-41d3-f09f-4f187104bf83" name="Calc00105" storage="combcell.test\combcell.tests\bin\debug\combcell.tests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
 </TestLists>
