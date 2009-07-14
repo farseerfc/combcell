@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CombCell.Arranger">
+    <Position X="2.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAACgAAQAAAAIgAIBgIAJAAUEAAAAAAAAAAEQAAAA=</HashCode>
+      <FileName>Arranger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.Cell">
+    <Position X="8.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAgAAAAAgAAAAAAAABAAAEABAAAACA=</HashCode>
+      <FileName>Cell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.CellShape">
+    <Position X="8.5" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAACAAAAAAAAAAAABAAAAEAAAAAAAAAAEAIAEABAA=</HashCode>
+      <FileName>CellShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.Comb">
+    <Position X="12.5" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAICIAAAAACCAAMAiAEAEAAQAAIAGA=</HashCode>
+      <FileName>Comb.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.CombCellApp">
+    <Position X="4.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CombCellApp.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.CombCellWindow">
+    <Position X="4.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAIAACAAAEAAgABAEAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>CombCellWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.CombPath">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CombPath.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.CombView">
+    <Position X="12.5" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BAAQAEIAAAQBAISAAAIAAoASEBAAAAABAAEIBAACAAA=</HashCode>
+      <FileName>CombView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.HexArranger">
+    <Position X="4.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAgAIAAIABAAAAAAAAAAAAAAAQAACA=</HashCode>
+      <FileName>HexArranger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.HexCell">
+    <Position X="10.5" Y="10.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>HexCell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.Lengend">
+    <Position X="6.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAACACAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Lengend.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.RectArranger">
+    <Position X="2.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAgAIAAIABAAAAAAAAAAAAAAAQAACA=</HashCode>
+      <FileName>RectArranger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.RectCell">
+    <Position X="8.5" Y="10.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>RectCell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.Scheme">
+    <Position X="6.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAYAAAAAAAEAAAAQAAACAAAAAAAAACA=</HashCode>
+      <FileName>Scheme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.TriArranger">
+    <Position X="0.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAgAIAAIABAAAAAAAAAAAAAAAQAACA=</HashCode>
+      <FileName>TriArranger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.TriCell">
+    <Position X="6.5" Y="10.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAABAA=</HashCode>
+      <FileName>TriCell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.Properties.Resources">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombCell.Properties.Settings">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="CombCell.Pair&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEggEAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pair.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Struct>
+  <Enum Name="CombCell.CellState">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAggAAAAAAAAAAAAABAAAAAAAAIAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>CellState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CombCell.CombViewState">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAIAAAAAAAAAgAAABAAAAAAAAAAA=</HashCode>
+      <FileName>CombViewState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei" Size="9" />
+</ClassDiagram>

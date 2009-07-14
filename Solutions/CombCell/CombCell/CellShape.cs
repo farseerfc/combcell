@@ -72,6 +72,7 @@ namespace CombCell
             OnRenderOverride(drawingContext);
 
             double r2 = Math.Min(RenderSize.Width / 2, RenderSize.Height / Math.Sqrt(3))/2;
+            r2 = Math.Max(r2, 0.1);
             FormattedText txt = new FormattedText(
                 Index,
                 CultureInfo.CurrentCulture,

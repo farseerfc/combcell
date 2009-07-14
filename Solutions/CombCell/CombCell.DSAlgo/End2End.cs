@@ -22,7 +22,8 @@ namespace CombCell.DSAlgo
         private Dictionary<Vertex<T>, int> distance;
         private Dictionary<Vertex<T>, Vertex<T>> pre;
         private List<Vertex<T>> determined;
-        private List<Vertex<T>> undetermined;
+        //private List<Vertex<T>> undetermined;
+        private PriorityQueue<Vertex<T>, int> undetermined;
 
         public override bool CanCalc
         {
@@ -46,14 +47,19 @@ namespace CombCell.DSAlgo
             pre = new Dictionary<Vertex<T>, Vertex<T>>();
             determined = new List<Vertex<T>>();
 
+            undetermined = new PriorityQueue<Vertex<T>, int>();
+
             foreach (Vertex<T> v in Graph.Vertexes)
             {
                 distance[v] = Graph.Infinitive;
                 pre[v] = null;
+                undetermined[v] = distance[v];
             }
 
             distance[start] = 0;
-            undetermined = new List<Vertex<T>>(Graph.Vertexes);
+            undetermined[start] = 0;
+            //undetermined = new List<Vertex<T>>(Graph.Vertexes);
+            
         }
 
         private void Relax(Vertex<T> u, Vertex<T> v)
@@ -61,6 +67,7 @@ namespace CombCell.DSAlgo
             if (distance[v] > distance[u] + 1)
             {
                 distance[v] = distance[u] + 1;
+                undetermined[v] = distance[u] + 1;
                 pre[v] = u;
             }
         }
@@ -70,19 +77,18 @@ namespace CombCell.DSAlgo
             while(undetermined.Count>0)
             {
                 // Extract-Min from undetermined
-                int minIndex = 0;
-                int minDistance = Graph.Infinitive;
-                for(int i=0;i<undetermined.Count;++i)
-                {
-                    if(distance[undetermined[i]]<minDistance)
-                    {
-                        minIndex = i;
-                        minDistance = distance[undetermined[i]];
-                    }
-                }
-
-                Vertex<T> minVertex = undetermined[minIndex];
-                undetermined.RemoveAt(minIndex);
+//                 int minIndex = 0;
+//                 int minDistance = Graph.Infinitive;
+//                 for(int i=0;i<undetermined.Count;++i)
+//                 {
+//                     if(distance[undetermined[i]]<minDistance)
+//                     {
+//                         minIndex = i;
+//                         minDistance = distance[undetermined[i]];
+//                     }
+//                 }
+                KeyValuePair<Vertex<T>,int> pair= undetermined.Pop();
+                Vertex<T> minVertex = pair.Key;
 
                 // add into determined
                 determined.Add(minVertex);
