@@ -5,6 +5,11 @@ using System.Text;
 
 namespace CombCell.DSAlgo
 {
+    /// <summary>
+    /// The Snake Algorithm is based on the SingleSource algorithm.
+    /// It links every selected cells in order.
+    /// </summary>
+    /// <typeparam name="T">Key type of the vertex on a graph</typeparam>
     public class Snake<T>: PathAlgorithm<T>
     {
 
