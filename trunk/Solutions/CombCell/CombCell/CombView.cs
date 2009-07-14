@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -106,6 +107,7 @@ namespace CombCell
                 "State",typeof(CombViewState),typeof(CombView),
                 new FrameworkPropertyMetadata(CombViewState.Ready));
 
+ 
         #endregion
 
 
@@ -116,11 +118,18 @@ namespace CombCell
         private List<CellShape> animatedChildren;
         private List<CellShape> animatingChildren;
 
-        public CombView()
+
+        private void init()
         {
             children = new List<CellShape>();
             animatedChildren = new List<CellShape>();
             animatingChildren = new List<CellShape>();
+            
+        }
+
+        public CombView()
+        {
+            init();
         }
 
         public void ResetArranger()
@@ -130,9 +139,7 @@ namespace CombCell
                 this.RemoveLogicalChild(child);
                 this.RemoveVisualChild(child);
             }
-            children = new List<CellShape>();
-            animatedChildren = new List<CellShape>();
-            animatingChildren = new List<CellShape>();
+            init();
             EnsureChildren(this.RenderSize);
         }
 
@@ -227,7 +234,7 @@ namespace CombCell
                     AnimateChildrenByIndex();
                 }
             }
-
+            return;
         }
 
         private void EnsureChildren(Size size)

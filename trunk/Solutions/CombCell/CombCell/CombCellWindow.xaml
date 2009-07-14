@@ -5,33 +5,41 @@
     Title="CombCellWindow" Height="600" Width="670" Loaded="Window_Loaded">
     <Window.Resources>
         <!--<cc:HexArranger x:Key="Arranger" CellSize="20"/>-->
-        
+
     </Window.Resources>
-	<Window.Triggers>
-		
-	</Window.Triggers>
-    
+    <Window.Triggers>
+
+    </Window.Triggers>
+
     <DockPanel>
-    	<Menu DockPanel.Dock="Top">
-			<MenuItem Header="File" >
-				<MenuItem Header="Exit" Click="MenuItem_Click_1" />
-			</MenuItem>
-		</Menu>
-    	<Grid DockPanel.Dock="Bottom">
-		    <Grid.ColumnDefinitions>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File" >
+                <MenuItem Header="Exit" Click="MenuItem_Click_1" />
+            </MenuItem>
+        </Menu>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="180"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
-            
-            <StackPanel Name="stackPanel1" Margin="0,0,5,0">
-            	<StackPanel.Background>
-            		<LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
-            			<GradientStop Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" Offset="0"/>
-            			<GradientStop Color="{DynamicResource {x:Static SystemColors.ScrollBarColorKey}}" Offset="0.612"/>
-            		</LinearGradientBrush>
-            	</StackPanel.Background>
-                <GroupBox Header="Arranger" Name="groupBox2" Margin="10">
+
+
+            <Grid Margin="0,0,5,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="240" />
+                    <RowDefinition Height="320" />
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" Offset="0"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ScrollBarColorKey}}" Offset="0.612"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                
+                    
+                
+                <GroupBox Grid.Row="0" Header="Arranger" Name="groupBox2" Margin="10">
 
                     <StackPanel Name="stackPanel3">
                         <RadioButton Name="rdobtn1" Checked="TriArranger_Checked" Margin="5">
@@ -58,23 +66,34 @@
                     </StackPanel>
 
                 </GroupBox>
-                <GroupBox Header="Mouse Behavior" Name="groupBox1" Margin="10">
-                
+                <GroupBox Grid.Row="1" Header="Mouse Behavior" Name="groupBox1" Margin="10">
+
                     <StackPanel Name="stackPanel2">
                         <RadioButton Name="radioButton1" Checked="Ready_Checked" Margin="5" IsChecked="True" />
                         <RadioButton Name="radioButton2" Checked="radioButton2_Checked" Margin="5"/>
                         <RadioButton Name="radioButton4" Checked="radioButton4_Checked" Margin="5"/>
                         <RadioButton Name="radioButton3" Checked="radioButton3_Checked" Margin="5"/>
                     </StackPanel>
-               
-            </GroupBox>
-            </StackPanel>
+
+                </GroupBox>
+                <ScrollViewer  Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" >
+
+                <TextBlock 
+                    Margin="5"
+                    FontSize="12" 
+                    Foreground="Black" 
+                    TextWrapping="Wrap"
+                    Text="{Binding ElementName=combView, Path=Arranger.Comb.PathDiscription}"
+                />
+                </ScrollViewer>
+
+            </Grid>
             <GridSplitter Grid.Column="0" Width="5"/>
-            <cc:CombView Grid.Column="2" x:Name="combView">
+            <cc:CombView Grid.Column="1" x:Name="combView">
                 <cc:CombView.Effect>
                     <DropShadowEffect/>
                 </cc:CombView.Effect>
             </cc:CombView>
         </Grid>
-	</DockPanel>
+    </DockPanel>
 </Window>

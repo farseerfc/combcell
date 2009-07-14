@@ -26,8 +26,8 @@ namespace CombCell.DSAlgo
             set { selected = value; }
         }
 
-        private List<T> path;
-        public virtual List<T> Path
+        private GraphPath<T> path;
+        public virtual GraphPath<T> Path
         {
             get { return path; }
             set { path = value; }
