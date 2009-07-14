@@ -5,6 +5,7 @@ using System.Text;
 
 namespace CombCell
 {
+    [CLSCompliant(true)]
     public struct Pair<T>:IEquatable<Pair<T>>
     {
         public T first;

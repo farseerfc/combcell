@@ -12,8 +12,27 @@ namespace CombCell
         private Arranger arranger;
         private List<Pair<int>> blockList;
         private List<Pair<int>> selectList;
-        private List<Pair<int>> pathList;
+        
         private Pair<int> initial;
+
+        public GraphPath<Pair<int>> GraphPath
+        {
+            get { return (GraphPath<Pair<int>>)GetValue(GraphPathProperty); }
+            set { SetValue(GraphPathProperty, value); }
+        }
+        public static readonly DependencyProperty GraphPathProperty =
+            DependencyProperty.Register("GraphPath", typeof(GraphPath<Pair<int>>), typeof(Comb),
+            new FrameworkPropertyMetadata(new GraphPath<Pair<int>>()));
+
+        public string PathDiscription
+        {
+            get { return (string)GetValue(PathDiscriptionProperty);}
+            set { SetValue(PathDiscriptionProperty,value);}
+        }
+        public static readonly DependencyProperty PathDiscriptionProperty=
+            DependencyProperty.Register(
+                "PathDiscription",typeof(string),typeof(Comb),
+                new FrameworkPropertyMetadata(""));
 
         public Cell this[int row, int column]
         {
@@ -37,7 +56,6 @@ namespace CombCell
             graph = new Graph<Pair<int>>();
             blockList = new List<Pair<int>>();
             selectList = new List<Pair<int>>();
-            pathList = new List<Pair<int>>();
             this.arranger = arranger;
         }
 
@@ -124,7 +142,7 @@ namespace CombCell
 
         private void UpdatePath()
         {
-            foreach (Pair<int> passed in pathList)
+            foreach (Pair<int> passed in GraphPath.PassedVertexes)
             {
                 Cell cell = cells[passed.first][passed.second];
                 if(blockList.Contains(passed))
@@ -139,6 +157,7 @@ namespace CombCell
                     cell.State = CellState.Normal;
                 }
             }
+            PathDiscription = "";
 
             PathAlgorithm<Pair<int>> algo = new End2End<Pair<int>>();
             algo.Graph = graph;
@@ -146,12 +165,20 @@ namespace CombCell
             if(algo.CanCalc)
             {
                 algo.Calc();
-                pathList = algo.Path;
-                foreach (Pair<int> passed in pathList)
+                GraphPath = algo.Path;
+                foreach (Pair<int> passed in GraphPath.PassedVertexes)
                 {
                     cells[passed.first][passed.second].State = CellState.Passed;
                 }
+
+                PathDiscription = "Passed " +GraphPath.PassedCount+"<";
+                foreach (Pair<int> pair in GraphPath.PassedVertexes)
+                {
+                    PathDiscription += this[pair].Index+", ";
+                }
+                PathDiscription += ">";
             }
+            
         }
 
         private void MarkIndex()

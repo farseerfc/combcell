@@ -22,7 +22,6 @@ namespace CombCell.DSAlgo
         private Dictionary<Vertex<T>, int> distance;
         private Dictionary<Vertex<T>, Vertex<T>> pre;
         private List<Vertex<T>> determined;
-        //private List<Vertex<T>> undetermined;
         private PriorityQueue<Vertex<T>, int> undetermined;
 
         public override bool CanCalc
@@ -109,7 +108,7 @@ namespace CombCell.DSAlgo
 
         private void GeneratePath()
         {
-            Path = new List<T>();
+            List<T> path = new List<T>();
             for (int i=1;i<Selected.Count;++i)
             {
                 Vertex<T> goal = Graph.VertexMap[Selected[i]];
@@ -120,11 +119,15 @@ namespace CombCell.DSAlgo
                     T keyPre = preVertex.Key;
                     if(Selected.IndexOf(keyPre)==-1)
                     {
-                        Path.Add(keyPre);
+                        path.Add(keyPre);
                     }
                     preVertex = pre[preVertex];
                 }
             }
+
+            Path = new GraphPath<T>();
+            Path.KeyVertexes = Selected;
+            Path.PassedVertexes = path;
         }
     }
 }
