@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Documents;
 using CombCell.DSAlgo;
@@ -33,6 +34,16 @@ namespace CombCell
             DependencyProperty.Register(
                 "PathDiscription",typeof(string),typeof(Comb),
                 new FrameworkPropertyMetadata(""));
+
+        public Type ChoosedAlgorithm
+        {
+            get { return (Type)GetValue(ChoosedAlgorithmProperty);}
+            set { SetValue(ChoosedAlgorithmProperty,value);}
+        }
+        public static readonly DependencyProperty ChoosedAlgorithmProperty=
+            DependencyProperty.Register(
+                "ChoosedAlgorithm",typeof(Type),typeof(Comb),
+                new FrameworkPropertyMetadata(typeof(SingleSource<>)));
 
         public Cell this[int row, int column]
         {
@@ -159,7 +170,9 @@ namespace CombCell
             }
             PathDiscription = "";
 
-            PathAlgorithm<Pair<int>> algo = new Snake<Pair<int>>();
+            Type typeAlgo = ChoosedAlgorithm.MakeGenericType(typeof(Pair<int>));
+
+            PathAlgorithm<Pair<int>> algo = (PathAlgorithm<Pair<int>>)typeAlgo.GetConstructor(Type.EmptyTypes).Invoke(null);
             algo.Graph = graph;
             algo.Selected = selectList;
             if(algo.CanCalc)
