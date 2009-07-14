@@ -37,30 +37,46 @@ namespace CombCell.DSAlgo
             init();
         }
 
+        /// <summary>
+        /// Create a PriorityQueue with given comparer.
+        /// Maximum heap is supported by this.
+        /// </summary>
         public PriorityQueue(IComparer<TPri> comparer)
         {
             this.comparer = comparer;
             init();
         }
 
-
+        /// <summary>
+        /// The count of items
+        /// </summary>
         public int Count
         {
             get { return heap.Count; }
         }
 
+        /// <summary>
+        /// Whether count==0
+        /// </summary>
         public bool Empty
         {
             get { return Count == 0; }
         }
 
-
+        /// <summary>
+        /// Get the KeyValuePair with minimum priority and not remove it.
+        /// </summary>
+        /// <returns></returns>
         public KeyValuePair<TItem, TPri> Peek()
         {
             if (Empty) throw new InvalidOperationException("Peek when heap is empty");
             return heap[0];
         }
 
+        /// <summary>
+        /// Get the KeyValuePair with minimum priority and remove it.
+        /// </summary>
+        /// <returns></returns>
         public KeyValuePair<TItem, TPri> Pop()
         {
             if (Empty) throw new InvalidOperationException("Pop when heap is empty");
@@ -68,12 +84,17 @@ namespace CombCell.DSAlgo
             KeyValuePair<TItem, TPri> min = heap[0];
             //move last to top
             heap[0] = heap[heap.Count - 1];
+            pos.Remove(min.Key);
+            pos[heap[0].Key] = 0;
             heap.RemoveAt(heap.Count - 1);
             siftDown(0);
-            pos.Remove(min.Key);
             return min;
         }
 
+        /// <summary>
+        /// Insert the KeyValuePair
+        /// </summary>
+        /// <param name="pair"></param>
         public void Insert(KeyValuePair<TItem,TPri> pair)
         {
             heap.Add(pair);
@@ -81,11 +102,21 @@ namespace CombCell.DSAlgo
             siftUp(heap.Count - 1);
         }
 
-        public void Insert(TItem key,TPri value)
+        /// <summary>
+        /// Insert the item with given initial priority
+        /// </summary>
+        /// <param name="key">item</param>
+        /// <param name="value">initial priority</param>
+        public void Insert(TItem item,TPri pri)
         {
-            Insert(new KeyValuePair<TItem, TPri>(key, value));
+            Insert(new KeyValuePair<TItem, TPri>(item, pri));
         }
 
+        /// <summary>
+        /// Change a given item
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="newPriority"></param>
         public void ChangePriority(TItem key,TPri newPriority)
         {
             int index = pos[key];
@@ -117,11 +148,12 @@ namespace CombCell.DSAlgo
 
         private void swap(int a, int b)
         {
+            if (a == b) return;
+            pos[heap[a].Key] = b;
+            pos[heap[b].Key] = a;
             KeyValuePair<TItem, TPri> temp = heap[a];
             heap[a] = heap[b];
             heap[b] = temp;
-            pos[heap[a].Key] = a;
-            pos[heap[b].Key] = b;
         }
 
 
