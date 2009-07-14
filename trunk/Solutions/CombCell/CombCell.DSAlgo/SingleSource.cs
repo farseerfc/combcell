@@ -125,7 +125,6 @@ namespace CombCell.DSAlgo
                 }
             }
 
-            Path = new GraphPath<T>();
             Path.KeyVertexes = Selected;
             Path.PassedVertexes = path;
         }
