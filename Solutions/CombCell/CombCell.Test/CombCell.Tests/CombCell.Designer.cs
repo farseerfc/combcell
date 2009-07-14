@@ -7,6 +7,88 @@
 // ------------------------------------
 namespace CombCell.Stubs
 {
+    /// <summary>Stub of AlgoShower</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Stubs", "0.14.40610.2")]
+    [global::System.Serializable]
+    [global::System.Diagnostics.DebuggerDisplay("Stub = AlgoShower")]
+    [global::System.Diagnostics.DebuggerStepThrough]
+    internal partial class SAlgoShower
+      : global::CombCell.AlgoShower
+      , global::Microsoft.Stubs.Framework.IStub
+      , global::Microsoft.Stubs.Framework.IPartialStub
+    {
+        [global::System.Diagnostics.DebuggerHidden]
+        public SAlgoShower(global::System.Type algo)
+        : base(algo)
+        {
+            this.Initialize();
+        }
+
+        /// <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        public bool CallBase
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                return this.callBase;
+            }
+            [global::System.Diagnostics.DebuggerHidden]
+            set
+            {
+                this.callBase = value;
+            }
+        }
+
+        /// <summary>Gets or sets the fallback behavior.</summary>
+        public global::Microsoft.Stubs.Framework.IStubBehavior FallbackBehavior
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                return this.defaultStub;
+            }
+            [global::System.Diagnostics.DebuggerHidden]
+            set
+            {
+                this.defaultStub = value;
+            }
+        }
+
+        /// <summary>Initializes a new instance of type SAlgoShower</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        private void Initialize()
+        {
+            this.defaultStub =
+              global::Microsoft.Stubs.Framework.StubFallbackBehavior.Current;
+        }
+
+        /// <summary>Stub of method System.String CombCell.AlgoShower.ToString()</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        public override string ToString()
+        {
+            global::Microsoft.Stubs.Framework.StubDelegates.Func<string> sh
+               = this.ToString01;
+            if (sh != (global::Microsoft.Stubs.Framework.StubDelegates.Func<string>)null)
+              return sh.Invoke();
+            else 
+            {
+              if (this.callBase)
+                return base.ToString();
+              global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+              return stub.Result<global::CombCell.Stubs.SAlgoShower, string>(this);
+            }
+        }
+
+        /// <summary>Stub of method System.String CombCell.AlgoShower.ToString()</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<string> ToString01;
+
+        private bool callBase;
+
+        private global::Microsoft.Stubs.Framework.IStubBehavior defaultStub;
+    }
+}
+namespace CombCell.Stubs
+{
     /// <summary>Stub of Arranger</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Stubs", "0.14.40610.2")]
     [global::System.Serializable]

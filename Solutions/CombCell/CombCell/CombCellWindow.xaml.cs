@@ -11,17 +11,35 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Reflection;
+using CombCell.DSAlgo;
 
 namespace CombCell
 {
+    class AlgoShower
+    {
+        public Type Algorithm;
+        public override string ToString()
+        {
+            return Algorithm.Name;
+        }
+        public AlgoShower(Type algo)
+        {
+            Algorithm=algo;
+        }
+    }
+
     /// <summary>
     /// Interaction logic for CombCellWindow.xaml
     /// </summary>
     public sealed partial class CombCellWindow : Window
     {
+        private List<Type> algorithms;
+
         public CombCellWindow()
         {
             InitializeComponent();
+            loadAlgorithms();
             Arranger arranger = new HexArranger() ;
             ResetArranger(arranger);
         }
@@ -121,6 +139,31 @@ namespace CombCell
         {
 
             combView.AnimateChildrenByRow();
+        }
+
+        private void loadAlgorithms()
+        {
+            algorithms = new List<Type>();
+            Type pathAlgorithm = typeof(PathAlgorithm<>);
+            Assembly assembly = Assembly.GetAssembly(pathAlgorithm);
+            foreach(Type type in assembly.GetTypes())
+            {
+                if(type.BaseType.Name==pathAlgorithm.Name)
+                {
+                    algorithms.Add(type);
+
+                    RadioButton rdb = new RadioButton();
+                    rdb.Content = new AlgoShower(type);
+                    rdb.Margin = new Thickness(3);
+                    rdb.Checked+=delegate(object sender,RoutedEventArgs e)
+                    {
+                        RadioButton btn = sender as RadioButton;
+                        AlgoShower algo = btn.Content as AlgoShower;
+                        combView.Arranger.Comb.ChoosedAlgorithm = algo.Algorithm;
+                    };
+                    stackAlgorithms.Children.Add(rdb);
+                }
+            }
         }
     }
 }
