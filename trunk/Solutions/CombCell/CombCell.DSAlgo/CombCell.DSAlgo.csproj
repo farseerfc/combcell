@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Edge.cs" />
+    <Compile Include="Hamilton.cs" />
     <Compile Include="SingleSource.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="GraphPath.cs" />
