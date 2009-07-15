@@ -32,12 +32,19 @@ namespace CombCell
                     FrameworkPropertyMetadataOptions.AffectsRender));
 
 
-
+        /// <summary>
+        /// A scheme is the color set of the cell.
+        /// Usually do not set scheme directly.
+        /// Add the scheme in lengend and set the State of the cell.
+        /// </summary>
         public Scheme Scheme
         {
             get { return (Scheme)GetValue(SchemeProperty); }
             set { SetValue(SchemeProperty, value); }
         }
+        /// <summary>
+        /// Support dependency property of Scheme
+        /// </summary>
         public static readonly DependencyProperty SchemeProperty =
             DependencyProperty.Register(
             "Scheme",
@@ -46,11 +53,17 @@ namespace CombCell
             new FrameworkPropertyMetadata( null,
                 FrameworkPropertyMetadataOptions.AffectsRender) );
 
+        /// <summary>
+        /// Co-response cell of this CellShape
+        /// </summary>
         public Cell Cell
         {
             get { return (Cell)GetValue(CellProperty); }
             set { SetValue(CellProperty, value); }
         }
+        /// <summary>
+        /// Support dependency property of Cell
+        /// </summary>
         public static readonly DependencyProperty CellProperty =
             DependencyProperty.Register(
             "Cell",typeof(Cell), typeof(CellShape),

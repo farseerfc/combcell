@@ -19,8 +19,8 @@ namespace CombCell.DSAlgo
         private T startPos;
         private Vertex<T> start;
 
-        private Dictionary<Vertex<T>, int> distance;
-        private Dictionary<Vertex<T>, Vertex<T>> pre;
+        internal Dictionary<Vertex<T>, int> Distance;
+        internal Dictionary<Vertex<T>, Vertex<T>> pre;
         private List<Vertex<T>> determined;
         private PriorityQueue<Vertex<T>, int> undetermined;
 
@@ -42,7 +42,7 @@ namespace CombCell.DSAlgo
             startPos = Selected[0];
             start = Graph.VertexMap[startPos];
 
-            distance = new Dictionary<Vertex<T>, int>();
+            Distance = new Dictionary<Vertex<T>, int>();
             pre = new Dictionary<Vertex<T>, Vertex<T>>();
             determined = new List<Vertex<T>>();
 
@@ -50,12 +50,12 @@ namespace CombCell.DSAlgo
 
             foreach (Vertex<T> v in Graph.Vertexes)
             {
-                distance[v] = Graph.Infinitive;
+                Distance[v] = Graph.Infinitive;
                 pre[v] = null;
-                undetermined[v] = distance[v];
+                undetermined[v] = Distance[v];
             }
 
-            distance[start] = 0;
+            Distance[start] = 0;
             undetermined[start] = 0;
             //undetermined = new List<Vertex<T>>(Graph.Vertexes);
             
@@ -63,10 +63,10 @@ namespace CombCell.DSAlgo
 
         private void Relax(Vertex<T> u, Vertex<T> v)
         {
-            if (distance[v] > distance[u] + 1)
+            if (Distance[v] > Distance[u] + 1)
             {
-                distance[v] = distance[u] + 1;
-                undetermined[v] = distance[u] + 1;
+                Distance[v] = Distance[u] + 1;
+                undetermined[v] = Distance[u] + 1;
                 pre[v] = u;
             }
         }
@@ -111,20 +111,25 @@ namespace CombCell.DSAlgo
             List<T> path = new List<T>();
             for (int i=1;i<Selected.Count;++i)
             {
+                List<T> singlePath = new List<T>();
                 Vertex<T> goal = Graph.VertexMap[Selected[i]];
-                if (distance[goal] == Graph.Infinitive) continue;
+                if (Distance[goal] == Graph.Infinitive) continue;
                 Vertex<T> preVertex = pre[goal];
                 while(preVertex!=start&&preVertex!=null)
                 {
                     T keyPre = preVertex.Key;
                     if(Selected.IndexOf(keyPre)==-1)
                     {
-                        path.Add(keyPre);
+                        singlePath.Add(keyPre);
                     }
                     preVertex = pre[preVertex];
                 }
+                singlePath.Reverse();
+                foreach (T key in singlePath)
+                {
+                    if (!path.Contains(key)) path.Add(key);
+                }
             }
-
             Path.KeyVertexes = Selected;
             Path.PassedVertexes = path;
         }

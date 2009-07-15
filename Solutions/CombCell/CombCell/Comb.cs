@@ -38,7 +38,11 @@ namespace CombCell
         public Type ChoosedAlgorithm
         {
             get { return (Type)GetValue(ChoosedAlgorithmProperty);}
-            set { SetValue(ChoosedAlgorithmProperty,value);}
+            set 
+            {
+                SetValue(ChoosedAlgorithmProperty,value);
+                UpdatePath();
+            }
         }
         public static readonly DependencyProperty ChoosedAlgorithmProperty=
             DependencyProperty.Register(
