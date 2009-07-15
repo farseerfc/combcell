@@ -108,6 +108,19 @@ namespace CombCell
                 new FrameworkPropertyMetadata(CombViewState.Ready));
 
  
+        public bool IsUsingEffect
+        {
+            get { return (bool)GetValue(IsUsingEffectProperty);}
+            set 
+            { 
+                SetValue(IsUsingEffectProperty,value);
+
+            }
+        }
+        public static readonly DependencyProperty IsUsingEffectProperty=
+            DependencyProperty.Register(
+                "IsUsingEffect",typeof(bool),typeof(CombView),
+                new FrameworkPropertyMetadata(true,FrameworkPropertyMetadataOptions.AffectsRender));
         #endregion
 
 
@@ -332,6 +345,21 @@ namespace CombCell
             }
             
             AnimateChildren();
+        }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+
+            base.OnRender(drawingContext);
+            if (IsUsingEffect)
+            {
+                this.Effect = new System.Windows.Media.Effects.DropShadowEffect();
+            }
+            else
+            {
+                this.Effect = null;
+            }
+            drawingContext.DrawRectangle(Brushes.Transparent, null, new Rect(0, 0, RenderSize.Width, RenderSize.Height));
         }
 
     }

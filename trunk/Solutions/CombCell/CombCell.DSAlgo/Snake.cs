@@ -12,6 +12,20 @@ namespace CombCell.DSAlgo
     /// <typeparam name="T">Key type of the vertex on a graph</typeparam>
     public class Snake<T>: PathAlgorithm<T>
     {
+        public override string Name
+        {
+            get { return "Snake"; }
+        }
+
+        public override string Discription
+        {
+            get 
+            {
+                return "The Snake Algorithm is based "+
+                "on the SingleSource algorithm. "+
+                "It links every selected cells in order. "; 
+            }
+        }
 
         public override bool CanCalc
         {

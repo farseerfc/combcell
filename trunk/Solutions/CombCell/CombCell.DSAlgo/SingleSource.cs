@@ -16,6 +16,17 @@ namespace CombCell.DSAlgo
     /// </typeparam>
     public class SingleSource<T> : PathAlgorithm<T>
     {
+        public override string Name
+        {
+            get { return "Single Source"; }
+        }
+
+        public override string Discription
+        {
+            get { return "Single source shortest path algorithm, "+
+                "which is a modified Dijkstra applied on a undirected graph,"+
+                "described in Introduction of Algorithm, 2 edition, Chapter 24."; }
+        }
         private T startPos;
         private Vertex<T> start;
 
@@ -26,7 +37,7 @@ namespace CombCell.DSAlgo
 
         public override bool CanCalc
         {
-            get { return Selected.Count >= 1; }
+            get { return Selected.Count > 1; }
         }
 
         public override void Calc()

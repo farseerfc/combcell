@@ -40,5 +40,15 @@ namespace CombCell.DSAlgo
         }
 
         public abstract void Calc();
+
+        public abstract string Name
+        {
+            get;
+        }
+
+        public abstract string Discription
+        {
+            get;
+        }
     }
 }

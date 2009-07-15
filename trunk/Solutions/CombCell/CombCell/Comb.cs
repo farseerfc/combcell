@@ -6,6 +6,9 @@ using CombCell.DSAlgo;
 
 namespace CombCell
 {
+    /// <summary>
+    /// Model of a comb, including the algorithm of marking the indexes
+    /// </summary>
     public class Comb : Freezable
     {
         private List<List<Cell>> cells;
@@ -13,7 +16,6 @@ namespace CombCell
         private Arranger arranger;
         private List<Pair<int>> blockList;
         private List<Pair<int>> selectList;
-        
         private Pair<int> initial;
 
         public GraphPath<Pair<int>> GraphPath
@@ -35,9 +37,9 @@ namespace CombCell
                 "PathDiscription",typeof(string),typeof(Comb),
                 new FrameworkPropertyMetadata(""));
 
-        public Type ChoosedAlgorithm
+        public PathAlgorithm<Pair<int>> ChoosedAlgorithm
         {
-            get { return (Type)GetValue(ChoosedAlgorithmProperty);}
+            get { return (PathAlgorithm<Pair<int>>)GetValue(ChoosedAlgorithmProperty); }
             set 
             {
                 SetValue(ChoosedAlgorithmProperty,value);
@@ -46,8 +48,8 @@ namespace CombCell
         }
         public static readonly DependencyProperty ChoosedAlgorithmProperty=
             DependencyProperty.Register(
-                "ChoosedAlgorithm",typeof(Type),typeof(Comb),
-                new FrameworkPropertyMetadata(typeof(SingleSource<>)));
+                "ChoosedAlgorithm", typeof(PathAlgorithm<Pair<int>>), typeof(Comb),
+                new FrameworkPropertyMetadata(new Hamilton<Pair<int>>()));
 
         public Cell this[int row, int column]
         {
@@ -174,17 +176,20 @@ namespace CombCell
             }
             PathDiscription = "";
 
-            Type typeAlgo = ChoosedAlgorithm.MakeGenericType(typeof(Pair<int>));
-
-            PathAlgorithm<Pair<int>> algo = (PathAlgorithm<Pair<int>>)typeAlgo.GetConstructor(Type.EmptyTypes).Invoke(null);
+            PathAlgorithm<Pair<int>> algo = ChoosedAlgorithm;
             algo.Graph = graph;
             algo.Selected = selectList;
+            algo.Path = new GraphPath<Pair<int>>();
             if(algo.CanCalc)
             {
                 algo.Calc();
                 GraphPath = algo.Path;
                 foreach (Pair<int> passed in GraphPath.PassedVertexes)
                 {
+                    if (cells.Count > passed.first &&
+                        cells[passed.first].Count>passed.second&&
+                        (cells[passed.first][passed.second].State == CellState.Normal ||
+                        cells[passed.first][passed.second].State == CellState.MouseOver))
                     cells[passed.first][passed.second].State = CellState.Passed;
                 }
 

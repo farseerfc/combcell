@@ -6,11 +6,23 @@ using System.Text;
 namespace CombCell.DSAlgo
 {
     /// <summary>
-    /// A hamilton path is the shortest path that path through all selected vertexes.
+    /// A Hamilton path is the shortest path that path through all selected vertexes.
     /// </summary>
     /// <typeparam name="T">The key type of vertex</typeparam>
     public class Hamilton<T> : PathAlgorithm<T>
     {
+        public override string Name
+        {
+            get { return "Hamilton"; }
+        }
+
+        public override string Discription
+        {
+            get { return "Hamilton path is the shortest path"+
+                " that path through all selected vertexes."; }
+        }
+
+
         private Dictionary<T, Dictionary<T, int>> distanceMap;
         private Dictionary<T, Dictionary<Vertex<T>, Vertex<T>>> preMap;
         private T longestStart;
@@ -37,7 +49,6 @@ namespace CombCell.DSAlgo
             // and then generate the path
             generatePath();
 
-            //throw new NotImplementedException();
         }
 
         private void calcDistance()
