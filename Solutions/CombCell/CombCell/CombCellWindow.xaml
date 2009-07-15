@@ -12,10 +12,10 @@
     </Window.Triggers>
 
     <DockPanel>
-        
+
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="260"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
@@ -62,6 +62,10 @@
                                 </cc:HexCell.Cell>
                             </cc:HexCell>
                         </RadioButton>
+                        
+                        <CheckBox Name="useEffect" IsChecked="{Binding ElementName=combView, Path=IsUsingEffect}">
+                            Use drop down effect
+                        </CheckBox>
                     </StackPanel>
 
                 </GroupBox>
@@ -74,7 +78,23 @@
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Grid.Row="1" Grid.Column="0" Header="Algorithms" Name="groupBox3" Margin="5">
-                    <StackPanel Name="stackAlgorithms"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        
+                        <StackPanel Name="stackAlgorithms" Grid.Row="0"/>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto"  Grid.Row="1">
+                            <TextBlock
+                            Name="algorithmDiscription"
+                            Margin="5"
+                            FontSize="12" 
+                            Foreground="Black" 
+                            TextWrapping="Wrap"
+                            />
+                        </ScrollViewer>
+                    </Grid>
                 </GroupBox>
                 <ScrollViewer  Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" >
 

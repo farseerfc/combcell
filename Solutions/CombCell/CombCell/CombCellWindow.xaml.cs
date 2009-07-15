@@ -9,12 +9,12 @@ namespace CombCell
 {
     class AlgoShower
     {
-        public Type Algorithm;
+        public PathAlgorithm<Pair<int>> Algorithm;
         public override string ToString()
         {
             return Algorithm.Name;
         }
-        public AlgoShower(Type algo)
+        public AlgoShower(PathAlgorithm<Pair<int>> algo)
         {
             Algorithm=algo;
         }
@@ -45,6 +45,7 @@ namespace CombCell
         {
             if (combView == null) return;
             combView.AnimateChildrenByRow();
+
         }
 
         private void radioButton2_Checked(object sender, RoutedEventArgs e)
@@ -122,6 +123,10 @@ namespace CombCell
             radioButton4.Content = cs4;
 
             combView.ResetArranger();
+
+            RadioButton ra = stackAlgorithms.Children[0] as RadioButton;
+            ra.IsChecked = true;
+
             combView.AnimateChildrenByRow();
         }
 
@@ -144,13 +149,15 @@ namespace CombCell
                     algorithms.Add(type);
 
                     RadioButton rdb = new RadioButton();
-                    rdb.Content = new AlgoShower(type);
+                    PathAlgorithm<Pair<int>> pathAlgo = (PathAlgorithm<Pair<int>>)type.MakeGenericType(typeof(Pair<int>)).GetConstructor(Type.EmptyTypes).Invoke(null);
+                    rdb.Content = new AlgoShower(pathAlgo);
                     rdb.Margin = new Thickness(3);
                     rdb.Checked+=delegate(object sender,RoutedEventArgs e)
                     {
                         RadioButton btn = sender as RadioButton;
                         AlgoShower algo = btn.Content as AlgoShower;
                         combView.Arranger.Comb.ChoosedAlgorithm = algo.Algorithm;
+                        algorithmDiscription.Text = algo.Algorithm.Discription;
                     };
                     stackAlgorithms.Children.Add(rdb);
                 }

@@ -18,7 +18,7 @@ namespace CombCell.Stubs
       , global::Microsoft.Stubs.Framework.IPartialStub
     {
         [global::System.Diagnostics.DebuggerHidden]
-        public SAlgoShower(global::System.Type algo)
+        public SAlgoShower(global::CombCell.DSAlgo.PathAlgorithm<global::CombCell.Pair<int>> algo)
         : base(algo)
         {
             this.Initialize();
@@ -1440,6 +1440,32 @@ namespace CombCell.Stubs
 
         /// <summary>Stub of method System.Void CombCell.CombView.OnMouseWheel(System.Windows.Input.MouseWheelEventArgs e)</summary>
         public global::Microsoft.Stubs.Framework.StubDelegates.Action<global::System.Windows.Input.MouseWheelEventArgs> OnMouseWheelMouseWheelEventArgs;
+
+        /// <summary>Stub of method System.Void CombCell.CombView.OnRender(System.Windows.Media.DrawingContext drawingContext)</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        protected override void OnRender(global::System.Windows.Media.DrawingContext drawingContext)
+        {
+            global::Microsoft.Stubs.Framework
+              .StubDelegates.Action<global::System.Windows.Media.DrawingContext> sh
+               = this.OnRenderDrawingContext;
+            if (sh != (global::Microsoft.Stubs.Framework.StubDelegates
+              .Action<global::System.Windows.Media.DrawingContext>)null)
+              sh.Invoke(drawingContext);
+            else 
+            {
+              if (this.callBase)
+                base.OnRender(drawingContext);
+              else 
+              {
+                global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior
+                  ;
+                stub.VoidResult<global::CombCell.Stubs.SCombView>(this);
+              }
+            }
+        }
+
+        /// <summary>Stub of method System.Void CombCell.CombView.OnRender(System.Windows.Media.DrawingContext drawingContext)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Action<global::System.Windows.Media.DrawingContext> OnRenderDrawingContext;
 
         /// <summary>Stub of method System.Void CombCell.CombView.OnRenderSizeChanged(System.Windows.SizeChangedInfo info)</summary>
         [global::System.Diagnostics.DebuggerHidden]

@@ -77,6 +77,11 @@ namespace CombCell
             this.OverridesDefaultStyle = true;
         }
 
+        /// <summary>
+        /// Draw the Index string in the middle.
+        /// Children should override OnRenderOverride to draw border
+        /// </summary>
+        /// <param name="drawingContext"></param>
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
@@ -99,6 +104,10 @@ namespace CombCell
             drawingContext.DrawText(txt, txtPosition);
         }
 
+        /// <summary>
+        /// Provided for children to override to draw the border of the cell
+        /// </summary>
+        /// <param name="drawingContext"></param>
         protected abstract void OnRenderOverride(DrawingContext drawingContext);
         
     }
