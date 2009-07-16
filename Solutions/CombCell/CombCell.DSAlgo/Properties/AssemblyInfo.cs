@@ -38,3 +38,4 @@ using System.Runtime.InteropServices;
 
 
 [assembly: CLSCompliant(true)]
+[assembly: InternalsVisibleTo("CombCell.DSAlgo.Tests")]
