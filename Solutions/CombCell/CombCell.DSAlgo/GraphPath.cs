@@ -25,6 +25,13 @@ namespace CombCell.DSAlgo
             set { passedVertexes = value; }
         }
 
+        private List<T> crossVertexes;
+        public List<T> CrossVertexes
+        {
+            get { return crossVertexes; }
+            set { crossVertexes = value; }
+        }
+
         public int KeyCount
         {
             get { return keyVertexes.Count; }
@@ -37,13 +44,14 @@ namespace CombCell.DSAlgo
 
         public int Count
         {
-            get { return KeyCount + PassedCount; }
+            get { return crossVertexes.Count; }
         }
 
         public GraphPath()
         {
             keyVertexes = new List<T>();
             passedVertexes = new List<T>();
+            crossVertexes = new List<T>();
         }
 
     }

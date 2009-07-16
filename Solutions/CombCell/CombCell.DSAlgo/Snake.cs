@@ -45,8 +45,12 @@ namespace CombCell.DSAlgo
                 singleSource.Calc();
                 Path.KeyVertexes.Add(start);
                 Path.PassedVertexes.AddRange(singleSource.Path.PassedVertexes);
+                Path.CrossVertexes.Add(start);
+                Path.CrossVertexes.AddRange(singleSource.Path.PassedVertexes);
             }
             Path.KeyVertexes.Add(Selected[Selected.Count - 1]);
+            Path.CrossVertexes.Add(Selected[Selected.Count - 1]);
+            
         }
     }
 }

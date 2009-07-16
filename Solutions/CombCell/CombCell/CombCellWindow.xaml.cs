@@ -93,7 +93,7 @@ namespace CombCell
             CellShape cs1 = arranger.CreateCellShape();
             cs1.Height = 60;
             cs1.Width = 50;
-            cs1.Index = "1:1";
+            cs1.Index = "1";
             cs1.Cell = new Cell();
             cs1.Cell.State = CellState.MouseOver;
             radioButton1.Content = cs1;
@@ -124,8 +124,16 @@ namespace CombCell
 
             combView.ResetArranger();
 
-            RadioButton ra = stackAlgorithms.Children[0] as RadioButton;
-            ra.IsChecked = true;
+            for (int i = 0; i < algorithms.Count;++i )
+            {
+                RadioButton rd = stackAlgorithms.Children[i] as RadioButton;
+                if((bool)rd.IsChecked)
+                {
+                    PathAlgorithm<Pair<int>> pathAlgo = (PathAlgorithm<Pair<int>>)algorithms[i].MakeGenericType(typeof(Pair<int>)).GetConstructor(Type.EmptyTypes).Invoke(null);
+                    combView.Arranger.Comb.ChoosedAlgorithm = pathAlgo;
+                    algorithmDiscription.Text = pathAlgo.Discription;
+                }
+            }
 
             combView.AnimateChildrenByRow();
         }

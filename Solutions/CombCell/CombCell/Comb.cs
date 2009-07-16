@@ -106,7 +106,7 @@ namespace CombCell
                 }
             }
             MarkIndex();
-            UpdatePath();
+            //UpdatePath();
         }
 
         public void Block(Pair<int> pos)
@@ -193,12 +193,17 @@ namespace CombCell
                     cells[passed.first][passed.second].State = CellState.Passed;
                 }
 
-                PathDiscription = "Passed " +GraphPath.PassedCount+"<";
-                foreach (Pair<int> pair in GraphPath.PassedVertexes)
+                PathDiscription = "Passed " +GraphPath.Count+" <";
+                foreach (Pair<int> pair in GraphPath.CrossVertexes)
                 {
                     PathDiscription += this[pair].Index+", ";
                 }
                 PathDiscription += ">";
+
+                if (PathCalculated != null)
+                {
+                    PathCalculated(this, EventArgs.Empty);
+                }
             }
             
         }
@@ -284,5 +289,7 @@ namespace CombCell
             initial = pos;
             MarkIndex();
         }
+
+        public event EventHandler PathCalculated;
     }
 }
