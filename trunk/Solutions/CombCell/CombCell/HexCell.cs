@@ -6,7 +6,10 @@ namespace CombCell
 {
     public class HexCell:CellShape
     {
-
+        /// <summary>
+        /// draw the border of the cell
+        /// </summary>
+        /// <param name="drawingContext">drawingContext recieved from OnRender</param>
         protected override void OnRenderOverride(DrawingContext drawingContext)
         {
            

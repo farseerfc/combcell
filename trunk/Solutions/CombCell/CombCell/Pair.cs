@@ -5,7 +5,10 @@ using System.Text;
 
 namespace CombCell
 {
-    [CLSCompliant(true)]
+    /// <summary>
+    /// A pair template
+    /// </summary>
+    /// <typeparam name="T">type of item</typeparam>
     public struct Pair<T>:IEquatable<Pair<T>>
     {
         public T first;
@@ -40,6 +43,16 @@ namespace CombCell
         public override int GetHashCode()
         {
             return (first.GetHashCode()*97)^second.GetHashCode();
+        }
+
+        public static bool operator == (Pair<T> p1,Pair<T> p2)
+        {
+            return p1.Equals(p2);
+        }
+
+        public static bool operator !=(Pair<T> p1, Pair<T> p2)
+        {
+            return !p1.Equals(p2);
         }
     }
 }
