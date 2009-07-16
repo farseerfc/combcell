@@ -34,6 +34,7 @@ namespace CombCell.DSAlgo
 
         public override void Calc()
         {
+            if (Graph == null ||!CanCalc) throw new InvalidOperationException();
             for(int i=1;i<Selected.Count;++i)
             {
                 T start = Selected[i - 1];

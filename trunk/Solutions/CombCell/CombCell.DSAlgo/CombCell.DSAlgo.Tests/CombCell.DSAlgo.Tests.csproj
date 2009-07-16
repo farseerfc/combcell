@@ -1,0 +1,262 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0259E5AF-9000-4B32-8A44-E00D11C3F4E0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CombCell.DSAlgo.Tests</RootNamespace>
+    <AssemblyName>CombCell.DSAlgo.Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Pex.Framework, Version=0.14.40610.2, Culture=neutral, PublicKeyToken=76a274db078248c8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Pex.Framework\0.14.40610.2__76a274db078248c8\Microsoft.Pex.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Pex.Stubs, Version=0.14.40610.2, Culture=neutral, PublicKeyToken=76a274db078248c8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Pex.Stubs\0.14.40610.2__76a274db078248c8\Microsoft.Pex.Stubs.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Stubs.Framework, Version=0.14.40610.2, Culture=neutral, PublicKeyToken=76a274db078248c8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Stubs.Framework\0.14.40610.2__76a274db078248c8\Microsoft.Stubs.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CombCell.DSAlgo.csproj">
+      <Project>{5EE12729-BE63-44FC-B5F6-4F7D8028C332}</Project>
+      <Name>CombCell.DSAlgo</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CombCell.DSAlgo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>CombCell.DSAlgo.stubx</DependentUpon>
+    </Compile>
+    <Compile Include="EdgeTTest.Constructor.g.cs">
+      <DependentUpon>EdgeTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EdgeTTest.Constructor01.g.cs">
+      <DependentUpon>EdgeTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EdgeTTest.cs" />
+    <Compile Include="EdgeTTest.FromGetSet.g.cs">
+      <DependentUpon>EdgeTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EdgeTTest.ToGetSet.g.cs">
+      <DependentUpon>EdgeTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EdgeTTest.ToString.g.cs">
+      <DependentUpon>EdgeTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphPathTTest.Constructor.g.cs">
+      <DependentUpon>GraphPathTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphPathTTest.CountGet.g.cs">
+      <DependentUpon>GraphPathTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphPathTTest.CrossVertexesGetSet.g.cs">
+      <DependentUpon>GraphPathTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphPathTTest.cs" />
+    <Compile Include="GraphPathTTest.KeyCountGet.g.cs">
+      <DependentUpon>GraphPathTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphPathTTest.KeyVertexesGetSet.g.cs">
+      <DependentUpon>GraphPathTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphPathTTest.PassedCountGet.g.cs">
+      <DependentUpon>GraphPathTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphPathTTest.PassedVertexesGetSet.g.cs">
+      <DependentUpon>GraphPathTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.ClearAccessed.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.Constructor.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.CreateEdge.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.CreateVertex.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.cs" />
+    <Compile Include="GraphTTest.EdgesGet.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.InfinitiveGet.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.RemoveEdge.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.RemoveVertex.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.VertexesGet.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.VertexMapGet.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HamiltonTTest.Constructor.g.cs">
+      <DependentUpon>HamiltonTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HamiltonTTest.cs" />
+    <Compile Include="PriorityQueueTItemTPriTest.Add01.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.ChangePriority.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.Clear.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.Constructor01.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.ContainsKey.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.CopyTo.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.CountGet.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.cs" />
+    <Compile Include="PriorityQueueTItemTPriTest.EmptyGet.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.GetEnumerator.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.Insert01.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.IsReadOnlyGet.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.ItemGetSet.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.KeysGet.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.Peek.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.Pop.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.Remove01.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.TryGetValue.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityQueueTItemTPriTest.ValuesGet.g.cs">
+      <DependentUpon>PriorityQueueTItemTPriTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\PexAssemblyInfo.cs" />
+    <Compile Include="SingleSourceTTest.Calc.g.cs">
+      <DependentUpon>SingleSourceTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSourceTTest.CanCalcGet.g.cs">
+      <DependentUpon>SingleSourceTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSourceTTest.Constructor.g.cs">
+      <DependentUpon>SingleSourceTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSourceTTest.cs" />
+    <Compile Include="SingleSourceTTest.DiscriptionGet.g.cs">
+      <DependentUpon>SingleSourceTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSourceTTest.NameGet.g.cs">
+      <DependentUpon>SingleSourceTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SnakeTTest.Calc.g.cs">
+      <DependentUpon>SnakeTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SnakeTTest.CanCalcGet.g.cs">
+      <DependentUpon>SnakeTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SnakeTTest.Constructor.g.cs">
+      <DependentUpon>SnakeTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SnakeTTest.cs" />
+    <Compile Include="SnakeTTest.DiscriptionGet.g.cs">
+      <DependentUpon>SnakeTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SnakeTTest.NameGet.g.cs">
+      <DependentUpon>SnakeTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VertexTTest.AccessedGetSet.g.cs">
+      <DependentUpon>VertexTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VertexTTest.Constructor.g.cs">
+      <DependentUpon>VertexTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VertexTTest.cs" />
+    <Compile Include="VertexTTest.EdgesGet.g.cs">
+      <DependentUpon>VertexTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VertexTTest.IsConnect.g.cs">
+      <DependentUpon>VertexTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VertexTTest.KeyGetSet.g.cs">
+      <DependentUpon>VertexTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VertexTTest.ToString.g.cs">
+      <DependentUpon>VertexTTest.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CombCell.DSAlgo.stubx">
+      <Generator>StubGenerator</Generator>
+      <LastGenOutput>CombCell.DSAlgo.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

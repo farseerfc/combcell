@@ -44,6 +44,7 @@ namespace CombCell.DSAlgo
         public PriorityQueue(IComparer<TPri> comparer)
         {
             this.comparer = comparer;
+            if (comparer == null) this.comparer = Comparer<TPri>.Default;
             init();
         }
 
@@ -119,6 +120,7 @@ namespace CombCell.DSAlgo
         /// <param name="newPriority">the new priority</param>
         public void ChangePriority(TItem item,TPri newPriority)
         {
+            if (!pos.ContainsKey(item)) throw new ArgumentException("item");
             int index = pos[item];
             bool isGreater = comparer.Compare(newPriority,heap[index].Value)>0;
             heap[index] = new KeyValuePair<TItem, TPri>(item,newPriority);
@@ -287,6 +289,8 @@ namespace CombCell.DSAlgo
 
         public void CopyTo(KeyValuePair<TItem, TPri>[] array, int arrayIndex)
         {
+            if (array == null) throw new ArgumentNullException("array");
+            if (arrayIndex<0||array.Length <= arrayIndex) throw new ArgumentOutOfRangeException("arrayIndex");
             heap.CopyTo(array, arrayIndex);
         }
 
