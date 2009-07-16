@@ -105,7 +105,6 @@ namespace CombCell
         /// </summary>
         /// <returns>new instance of the concrete CellShape.</returns>
         public override CellShape CreateCellShape()
-        public override CellShape CreateCellShape()
         {
             return new TriCell();
         }
