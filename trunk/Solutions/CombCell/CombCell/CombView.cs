@@ -153,6 +153,7 @@ namespace CombCell
                 this.RemoveVisualChild(child);
             }
             init();
+            Arranger.Comb.PathCalculated += new EventHandler(Comb_PathCalculated);
             EnsureChildren(this.RenderSize);
         }
 
@@ -204,6 +205,8 @@ namespace CombCell
         protected override void OnMouseUp(MouseButtonEventArgs e)
         {
             base.OnMouseUp(e);
+
+            
             MousePosition = e.GetPosition(this);
             Pair<int> pos=Arranger.FromPointToPair(MousePosition);
             if (State == CombViewState.SelectCells)
@@ -284,7 +287,7 @@ namespace CombCell
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval =new TimeSpan(0, 0, 0, 0, 50);
-            timer.Tag = 0.02 * animatedChildren.Count;
+            timer.Tag = Math.Ceiling(.02 * animatedChildren.Count);
             timer.Tick+=delegate(object sender,EventArgs e){
                 DispatcherTimer t = sender as DispatcherTimer;
                 int c = 0;
@@ -311,13 +314,36 @@ namespace CombCell
                 }
                 if(animatedChildren.Count==0){
                     t.IsEnabled = false;
+                    foreach (CellShape cell in animatingChildren)
+                    {
+                        cell.Opacity = 1;
+                    }
+                    animatingChildren.Clear();
                 }
             };
             timer.IsEnabled = true;
         }
 
+        void Comb_PathCalculated(object sender,EventArgs e)
+        {
+            foreach(CellShape cell in animatingChildren)
+            {
+                cell.Opacity = 1;
+            }
+            animatingChildren.Clear();
+            foreach (Pair<int> child in Arranger.Comb.GraphPath.CrossVertexes)
+            {
+                animatedChildren.Add(children[child.second + child.first * Arranger.XCount]);
+            }
+            AnimateChildren();
+        }
+
         public void AnimateChildrenByRow()
         {
+            foreach (CellShape cell in animatingChildren)
+            {
+                cell.Opacity = 1;
+            }
             animatingChildren.Clear();
             foreach (CellShape cell in children)
             {
@@ -328,6 +354,10 @@ namespace CombCell
 
         public void AnimateChildrenByIndex()
         {
+            foreach (CellShape cell in animatingChildren)
+            {
+                cell.Opacity = 1;
+            }
             animatingChildren.Clear();
             foreach (CellShape cell in children)
             {

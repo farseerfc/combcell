@@ -173,12 +173,16 @@ namespace CombCell.DSAlgo
         private void generatePath()
         {
             List<T> path = new List<T>();
+            List<T> crossPath = new List<T>();
             for(int i=1;i<keyPath.Count;++i)
             {
                 T start = keyPath[i-1];
                 T end = keyPath[i];
 
                 Vertex<T> pre = Graph.VertexMap[end];
+
+                //crossPath.Add(start);
+                List<T> singlePath = new List<T>();
                 while(pre!=Graph.VertexMap[start])
                 {
                     pre = preMap[start][pre];
@@ -186,12 +190,17 @@ namespace CombCell.DSAlgo
                     {
                         path.Add(pre.Key);
                     }
+                    singlePath.Add(pre.Key);
                 }
-    
+                singlePath.Reverse();
+                crossPath.AddRange(singlePath);
             }
+            crossPath.Add(keyPath[keyPath.Count - 1]);
+            crossPath.Reverse();
             Path=new GraphPath<T>();
             Path.PassedVertexes=path;
             Path.KeyVertexes=Selected;
+            Path.CrossVertexes = crossPath;
         }
     }
 }
