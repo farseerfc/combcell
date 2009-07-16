@@ -18,25 +18,43 @@ namespace CombCell
         private List<Pair<int>> selectList;
         private Pair<int> initial;
 
+#region dependency properties
+
+
+        /// <summary>
+        /// Calculated path
+        /// </summary>
         public GraphPath<Pair<int>> GraphPath
         {
             get { return (GraphPath<Pair<int>>)GetValue(GraphPathProperty); }
             set { SetValue(GraphPathProperty, value); }
         }
+        /// <summary>
+        /// Support dependency property for GraphPath
+        /// </summary>
         public static readonly DependencyProperty GraphPathProperty =
             DependencyProperty.Register("GraphPath", typeof(GraphPath<Pair<int>>), typeof(Comb),
             new FrameworkPropertyMetadata(new GraphPath<Pair<int>>()));
 
-        public string PathDiscription
+        /// <summary>
+        /// Generated string description for GraphPath
+        /// </summary>
+        public string PathDescription
         {
-            get { return (string)GetValue(PathDiscriptionProperty);}
-            set { SetValue(PathDiscriptionProperty,value);}
+            get { return (string)GetValue(PathDescriptionProperty);}
+            set { SetValue(PathDescriptionProperty,value);}
         }
-        public static readonly DependencyProperty PathDiscriptionProperty=
+        /// <summary>
+        /// Support dependency property for PathDescriptions
+        /// </summary>
+        public static readonly DependencyProperty PathDescriptionProperty=
             DependencyProperty.Register(
-                "PathDiscription",typeof(string),typeof(Comb),
+                "PathDescription",typeof(string),typeof(Comb),
                 new FrameworkPropertyMetadata(""));
 
+        /// <summary>
+        /// Choosed Algorithm
+        /// </summary>
         public PathAlgorithm<Pair<int>> ChoosedAlgorithm
         {
             get { return (PathAlgorithm<Pair<int>>)GetValue(ChoosedAlgorithmProperty); }
@@ -46,27 +64,45 @@ namespace CombCell
                 UpdatePath();
             }
         }
+        /// <summary>
+        /// Support dependency property for ChoosedAlgorithm
+        /// </summary>
         public static readonly DependencyProperty ChoosedAlgorithmProperty=
             DependencyProperty.Register(
                 "ChoosedAlgorithm", typeof(PathAlgorithm<Pair<int>>), typeof(Comb),
                 new FrameworkPropertyMetadata(new Hamilton<Pair<int>>()));
 
+
+
+#endregion
+
+        /// <summary>
+        /// Get a cell by indicate row and column
+        /// </summary>
+        /// <param name="row">row of the cell </param>
+        /// <param name="column">column of the cell</param>
+        /// <returns>cell int given row and column</returns>
         public Cell this[int row, int column]
         {
             get { return cells[row][column]; }
         }
 
+        /// <summary>
+        /// Get a cell by a pair
+        /// </summary>
+        /// <param name="pair">row and column of the cell </param>
+        /// <returns>cell int given row and column</returns>
         public Cell this[Pair<int> pos]
         {
             get { return cells[pos.first][pos.second];}
         }
 
 
-        protected override Freezable CreateInstanceCore()
-        {
-            return new Comb(arranger);
-        }
 
+        /// <summary>
+        /// Create a comb with a given arranger, usually called by the arranger
+        /// </summary>
+        /// <param name="arranger">Given arranger</param>
         public Comb(Arranger arranger)
         {
             cells = new List<List<Cell>>();
@@ -76,17 +112,36 @@ namespace CombCell
             this.arranger = arranger;
         }
 
+        /// <summary>
+        /// Create the comb, needed by Freezable
+        /// </summary>
+        /// <returns></returns>
+        protected override Freezable CreateInstanceCore()
+        {
+            return new Comb(arranger);
+        }
 
+#region operations
+
+        /// <summary>
+        /// Ensure that the comb has at least xCount column and yCount row.
+        /// Remark indexes if necessary
+        /// </summary>
+        /// <param name="xCount">at least xCount column</param>
+        /// <param name="yCount">at least yCount row</param>
         public void EnsureCells(int xCount, int yCount)
         {
+            bool isAdd = false;
             while (cells.Count < yCount)
             {
                 cells.Add(new List<Cell>());
+                isAdd = true;
             }
             for (int i = 0; i < cells.Count; ++i)
             {
                 for (int j = cells[i].Count; j < xCount; ++j)
                 {
+                    isAdd = true;
                     //Add new cell into comb
                     Cell cell = new Cell();
                     cell.Position = new Pair<int>(i, j);
@@ -105,10 +160,17 @@ namespace CombCell
                     }
                 }
             }
-            MarkIndex();
+            if (isAdd)
+            {
+                MarkIndex();
+            }
             //UpdatePath();
         }
 
+        /// <summary>
+        /// Set the cell in given position as blocked
+        /// </summary>
+        /// <param name="pos">position of the cell</param>
         public void Block(Pair<int> pos)
         {
             cells[pos.first][pos.second].State = CellState.Blocked;
@@ -119,6 +181,10 @@ namespace CombCell
             UpdatePath();
         }
 
+        /// <summary>
+        /// Unblock the cell in given position
+        /// </summary>
+        /// <param name="pos">position of the cell</param>
         public void Unblock(Pair<int> pos)
         {
             cells[pos.first][pos.second].State = CellState.MouseOver;
@@ -140,6 +206,11 @@ namespace CombCell
             UpdatePath();
         }
 
+
+        /// <summary>
+        /// Select the cell in given position
+        /// </summary>
+        /// <param name="pos">position of the cell</param>
         public void Select(Pair<int> pos)
         {
             
@@ -149,6 +220,10 @@ namespace CombCell
             UpdatePath();
         }
 
+        /// <summary>
+        /// Unelect the cell in given position
+        /// </summary>
+        /// <param name="pos">position of the cell</param>
         public void Unselect(Pair<int> pos)
         {
             cells[pos.first][pos.second].State = CellState.MouseOver;
@@ -157,8 +232,29 @@ namespace CombCell
             UpdatePath();
         }
 
+        /// <summary>
+        /// Start mark the indexes from the cell in given position
+        /// </summary>
+        /// <param name="pos">position of the cell</param>
+        public void StartMarkIndex(Pair<int> pos)
+        {
+            initial = pos;
+            MarkIndex();
+        }
+
+
+#endregion
+
+
+#region support algorithms
+
+
+        /// <summary>
+        /// Calc and show the path
+        /// </summary>
         private void UpdatePath()
         {
+            //first clear all passed flags
             foreach (Pair<int> passed in GraphPath.PassedVertexes)
             {
                 Cell cell = cells[passed.first][passed.second];
@@ -174,16 +270,20 @@ namespace CombCell
                     cell.State = CellState.Normal;
                 }
             }
-            PathDiscription = "";
+            PathDescription = "";
 
+            //get the algorithm and set the parameters
             PathAlgorithm<Pair<int>> algo = ChoosedAlgorithm;
             algo.Graph = graph;
             algo.Selected = selectList;
             algo.Path = new GraphPath<Pair<int>>();
             if(algo.CanCalc)
             {
+                //calculate 
                 algo.Calc();
+                //get the calculated path
                 GraphPath = algo.Path;
+                //set the passed cells as in the path
                 foreach (Pair<int> passed in GraphPath.PassedVertexes)
                 {
                     if (cells.Count > passed.first &&
@@ -192,14 +292,14 @@ namespace CombCell
                         cells[passed.first][passed.second].State == CellState.MouseOver))
                     cells[passed.first][passed.second].State = CellState.Passed;
                 }
-
-                PathDiscription = "Passed " +GraphPath.Count+" <";
+                //generate the path description
+                PathDescription = "Passed " +GraphPath.Count+" <";
                 foreach (Pair<int> pair in GraphPath.CrossVertexes)
                 {
-                    PathDiscription += this[pair].Index+", ";
+                    PathDescription += this[pair].Index+", ";
                 }
-                PathDiscription += ">";
-
+                PathDescription += ">";
+                //triggered the event
                 if (PathCalculated != null)
                 {
                     PathCalculated(this, EventArgs.Empty);
@@ -208,8 +308,13 @@ namespace CombCell
             
         }
 
+
+        /// <summary>
+        /// The algorithm of marking the indexes
+        /// </summary>
         private void MarkIndex()
         {
+            //if we do not know where to start, then do nothing
             if (!graph.VertexMap.ContainsKey(initial)) return;
 
             //clear marked indexes
@@ -284,12 +389,15 @@ namespace CombCell
         }
 
 
-        public void StartMarkIndex(Pair<int> pos)
-        {
-            initial = pos;
-            MarkIndex();
-        }
+#endregion
 
+        #region events
+
+        /// <summary>
+        /// Triggered when the path is calculated
+        /// </summary>
         public event EventHandler PathCalculated;
+
+        #endregion
     }
 }

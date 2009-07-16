@@ -7,21 +7,9 @@ using CombCell.DSAlgo;
 
 namespace CombCell
 {
-    class AlgoShower
-    {
-        public PathAlgorithm<Pair<int>> Algorithm;
-        public override string ToString()
-        {
-            return Algorithm.Name;
-        }
-        public AlgoShower(PathAlgorithm<Pair<int>> algo)
-        {
-            Algorithm=algo;
-        }
-    }
-
     /// <summary>
     /// Interaction logic for CombCellWindow.xaml
+    /// The main window of the program
     /// </summary>
     public sealed partial class CombCellWindow : Window
     {
@@ -36,16 +24,10 @@ namespace CombCell
         }
 
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-            Application.Current.MainWindow.Close();
-        }
-
         private void Ready_Checked(object sender, RoutedEventArgs e)
         {
             if (combView == null) return;
             combView.AnimateChildrenByRow();
-
         }
 
         private void radioButton2_Checked(object sender, RoutedEventArgs e)

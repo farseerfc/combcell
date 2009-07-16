@@ -98,6 +98,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlgoShower.cs" />
     <Compile Include="CellState.cs" />
     <Compile Include="CombViewState.cs" />
     <Compile Include="Lengend.cs" />
