@@ -49,6 +49,9 @@ namespace CombCell
                     FrameworkPropertyMetadataOptions.AffectsRender |
                     FrameworkPropertyMetadataOptions.AffectsParentMeasure));
 
+        /// <summary>
+        /// Get/Set the cell that under the mouse cursor
+        /// </summary>
         public CellShape MouseOverCell
         {
             get { return (CellShape)GetValue(MouseOverCellProperty); }
@@ -68,6 +71,9 @@ namespace CombCell
                 SetValue(MouseOverCellProperty, value); 
             }
         }
+        /// <summary>
+        /// Support dependency property for MouseOverCell
+        /// </summary>
         public static readonly DependencyProperty MouseOverCellProperty =
             DependencyProperty.Register(
             "MouseOverCell",
@@ -76,6 +82,10 @@ namespace CombCell
             new FrameworkPropertyMetadata(null,
                     FrameworkPropertyMetadataOptions.AffectsRender));
 
+
+        /// <summary>
+        /// Set/Get the point position of the mouse, driven by CombView
+        /// </summary>
         public Point MousePosition
         {
             get { return (Point)GetValue(MousePositionProperty); }
@@ -89,6 +99,9 @@ namespace CombCell
                 SetValue(MousePositionProperty, value); 
             }
         }
+        /// <summary>
+        /// Support dependency property for MousePosition
+        /// </summary>
         public static readonly DependencyProperty MousePositionProperty =
             DependencyProperty.Register(
             "MousePosition",
@@ -97,17 +110,27 @@ namespace CombCell
             new FrameworkPropertyMetadata(new Point(0,0),
                     FrameworkPropertyMetadataOptions.AffectsRender));
 
+
+        /// <summary>
+        /// Set/Get the mouse behavior state of the CombView 
+        /// </summary>
         public CombViewState State
         {
             get { return (CombViewState)GetValue(StateProperty);}
             set { SetValue(StateProperty,value);}
         }
+        /// <summary>
+        /// Support dependency property for State
+        /// </summary>
         public static readonly DependencyProperty StateProperty=
             DependencyProperty.Register(
                 "State",typeof(CombViewState),typeof(CombView),
                 new FrameworkPropertyMetadata(CombViewState.Ready));
 
- 
+
+        /// <summary>
+        /// Get/Set whether the CombView is using a effect
+        /// </summary>
         public bool IsUsingEffect
         {
             get { return (bool)GetValue(IsUsingEffectProperty);}
@@ -117,10 +140,15 @@ namespace CombCell
 
             }
         }
+        /// <summary>
+        /// Support dependency property for IsUsingEffectProperty
+        /// </summary>
         public static readonly DependencyProperty IsUsingEffectProperty=
             DependencyProperty.Register(
                 "IsUsingEffect",typeof(bool),typeof(CombView),
-                new FrameworkPropertyMetadata(true,FrameworkPropertyMetadataOptions.AffectsRender));
+                new FrameworkPropertyMetadata(true,
+                    FrameworkPropertyMetadataOptions.AffectsRender));
+
         #endregion
 
 
@@ -145,6 +173,9 @@ namespace CombCell
             init();
         }
 
+        /// <summary>
+        /// Call this when arranger is chosen
+        /// </summary>
         public void ResetArranger()
         {
             foreach (var child in children)
@@ -157,6 +188,11 @@ namespace CombCell
             EnsureChildren(this.RenderSize);
         }
 
+        /// <summary>
+        /// Arrange cells by calling arranger
+        /// </summary>
+        /// <param name="finalSize"></param>
+        /// <returns></returns>
         protected override Size ArrangeOverride(Size finalSize)
         {       
             for (int j = 0; j < Arranger.YCount; ++j)
@@ -171,11 +207,18 @@ namespace CombCell
             return finalSize;
         }
 
+        /// <summary>
+        /// Get visible child count
+        /// </summary>
         protected override int VisualChildrenCount
         {
             get { return children.Count; }
         }
 
+        /// <summary>
+        /// When mouse wheeled, zoom in/out, and re-calc the children count
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
             base.OnMouseWheel(e);
@@ -184,75 +227,98 @@ namespace CombCell
             EnsureChildren(RenderSize);
         }
 
+        /// <summary>
+        /// Recalc the children count
+        /// </summary>
+        /// <param name="info">Contains new size and old size</param>
         protected override void OnRenderSizeChanged(SizeChangedInfo info)
         {
             base.OnRenderSizeChanged(info);
             EnsureChildren(info.NewSize);
         }
 
+        /// <summary>
+        /// Get visible child
+        /// </summary>
+        /// <param name="index">the index of the child</param>
+        /// <returns>the indicated child</returns>
         protected override Visual GetVisualChild(int index)
         {
             return children[index];
         }
 
-
+        /// <summary>
+        /// When mouse move, changed the state of cell under it
+        /// </summary>
+        /// <param name="e">MouseEventArgs</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
             MousePosition = e.GetPosition(this);
         }
 
+        /// <summary>
+        /// Simulate click event
+        /// </summary>
+        /// <param name="e">mouse state</param>
         protected override void OnMouseUp(MouseButtonEventArgs e)
         {
             base.OnMouseUp(e);
 
-            
-            MousePosition = e.GetPosition(this);
-            Pair<int> pos=Arranger.FromPointToPair(MousePosition);
-            if (State == CombViewState.SelectCells)
+            if (e.ChangedButton == MouseButton.Left)
             {
-                if (MouseOverCell.Cell.State != CellState.Selected)
+                MousePosition = e.GetPosition(this);
+                Pair<int> pos = Arranger.FromPointToPair(MousePosition);
+                if (State == CombViewState.SelectCells)
                 {
-                    if(MouseOverCell.Cell.State==CellState.Blocked)
+                    if (MouseOverCell.Cell.State != CellState.Selected)
                     {
-                        Arranger.Comb.Unblock(pos);
+                        if (MouseOverCell.Cell.State == CellState.Blocked)
+                        {
+                            Arranger.Comb.Unblock(pos);
+                        }
+                        Arranger.Comb.Select(pos);
                     }
-                    Arranger.Comb.Select(pos);
-                }
-                else
-                {
-                    Arranger.Comb.Unselect(pos);
-                }
-            }
-
-            if (State == CombViewState.BlockCells)
-            {
-                if (MouseOverCell.Cell.State != CellState.Blocked)
-                {
-                    if (MouseOverCell.Cell.State == CellState.Selected)
+                    else
                     {
                         Arranger.Comb.Unselect(pos);
                     }
-                    Arranger.Comb.Block(pos);
                 }
-                else
-                {
-                    Arranger.Comb.Unblock(pos);
-                }
-            }
 
-            if (State == CombViewState.MarkIndex)
-            {
-                if (MouseOverCell.Cell.State != CellState.Blocked)
+                if (State == CombViewState.BlockCells)
                 {
-                    Arranger.Comb.StartMarkIndex(pos);
-                    InvalidateVisual();
-                    AnimateChildrenByIndex();
+                    if (MouseOverCell.Cell.State != CellState.Blocked)
+                    {
+                        if (MouseOverCell.Cell.State == CellState.Selected)
+                        {
+                            Arranger.Comb.Unselect(pos);
+                        }
+                        Arranger.Comb.Block(pos);
+                    }
+                    else
+                    {
+                        Arranger.Comb.Unblock(pos);
+                    }
+                }
+
+                if (State == CombViewState.MarkIndex)
+                {
+                    if (MouseOverCell.Cell.State != CellState.Blocked)
+                    {
+                        Arranger.Comb.StartMarkIndex(pos);
+                        InvalidateVisual();
+                        AnimateChildrenByIndex();
+                    }
                 }
             }
             return;
         }
 
+
+        /// <summary>
+        /// Ensure that there is enough child for the size
+        /// </summary>
+        /// <param name="size">RenderSize of the drawing area</param>
         private void EnsureChildren(Size size)
         {
             if (Arranger.NeedAddChild(size))
@@ -276,6 +342,9 @@ namespace CombCell
             }
         }
 
+        /// <summary>
+        /// Animate the children in the animatedChild list
+        /// </summary>
         private void AnimateChildren()
         {
             foreach(CellShape cell in animatedChildren){
@@ -324,7 +393,12 @@ namespace CombCell
             timer.IsEnabled = true;
         }
 
-        void Comb_PathCalculated(object sender,EventArgs e)
+        /// <summary>
+        /// When a path is calculated, animate its passed cells
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Comb_PathCalculated(object sender,EventArgs e)
         {
             foreach(CellShape cell in animatingChildren)
             {
@@ -338,6 +412,9 @@ namespace CombCell
             AnimateChildren();
         }
 
+        /// <summary>
+        /// Animate all cells from top to bottom, left to right
+        /// </summary>
         public void AnimateChildrenByRow()
         {
             foreach (CellShape cell in animatingChildren)
@@ -352,6 +429,9 @@ namespace CombCell
             AnimateChildren();
         }
 
+        /// <summary>
+        /// Animate all cells from marked index
+        /// </summary>
         public void AnimateChildrenByIndex()
         {
             foreach (CellShape cell in animatingChildren)
@@ -377,6 +457,11 @@ namespace CombCell
             AnimateChildren();
         }
 
+
+        /// <summary>
+        /// Draw the background to capture mouse event
+        /// </summary>
+        /// <param name="drawingContext"></param>
         protected override void OnRender(DrawingContext drawingContext)
         {
 
@@ -389,7 +474,7 @@ namespace CombCell
             {
                 this.Effect = null;
             }
-            drawingContext.DrawRectangle(Brushes.Transparent, null, new Rect(0, 0, RenderSize.Width, RenderSize.Height));
+            drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, RenderSize.Width, RenderSize.Height));
         }
 
     }

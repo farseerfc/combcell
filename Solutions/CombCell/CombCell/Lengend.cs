@@ -3,6 +3,10 @@ using System.Windows.Media;
 
 namespace CombCell
 {
+    /// <summary>
+    /// The lengend class defines all color sets for all CellShape state.
+    /// This is a singleton.
+    /// </summary>
     public class Lengend
     {
         static Lengend()
@@ -17,7 +21,7 @@ namespace CombCell
             normal.Key = "Normal";
             normal.Brush = Brushes.White.Clone();
             normal.Brush.Opacity = 0;
-            normal.Pen = new Pen(Brushes.Yellow, 1);
+            normal.Pen = new Pen(Brushes.PaleGoldenrod, 1);
             Add(normal);
 
             Scheme selected = new Scheme();
@@ -39,7 +43,11 @@ namespace CombCell
             Add(passed);
         }
 
-
+        /// <summary>
+        /// Get/Set the scheme with given key
+        /// </summary>
+        /// <param name="key">key for the scheme</param>
+        /// <returns>scheme</returns>
         public Scheme this[string key]{
             get{
                 return Application.Current.Resources[key + "Scheme"] as Scheme;
@@ -49,6 +57,10 @@ namespace CombCell
             }
         }
         
+        /// <summary>
+        /// Add a scheme
+        /// </summary>
+        /// <param name="scheme"></param>
         public static void Add(Scheme scheme)
         {
             if (!Application.Current.Resources.Contains(scheme.Key + "Scheme"))
@@ -57,6 +69,9 @@ namespace CombCell
             }
         }
 
+        /// <summary>
+        /// Singleton current
+        /// </summary>
         private static Lengend current;
         public static Lengend Current{
             get{
