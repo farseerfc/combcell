@@ -12,7 +12,7 @@ namespace CombCell.Stubs
     [global::System.Serializable]
     [global::System.Diagnostics.DebuggerDisplay("Stub = AlgoShower")]
     [global::System.Diagnostics.DebuggerStepThrough]
-    internal partial class SAlgoShower
+    public partial class SAlgoShower
       : global::CombCell.AlgoShower
       , global::Microsoft.Stubs.Framework.IStub
       , global::Microsoft.Stubs.Framework.IPartialStub
