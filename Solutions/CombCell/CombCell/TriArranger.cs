@@ -6,14 +6,24 @@ using System.Windows;
 
 namespace CombCell
 {
+    /// <summary>
+    /// TriArranger defines Triangle shape 's arrangement
+    /// </summary>
     public class TriArranger : Arranger
     {
+        /// <summary>
+        /// Needed by Freezable
+        /// </summary>
+        /// <returns>new HexArranger()</returns>
         protected override Freezable CreateInstanceCore()
         {
             return new TriArranger();
         }
 
-
+        /// <summary>
+        /// Needed by Freezable
+        /// </summary>
+        /// <returns>new HexArranger()</returns>
         protected override bool RecalcCount()
         {
             int xCount = (int)Math.Floor(RenderSize.Width / CellSize * 2);
@@ -28,6 +38,12 @@ namespace CombCell
             return true;
         }
 
+        /// <summary>
+        /// Arrange a CellShape on row and column to provide its size and position.
+        /// </summary>
+        /// <param name="row">the cell is in which row, start from 0</param>
+        /// <param name="column">the cell is in which column, start from 0</param>
+        /// <returns>The Rect defines the size and position of the CellShape</returns>
         public override Rect Arrange(int row, int column)
         {
             int i = column, j = row;
@@ -37,6 +53,12 @@ namespace CombCell
                             CellSize * Math.Sqrt(3) / 2); ;
         }
 
+        /// <summary>
+        /// Give the cell with a string description.
+        /// </summary>
+        /// <param name="row">the cell is in which row, start from 0</param>
+        /// <param name="column">the cell is in which column, start from 0</param>
+        /// <returns>string description of the cell</returns>
         public override string MarkIndex(int row, int column)
         {
             if (Comb[row, column].Index == 0)
@@ -49,6 +71,11 @@ namespace CombCell
             }
         }
 
+        /// <summary>
+        /// Maps a 2D screen point with the cell's location. Used in hit test.
+        /// </summary>
+        /// <param name="point">given 2D screen point</param>
+        /// <returns>the cell's location</returns>
         public override Pair<int> FromPointToPair(Point point)
         {
             double dx = point.X / CellSize * 2;
@@ -73,11 +100,23 @@ namespace CombCell
             return new Pair<int>(y, x);
         }
 
+        /// <summary>
+        /// Returns the concrete CellShape.
+        /// </summary>
+        /// <returns>new instance of the concrete CellShape.</returns>
+        public override CellShape CreateCellShape()
         public override CellShape CreateCellShape()
         {
             return new TriCell();
         }
 
+
+        /// <summary>
+        /// Identify the nearby cells' position of a cell.
+        /// </summary>
+        /// <param name="row">the cell is in which row, start from 0</param>
+        /// <param name="column">the cell is in which column, start from 0</param>
+        /// <returns>a list of the nearby cells' position specified by Pair of int.</returns>
         public override List<Pair<int>> NearBy(int row, int column)
         {
             List<Pair<int>> result = new List<Pair<int>>();

@@ -10,6 +10,10 @@ namespace CombCell
 {
     public class TriCell:CellShape
     {
+        /// <summary>
+        /// draw the border of the cell
+        /// </summary>
+        /// <param name="drawingContext">drawingContext recieved from OnRender</param>
         protected override void OnRender(DrawingContext drawingContext)
         {
             Scheme = Lengend.Current[Cell.State.ToString()];

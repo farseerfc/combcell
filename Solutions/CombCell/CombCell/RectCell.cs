@@ -7,8 +7,13 @@ using System.Windows.Media;
 
 namespace CombCell
 {
+
     public class RectCell : CellShape
     {
+        /// <summary>
+        /// draw the border of the cell
+        /// </summary>
+        /// <param name="drawingContext">drawingContext recieved from OnRender</param>
         protected override void OnRenderOverride(DrawingContext drawingContext)
         {
 
