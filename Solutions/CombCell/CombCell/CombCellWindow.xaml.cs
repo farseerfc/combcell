@@ -152,5 +152,27 @@ namespace CombCell
                 }
             }
         }
+
+        private void saveImage_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.SaveFileDialog saveDialog = new System.Windows.Forms.SaveFileDialog();
+
+            saveDialog.CreatePrompt = false;
+            saveDialog.OverwritePrompt = true;
+            saveDialog.CheckPathExists = true;
+            saveDialog.DefaultExt = "png";
+            saveDialog.AddExtension = true;
+            saveDialog.ValidateNames = true;
+            saveDialog.Filter = "Portable Network Graphics (*.png) |*.png|"+
+                "Joint Picture Experts Group (*.jpg;*.jpeg) |*.jpg;*.jpeg|" +
+                "Windows or OS/2 Bitmap (*.bmp) |*.bmp|"+
+                "Graphics Interchange Format (*.gif) |*.gif|"+
+                "Tagged Image File Format (*.tif;*.tiff) |*.tif;*.tiff|" +
+                "Windows Media Picture (*.wdp)|*.wdp";
+            saveDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            System.Windows.Forms.DialogResult result=saveDialog.ShowDialog();
+            if (result != System.Windows.Forms.DialogResult.OK) return;
+            combView.RenderToFile(saveDialog.FileName);
+        }
     }
 }

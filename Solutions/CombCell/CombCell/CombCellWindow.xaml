@@ -16,6 +16,7 @@
 
             <Grid Margin="0,0,5,0">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
@@ -29,10 +30,16 @@
                         <GradientStop Color="{DynamicResource {x:Static SystemColors.ScrollBarColorKey}}" Offset="0.612"/>
                     </LinearGradientBrush>
                 </Grid.Background>
+                
+                <Button Grid.Row="0" Grid.Column="0" Name="saveImage" Click="saveImage_Click" Margin="10,3,10,3">
+                    Save
+                </Button>
 
+                <CheckBox Grid.Row="0" Grid.Column="1" Name="useEffect" IsChecked="{Binding ElementName=combView, Path=IsUsingEffect}" Margin="5">
+                    Use effect
+                </CheckBox>
 
-
-                <GroupBox Grid.Row="0" Grid.Column="0" Header="Arranger" Name="groupBox2" Margin="5">
+                <GroupBox Grid.Row="1" Grid.Column="0" Header="Arranger" Name="groupBox2" Margin="5">
 
                     <StackPanel Name="stackPanel3">
                         <RadioButton Name="rdobtn1" Checked="TriArranger_Checked" Margin="5">
@@ -57,13 +64,11 @@
                             </cc:HexCell>
                         </RadioButton>
                         
-                        <CheckBox Name="useEffect" IsChecked="{Binding ElementName=combView, Path=IsUsingEffect}">
-                            Use drop down effect
-                        </CheckBox>
+                        
                     </StackPanel>
 
                 </GroupBox>
-                <GroupBox Grid.Row="0" Grid.Column="1" Header="Mouse Behavior" Name="groupBox1" Margin="5">
+                <GroupBox Grid.Row="1" Grid.Column="1" Header="Mouse Behavior" Name="groupBox1" Margin="5">
                     <StackPanel Name="stackPanel2">
                         <RadioButton Name="radioButton1" Checked="Ready_Checked" Margin="2" IsChecked="True" />
                         <RadioButton Name="radioButton2" Checked="radioButton2_Checked" Margin="2"/>
@@ -71,7 +76,7 @@
                         <RadioButton Name="radioButton3" Checked="radioButton3_Checked" Margin="2"/>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Grid.Row="1" Grid.Column="0" Header="Algorithms" Name="groupBox3" Margin="5">
+                <GroupBox Grid.Row="2" Grid.Column="0" Header="Algorithms" Name="groupBox3" Margin="5">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="80"/>
@@ -90,7 +95,7 @@
                         </ScrollViewer>
                     </Grid>
                 </GroupBox>
-                <ScrollViewer  Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" >
+                <ScrollViewer  Grid.Row="2" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" >
 
                     <TextBlock 
                     Margin="5"
@@ -103,11 +108,7 @@
 
             </Grid>
             <GridSplitter Grid.Column="0" Width="5"/>
-            <cc:CombView Grid.Column="1" x:Name="combView">
-                <cc:CombView.Effect>
-                    <DropShadowEffect/>
-                </cc:CombView.Effect>
-            </cc:CombView>
+            <cc:CombView Grid.Column="1" x:Name="combView"/>
         </Grid>
     </DockPanel>
 </Window>

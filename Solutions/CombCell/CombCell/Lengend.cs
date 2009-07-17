@@ -21,7 +21,7 @@ namespace CombCell
             normal.Key = "Normal";
             normal.Brush = Brushes.White.Clone();
             normal.Brush.Opacity = 0;
-            normal.Pen = new Pen(Brushes.PaleGoldenrod, 1);
+            normal.Pen = new Pen(Brushes.Yellow, 1);
             Add(normal);
 
             Scheme selected = new Scheme();
