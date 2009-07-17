@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombCell.DSAlgo", "CombCell
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombCell.DSAlgo.Tests", "CombCell.DSAlgo\CombCell.DSAlgo.Tests\CombCell.DSAlgo.Tests.csproj", "{0259E5AF-9000-4B32-8A44-E00D11C3F4E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombCell.View3D", "CombCell.View3D\CombCell.View3D.csproj", "{6212E784-F9C6-4DD9-B07D-E66DFDCAE0A0}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = CombCell.vsmdi
@@ -40,6 +42,10 @@ Global
 		{0259E5AF-9000-4B32-8A44-E00D11C3F4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0259E5AF-9000-4B32-8A44-E00D11C3F4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0259E5AF-9000-4B32-8A44-E00D11C3F4E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6212E784-F9C6-4DD9-B07D-E66DFDCAE0A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6212E784-F9C6-4DD9-B07D-E66DFDCAE0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6212E784-F9C6-4DD9-B07D-E66DFDCAE0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6212E784-F9C6-4DD9-B07D-E66DFDCAE0A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

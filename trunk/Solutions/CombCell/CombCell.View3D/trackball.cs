@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Media3D;
 
 
-namespace WpfCombControl1
+namespace CombCell.View3D
 {
     public class Trackball
     {
@@ -29,16 +29,16 @@ namespace WpfCombControl1
         public void Attach(FrameworkElement element)
         {
             element.MouseMove += this.MouseMoveHandler;
-            element.MouseRightButtonDown += this.MouseDownHandler;
-            element.MouseRightButtonUp += this.MouseUpHandler;
+            element.MouseDown += this.MouseDownHandler;
+            element.MouseUp += this.MouseUpHandler;
             element.MouseWheel += this.OnMouseWheel;
         }
 
         public void Detach(FrameworkElement element)
         {
             element.MouseMove -= this.MouseMoveHandler;
-            element.MouseLeftButtonDown -= this.MouseDownHandler;
-            element.MouseLeftButtonUp -= this.MouseUpHandler;
+            element.MouseRightButtonDown -= this.MouseDownHandler;
+            element.MouseRightButtonUp -= this.MouseUpHandler;
             element.MouseWheel -= this.OnMouseWheel;
         }
 
@@ -77,7 +77,7 @@ namespace WpfCombControl1
             {
                 foreach (Viewport3D i in _slaves)
                 {
-                    ModelVisual3D mv = i.Children[0] as ModelVisual3D;
+                    Viewport2DVisual3D mv = i.Children[0] as Viewport2DVisual3D;
                     Transform3DGroup t3dg = mv.Transform as Transform3DGroup;
 
                     ScaleTransform3D _GroupScaleTransform = t3dg.Children[0] as ScaleTransform3D;
@@ -142,9 +142,8 @@ namespace WpfCombControl1
         private void MouseDownHandler(object sender, MouseButtonEventArgs e)
         {
             if (!Enabled) return;
+            if (e.ChangedButton == MouseButton.Left) return;
             e.Handled = true;
-
-
             if (Keyboard.IsKeyDown(Key.F1) == true)
             {
                 Reset();
@@ -163,7 +162,7 @@ namespace WpfCombControl1
 
             _scaling = (e.MiddleButton == MouseButtonState.Pressed);
 
-            if (Keyboard.IsKeyDown(Key.Space) == false)
+            if (e.ChangedButton==MouseButton.Right)
                 _rotating = true;
             else
                 _rotating = false;
@@ -174,6 +173,7 @@ namespace WpfCombControl1
         private void MouseUpHandler(object sender, MouseButtonEventArgs e)
         {
             if (!_enabled) return;
+            if (e.ChangedButton == MouseButton.Left) return;
             e.Handled = true;
 
             // Stuff the current initial + delta into initial so when we next move we
@@ -193,12 +193,15 @@ namespace WpfCombControl1
         }
         void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
-            e.Handled = true;
+            if (e.RightButton == MouseButtonState.Pressed)
+            {
+                e.Handled = true;
 
-            _scaleDelta += (double)((double)e.Delta / (double)1000);
-            Quaternion q = _rotation;
+                _scaleDelta += (double)((double)e.Delta / (double)1000);
+                Quaternion q = _rotation;
 
-            UpdateSlaves(q, _scale * _scaleDelta, _translate);
+                UpdateSlaves(q, _scale * _scaleDelta, _translate);
+            }
         }
 
         private void MouseDoubleClickHandler(object sender, MouseButtonEventArgs e)
