@@ -457,7 +457,10 @@ namespace CombCell
             AnimateChildren();
         }
 
-
+        /// <summary>
+        /// Render the displaying comb into a picture file
+        /// </summary>
+        /// <param name="fileName">fileName</param>
         public void RenderToFile(string fileName)
         {
             VisualBrush brush=new VisualBrush(this);
@@ -503,19 +506,11 @@ namespace CombCell
             if (IsUsingEffect)
             {
                 System.Windows.Media.Effects.Effect effect = new System.Windows.Media.Effects.DropShadowEffect();
-//                 foreach(CellShape child in children)
-//                 {
-//                     child.Effect = effect;
-//                 }
                 this.Effect = effect;
 
             }
             else
             {
-//                 foreach (CellShape child in children)
-//                 {
-//                     child.Effect = null;
-//                 }
                 this.Effect = null;
             }
             drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, RenderSize.Width, RenderSize.Height));
