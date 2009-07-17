@@ -137,7 +137,7 @@ namespace CombCell.View3D
             trackball = new Trackball();
             trackball.Attach(gridViewport3D);
             trackball.Slaves.Add(viewport3D);
-            trackball.Enabled = true;
+            trackball.IsEnabled = true;
         }
 
         private void loadAlgorithms()

@@ -16,6 +16,9 @@ using System.Windows.Media.Media3D;
 
 namespace CombCell.View3D
 {
+    /// <summary>
+    /// The trackball class controls the 3d view transformations of the viewport3d
+    /// </summary>
     public class Trackball
     {
         public Trackball()
@@ -26,6 +29,10 @@ namespace CombCell.View3D
             Reset();
         }
 
+        /// <summary>
+        /// Attach the mouse capturer onto this trackball, usually the parent of viewport3d
+        /// </summary>
+        /// <param name="element">the mouse capturer</param>
         public void Attach(FrameworkElement element)
         {
             element.MouseMove += this.MouseMoveHandler;
@@ -34,6 +41,10 @@ namespace CombCell.View3D
             element.MouseWheel += this.OnMouseWheel;
         }
 
+        /// <summary>
+        /// Detach the mouse capturer from this trackball, usually the parent of viewport3d
+        /// </summary>
+        /// <param name="element">the mouse capturer</param>
         public void Detach(FrameworkElement element)
         {
             element.MouseMove -= this.MouseMoveHandler;
@@ -42,6 +53,9 @@ namespace CombCell.View3D
             element.MouseWheel -= this.OnMouseWheel;
         }
 
+        /// <summary>
+        /// The viewport3d that controlled by this trackball
+        /// </summary>
         public List<Viewport3D> Slaves
         {
             get
@@ -57,7 +71,10 @@ namespace CombCell.View3D
             }
         }
 
-        public bool Enabled
+        /// <summary>
+        /// Whether this trackball is enabled or not
+        /// </summary>
+        public bool IsEnabled
         {
             get
             {
@@ -69,8 +86,13 @@ namespace CombCell.View3D
             }
         }
 
-        // Updates the matrices of the slaves using the rotation quaternion.
-        private void UpdateSlaves(Quaternion q, double s, Vector3D t)
+        /// <summary>
+        /// Updates the matrices of the slaves using the rotation quaternion.
+        /// </summary>
+        /// <param name="q">rotation quaternion</param>
+        /// <param name="s">scale</param>
+        /// <param name="t">translate</param>
+        private void UpdateSlaves(Quaternion quaternion, double scale, Vector3D translate)
         {
 
             if (_slaves != null)
@@ -84,22 +106,26 @@ namespace CombCell.View3D
                     RotateTransform3D _GroupRotateTransform = t3dg.Children[1] as RotateTransform3D;
                     TranslateTransform3D _GroupTranslateTransform = t3dg.Children[2] as TranslateTransform3D;
 
-                    _GroupScaleTransform.ScaleX = s;
-                    _GroupScaleTransform.ScaleY = s;
-                    _GroupScaleTransform.ScaleZ = s;
-                    _GroupRotateTransform.Rotation = new AxisAngleRotation3D(q.Axis, q.Angle);
-                    _GroupTranslateTransform.OffsetX = t.X;
-                    _GroupTranslateTransform.OffsetY = t.Y;
-                    _GroupTranslateTransform.OffsetZ = t.Z;
+                    _GroupScaleTransform.ScaleX = scale;
+                    _GroupScaleTransform.ScaleY = scale;
+                    _GroupScaleTransform.ScaleZ = scale;
+                    _GroupRotateTransform.Rotation = new AxisAngleRotation3D(quaternion.Axis, quaternion.Angle);
+                    _GroupTranslateTransform.OffsetX = translate.X;
+                    _GroupTranslateTransform.OffsetY = translate.Y;
+                    _GroupTranslateTransform.OffsetZ = translate.Z;
 
                 }
             }
         }
 
-
+        /// <summary>
+        /// Capture mouse move
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MouseMoveHandler(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (!Enabled) return;
+            if (!IsEnabled) return;
             e.Handled = true;
 
             UIElement el = (UIElement)sender;
@@ -139,12 +165,20 @@ namespace CombCell.View3D
 
             }
         }
+
+
+        /// <summary>
+        /// Capture mouse rotate or translate
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MouseDownHandler(object sender, MouseButtonEventArgs e)
         {
-            if (!Enabled) return;
+            if (!IsEnabled) return;
             if (e.ChangedButton == MouseButton.Left) return;
             e.Handled = true;
-            if (Keyboard.IsKeyDown(Key.F1) == true)
+            if (e.MiddleButton == MouseButtonState.Pressed &&
+                e.MiddleButton == MouseButtonState.Pressed)
             {
                 Reset();
                 return;
@@ -170,6 +204,12 @@ namespace CombCell.View3D
             el.CaptureMouse();
         }
 
+
+        /// <summary>
+        /// Release the captured mouse
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MouseUpHandler(object sender, MouseButtonEventArgs e)
         {
             if (!_enabled) return;
@@ -191,6 +231,13 @@ namespace CombCell.View3D
             UIElement el = (UIElement)sender;
             el.ReleaseMouseCapture();
         }
+
+
+        /// <summary>
+        /// Zoom in/out the viewport3d
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
             if (e.RightButton == MouseButtonState.Pressed)
@@ -209,6 +256,10 @@ namespace CombCell.View3D
             Reset();
         }
 
+
+        /// <summary>
+        /// Reset the transform state
+        /// </summary>
         private void Reset()
         {
             _rotation = new Quaternion (0,0,0,1);
@@ -243,7 +294,7 @@ namespace CombCell.View3D
         private System.Windows.Point _point;               // Initial point of drag
         private Vector3D _translateDelta;
         private bool _rotating;
-        private bool _translating;
+        //private bool _translating;
     }
 }
 
