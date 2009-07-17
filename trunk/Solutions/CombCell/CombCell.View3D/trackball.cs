@@ -178,7 +178,7 @@ namespace CombCell.View3D
             if (e.ChangedButton == MouseButton.Left) return;
             e.Handled = true;
             if (e.MiddleButton == MouseButtonState.Pressed &&
-                e.MiddleButton == MouseButtonState.Pressed)
+                e.RightButton == MouseButtonState.Pressed)
             {
                 Reset();
                 return;
