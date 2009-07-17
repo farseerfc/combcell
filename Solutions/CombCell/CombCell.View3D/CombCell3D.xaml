@@ -205,6 +205,7 @@
                     </Viewport2DVisual3D.Material>
                     
                     
+                    
                     <cc:CombView x:Name="combView" Width="{Binding ElementName=gridViewport3D, Path=ActualWidth}" Height="{Binding ElementName=gridViewport3D, Path=ActualHeight}"/>
                 </Viewport2DVisual3D>
 

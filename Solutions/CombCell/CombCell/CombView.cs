@@ -191,8 +191,8 @@ namespace CombCell
         /// <summary>
         /// Arrange cells by calling arranger
         /// </summary>
-        /// <param name="finalSize"></param>
-        /// <returns></returns>
+        /// <param name="finalSize">finalSize</param>
+        /// <returns>finalSize</returns>
         protected override Size ArrangeOverride(Size finalSize)
         {       
             for (int j = 0; j < Arranger.YCount; ++j)
