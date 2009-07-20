@@ -47,7 +47,6 @@
             </Transform3DGroup.Children>
         </Transform3DGroup>
 
-        <!--<fc:Comb x:Key="comb"  CellSize="15"></fc:Comb>-->
         <cc:CombView x:Key="comb">
             <cc:CombView.Arranger>
                 <cc:HexArranger/>

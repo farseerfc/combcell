@@ -53,9 +53,9 @@ namespace CombCell.DSAlgo
             GraphPath<T> shortestPath = null;
             int shortest = Graph.Infinitive;
 
-            while (HasNextPermutation(selectIndex, 0, selectIndex.Count))
+            while (NextPermutation(selectIndex, 0, selectIndex.Count))
             {
-                NextPermutation(selectIndex, 0, selectIndex.Count);
+                //NextPermutation(selectIndex, 0, selectIndex.Count);
                 keyPath = new List<T>();
                 for (int i = 0; i < selectIndex.Count; ++i)
                 {
@@ -86,12 +86,12 @@ namespace CombCell.DSAlgo
             return false;
         }
 
-        public static void NextPermutation(List<int> list, int begin, int end)
+        public static bool NextPermutation(List<int> list, int begin, int end)
         {
             if (list == null) throw new ArgumentNullException("list");
             if (begin < 0 || begin >= list.Count) throw new ArgumentOutOfRangeException("begin");
             if (end < begin || end > list.Count) throw new ArgumentOutOfRangeException("end");
-            if (begin == end || begin + 1 == end) return;
+            if (begin == end || begin + 1 == end) return false;
             
 
             int a = end - 2;
@@ -101,7 +101,7 @@ namespace CombCell.DSAlgo
             }
             if (a == begin - 1)
             {
-                return ;
+                return false;
             }
             int b = end-1;
             while (list[b] <= list[a])
@@ -117,7 +117,7 @@ namespace CombCell.DSAlgo
                 list[i] = list[j];
                 list[j] = t;
             }
-
+            return true;
 
         }
 
