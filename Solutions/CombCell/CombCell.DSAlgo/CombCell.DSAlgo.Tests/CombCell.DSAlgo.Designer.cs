@@ -595,6 +595,386 @@ namespace CombCell.DSAlgo.Stubs
 }
 namespace CombCell.DSAlgo.Stubs
 {
+    /// <summary>Stub of HamiltonSlow`1</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Stubs", "0.14.40610.2")]
+    [global::System.Serializable]
+    [global::System.Diagnostics.DebuggerDisplay("Stub = HamiltonSlow`1")]
+    [global::System.Diagnostics.DebuggerStepThrough]
+    public partial class SHamiltonSlow<T>
+      : global::CombCell.DSAlgo.HamiltonSlow<T>
+      , global::Microsoft.Stubs.Framework.IStub
+      , global::Microsoft.Stubs.Framework.IPartialStub
+    {
+        [global::System.Diagnostics.DebuggerHidden]
+        public SHamiltonSlow()
+        {
+            this.Initialize();
+        }
+
+        /// <summary>Attaches delegates to emulate SHamiltonSlow.Graph as a property with a backing field</summary>
+        public void AttachBackingFieldToGraph()
+        {
+            global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+            global::CombCell.DSAlgo.Graph<T> initialValue;
+            if ((object)(this.GraphSet) == (object)null && 
+            (object)(this.GraphGet) == (object)null && 
+            stub.TryGetPropertyValue<global::CombCell.DSAlgo.Stubs.SHamiltonSlow<T>, 
+            global::CombCell.DSAlgo.Graph<T>>(this, out initialValue))
+            {
+              global::Microsoft.Stubs.Framework
+                .StubValueHolder<global::CombCell.DSAlgo.Graph<T>> state
+                 = new global::Microsoft.Stubs.Framework
+                  .StubValueHolder<global::CombCell.DSAlgo.Graph<T>>(initialValue);
+              this.GraphGet = state.GetGetter();
+              this.GraphSet = state.GetSetter();
+            }
+        }
+
+        /// <summary>Attaches delegates to emulate SHamiltonSlow.Path as a property with a backing field</summary>
+        public void AttachBackingFieldToPath()
+        {
+            global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+            global::CombCell.DSAlgo.GraphPath<T> initialValue;
+            if ((object)(this.PathSet) == (object)null && 
+            (object)(this.PathGet) == (object)null && 
+            stub.TryGetPropertyValue<global::CombCell.DSAlgo.Stubs.SHamiltonSlow<T>, 
+            global::CombCell.DSAlgo.GraphPath<T>>(this, out initialValue))
+            {
+              global::Microsoft.Stubs.Framework
+                .StubValueHolder<global::CombCell.DSAlgo.GraphPath<T>> state
+                 = new global::Microsoft.Stubs.Framework
+                  .StubValueHolder<global::CombCell.DSAlgo.GraphPath<T>>(initialValue);
+              this.PathGet = state.GetGetter();
+              this.PathSet = state.GetSetter();
+            }
+        }
+
+        /// <summary>Attaches delegates to emulate SHamiltonSlow.Selected as a property with a backing field</summary>
+        public void AttachBackingFieldToSelected()
+        {
+            global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+            global::System.Collections.Generic.List<T> initialValue;
+            if ((object)(this.SelectedSet) == (object)null && 
+            (object)(this.SelectedGet) == (object)null && 
+            stub.TryGetPropertyValue<global::CombCell.DSAlgo.Stubs.SHamiltonSlow<T>, 
+            global::System.Collections.Generic.List<T>>(this, out initialValue))
+            {
+              global::Microsoft.Stubs.Framework
+                .StubValueHolder<global::System.Collections.Generic.List<T>> state
+                 = new global::Microsoft.Stubs.Framework
+                  .StubValueHolder<global::System.Collections.Generic.List<T>>(initialValue);
+              this.SelectedGet = state.GetGetter();
+              this.SelectedSet = state.GetSetter();
+            }
+        }
+
+        /// <summary>Stub of method System.Void CombCell.DSAlgo.PathAlgorithm`1.Calc()</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        public override void Calc()
+        {
+            global::Microsoft.Stubs.Framework.StubDelegates.Action sh = this.Calc01;
+            if (sh != (global::Microsoft.Stubs.Framework.StubDelegates.Action)null)
+              sh.Invoke();
+            else 
+            {
+              global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+              stub.VoidResult<global::CombCell.DSAlgo.Stubs.SHamiltonSlow<T>>(this);
+            }
+        }
+
+        /// <summary>Stub of method System.Void CombCell.DSAlgo.PathAlgorithm`1.Calc()</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Action Calc01;
+
+        /// <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        public bool CallBase
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                return this.callBase;
+            }
+            [global::System.Diagnostics.DebuggerHidden]
+            set
+            {
+                this.callBase = value;
+            }
+        }
+
+        /// <summary>Stub of property CombCell.DSAlgo.PathAlgorithm`1.CanCalc</summary>
+        public override bool CanCalc
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                global::Microsoft.Stubs.Framework.StubDelegates.Func<bool> sh = this.CanCalcGet;
+                if (sh != (global::Microsoft.Stubs.Framework.StubDelegates.Func<bool>)null)
+                  return sh.Invoke();
+                else 
+                {
+                  global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+                  return stub.Result<global::CombCell.DSAlgo.Stubs.SHamiltonSlow<T>, bool>(this);
+                }
+            }
+        }
+
+        /// <summary>Stub of method System.Boolean CombCell.DSAlgo.PathAlgorithm`1.get_CanCalc()</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<bool> CanCalcGet;
+
+        /// <summary>Stub of property CombCell.DSAlgo.PathAlgorithm`1.Discription</summary>
+        public override string Discription
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                global::Microsoft.Stubs.Framework.StubDelegates.Func<string> sh
+                   = this.DiscriptionGet;
+                if (sh != (global::Microsoft.Stubs.Framework.StubDelegates.Func<string>)null)
+                  return sh.Invoke();
+                else 
+                {
+                  global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+                  return 
+                    stub.Result<global::CombCell.DSAlgo.Stubs.SHamiltonSlow<T>, string>(this);
+                }
+            }
+        }
+
+        /// <summary>Stub of method System.String CombCell.DSAlgo.PathAlgorithm`1.get_Discription()</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<string> DiscriptionGet;
+
+        /// <summary>Gets or sets the fallback behavior.</summary>
+        public global::Microsoft.Stubs.Framework.IStubBehavior FallbackBehavior
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                return this.defaultStub;
+            }
+            [global::System.Diagnostics.DebuggerHidden]
+            set
+            {
+                this.defaultStub = value;
+            }
+        }
+
+        /// <summary>Stub of property CombCell.DSAlgo.PathAlgorithm`1.Graph</summary>
+        public override global::CombCell.DSAlgo.Graph<T> Graph
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                this.AttachBackingFieldToGraph();
+                global::Microsoft.Stubs.Framework
+                  .StubDelegates.Func<global::CombCell.DSAlgo.Graph<T>> sh = this.GraphGet;
+                if ((object)sh != (object)null)
+                  return sh.Invoke();
+                else 
+                {
+                  if (this.callBase)
+                    return base.Graph;
+                  global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+                  return stub.Result<global::CombCell.DSAlgo.Stubs.SHamiltonSlow<T>, 
+                  global::CombCell.DSAlgo.Graph<T>>(this);
+                }
+            }
+            [global::System.Diagnostics.DebuggerHidden]
+            set
+            {
+                this.AttachBackingFieldToGraph();
+                global::Microsoft.Stubs.Framework
+                  .StubDelegates.Action<global::CombCell.DSAlgo.Graph<T>> sh = this.GraphSet;
+                if ((object)sh != (object)null)
+                  sh.Invoke(value);
+                else 
+                {
+                  if (this.callBase)
+                    base.Graph = value;
+                  else 
+                  {
+                    global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior
+                      ;
+                    stub.VoidResult<global::CombCell.DSAlgo.Stubs.SHamiltonSlow<T>>(this);
+                  }
+                }
+            }
+        }
+
+        /// <summary>Stub of method CombCell.DSAlgo.Graph`1&lt;!0&gt; CombCell.DSAlgo.PathAlgorithm`1.get_Graph()</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<global::CombCell.DSAlgo.Graph<T>> GraphGet;
+
+        /// <summary>Gets an instance of TStub and assigns it as the delegate of get_Graph</summary>
+        public TStub GraphGetAsStub<TStub>()
+            where TStub : global::CombCell.DSAlgo.Graph<T>, new()
+        {
+            this.GraphGet = global::Microsoft.Stubs.Framework.StubExtensions
+              .GetAsStub<global::CombCell.DSAlgo.Graph<T>, TStub>
+                (this._GraphGetAsStub, this.GraphGet, out this._GraphGetAsStub);
+            return (TStub)(this._GraphGetAsStub);
+        }
+
+        /// <summary>Stub of method System.Void CombCell.DSAlgo.PathAlgorithm`1.set_Graph(CombCell.DSAlgo.Graph`1&lt;!0&gt; value)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Action<global::CombCell.DSAlgo.Graph<T>> GraphSet;
+
+        /// <summary>Initializes a new instance of type SHamiltonSlow</summary>
+        [global::System.Diagnostics.DebuggerHidden]
+        private void Initialize()
+        {
+            this.defaultStub =
+              global::Microsoft.Stubs.Framework.StubFallbackBehavior.Current;
+        }
+
+        /// <summary>Stub of property CombCell.DSAlgo.PathAlgorithm`1.Name</summary>
+        public override string Name
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                global::Microsoft.Stubs.Framework.StubDelegates.Func<string> sh = this.NameGet;
+                if (sh != (global::Microsoft.Stubs.Framework.StubDelegates.Func<string>)null)
+                  return sh.Invoke();
+                else 
+                {
+                  global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+                  return 
+                    stub.Result<global::CombCell.DSAlgo.Stubs.SHamiltonSlow<T>, string>(this);
+                }
+            }
+        }
+
+        /// <summary>Stub of method System.String CombCell.DSAlgo.PathAlgorithm`1.get_Name()</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<string> NameGet;
+
+        /// <summary>Stub of property CombCell.DSAlgo.PathAlgorithm`1.Path</summary>
+        public override global::CombCell.DSAlgo.GraphPath<T> Path
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                this.AttachBackingFieldToPath();
+                global::Microsoft.Stubs.Framework
+                  .StubDelegates.Func<global::CombCell.DSAlgo.GraphPath<T>> sh = this.PathGet;
+                if ((object)sh != (object)null)
+                  return sh.Invoke();
+                else 
+                {
+                  if (this.callBase)
+                    return base.Path;
+                  global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+                  return stub.Result<global::CombCell.DSAlgo.Stubs.SHamiltonSlow<T>, 
+                  global::CombCell.DSAlgo.GraphPath<T>>(this);
+                }
+            }
+            [global::System.Diagnostics.DebuggerHidden]
+            set
+            {
+                this.AttachBackingFieldToPath();
+                global::Microsoft.Stubs.Framework
+                  .StubDelegates.Action<global::CombCell.DSAlgo.GraphPath<T>> sh = this.PathSet;
+                if ((object)sh != (object)null)
+                  sh.Invoke(value);
+                else 
+                {
+                  if (this.callBase)
+                    base.Path = value;
+                  else 
+                  {
+                    global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior
+                      ;
+                    stub.VoidResult<global::CombCell.DSAlgo.Stubs.SHamiltonSlow<T>>(this);
+                  }
+                }
+            }
+        }
+
+        /// <summary>Stub of method CombCell.DSAlgo.GraphPath`1&lt;!0&gt; CombCell.DSAlgo.PathAlgorithm`1.get_Path()</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<global::CombCell.DSAlgo.GraphPath<T>> PathGet;
+
+        /// <summary>Gets an instance of TStub and assigns it as the delegate of get_Path</summary>
+        public TStub PathGetAsStub<TStub>()
+            where TStub : global::CombCell.DSAlgo.GraphPath<T>, new()
+        {
+            this.PathGet = global::Microsoft.Stubs.Framework.StubExtensions
+              .GetAsStub<global::CombCell.DSAlgo.GraphPath<T>, TStub>
+                (this._PathGetAsStub, this.PathGet, out this._PathGetAsStub);
+            return (TStub)(this._PathGetAsStub);
+        }
+
+        /// <summary>Stub of method System.Void CombCell.DSAlgo.PathAlgorithm`1.set_Path(CombCell.DSAlgo.GraphPath`1&lt;!0&gt; value)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Action<global::CombCell.DSAlgo.GraphPath<T>> PathSet;
+
+        /// <summary>Stub of property CombCell.DSAlgo.PathAlgorithm`1.Selected</summary>
+        public override global::System.Collections.Generic.List<T> Selected
+        {
+            [global::System.Diagnostics.DebuggerHidden]
+            get
+            {
+                this.AttachBackingFieldToSelected();
+                global::Microsoft.Stubs.Framework
+                  .StubDelegates.Func<global::System.Collections.Generic.List<T>> sh
+                   = this.SelectedGet;
+                if ((object)sh != (object)null)
+                  return sh.Invoke();
+                else 
+                {
+                  if (this.callBase)
+                    return base.Selected;
+                  global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior;
+                  return stub.Result<global::CombCell.DSAlgo.Stubs.SHamiltonSlow<T>, 
+                  global::System.Collections.Generic.List<T>>(this);
+                }
+            }
+            [global::System.Diagnostics.DebuggerHidden]
+            set
+            {
+                this.AttachBackingFieldToSelected();
+                global::Microsoft.Stubs.Framework
+                  .StubDelegates.Action<global::System.Collections.Generic.List<T>> sh
+                   = this.SelectedSet;
+                if ((object)sh != (object)null)
+                  sh.Invoke(value);
+                else 
+                {
+                  if (this.callBase)
+                    base.Selected = value;
+                  else 
+                  {
+                    global::Microsoft.Stubs.Framework.IStubBehavior stub = this.FallbackBehavior
+                      ;
+                    stub.VoidResult<global::CombCell.DSAlgo.Stubs.SHamiltonSlow<T>>(this);
+                  }
+                }
+            }
+        }
+
+        /// <summary>Stub of method System.Collections.Generic.List`1&lt;!0&gt; CombCell.DSAlgo.PathAlgorithm`1.get_Selected()</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Func<global::System.Collections.Generic.List<T>> SelectedGet;
+
+        /// <summary>Gets an instance of TStub and assigns it as the delegate of get_Selected</summary>
+        public TStub SelectedGetAsStub<TStub>()
+            where TStub : global::System.Collections.Generic.List<T>, new()
+        {
+            this.SelectedGet = global::Microsoft.Stubs.Framework.StubExtensions
+              .GetAsStub<global::System.Collections.Generic.List<T>, TStub>
+                (this._SelectedGetAsStub, this.SelectedGet, out this._SelectedGetAsStub);
+            return (TStub)(this._SelectedGetAsStub);
+        }
+
+        /// <summary>Stub of method System.Void CombCell.DSAlgo.PathAlgorithm`1.set_Selected(System.Collections.Generic.List`1&lt;!0&gt; value)</summary>
+        public global::Microsoft.Stubs.Framework.StubDelegates.Action<global::System.Collections.Generic.List<T>> SelectedSet;
+
+        private global::CombCell.DSAlgo.Graph<T> _GraphGetAsStub;
+
+        private global::CombCell.DSAlgo.GraphPath<T> _PathGetAsStub;
+
+        private global::System.Collections.Generic.List<T> _SelectedGetAsStub;
+
+        private bool callBase;
+
+        private global::Microsoft.Stubs.Framework.IStubBehavior defaultStub;
+    }
+}
+namespace CombCell.DSAlgo.Stubs
+{
     /// <summary>Stub of PathAlgorithm`1</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Stubs", "0.14.40610.2")]
     [global::System.Serializable]

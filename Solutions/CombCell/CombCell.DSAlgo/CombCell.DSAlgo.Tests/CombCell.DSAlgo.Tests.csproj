@@ -132,6 +132,19 @@
     <Compile Include="GraphTTest.VertexMapGet.g.cs">
       <DependentUpon>GraphTTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="HamiltonSlowTTest.cs" />
+    <Compile Include="HamiltonSlowTTest.HasNextPermutation.g.cs">
+      <DependentUpon>HamiltonSlowTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HamiltonSlowTTest.HasNextPermutation01.g.cs">
+      <DependentUpon>HamiltonSlowTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HamiltonSlowTTest.NextPermutation.g.cs">
+      <DependentUpon>HamiltonSlowTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HamiltonSlowTTest.NextPermutationFc.g.cs">
+      <DependentUpon>HamiltonSlowTTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="HamiltonTTest.Constructor.g.cs">
       <DependentUpon>HamiltonTTest.cs</DependentUpon>
     </Compile>

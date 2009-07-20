@@ -13,13 +13,15 @@ namespace CombCell.DSAlgo
     {
         public override string Name
         {
-            get { return "Hamilton"; }
+            get { return "Hamilton(approx)"; }
         }
 
         public override string Discription
         {
             get { return "Hamilton path is the shortest path"+
-                " that path through all selected vertexes."; }
+                " that path through all selected vertexes."+
+                " This is a approx fast version";
+            }
         }
 
 
