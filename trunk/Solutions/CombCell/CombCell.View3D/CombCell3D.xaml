@@ -59,7 +59,7 @@
 
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="260"/>
+                <ColumnDefinition Width="300"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
@@ -129,7 +129,7 @@
                 <GroupBox Grid.Row="2" Grid.Column="0" Header="Algorithms" Name="groupBox3" Margin="5">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="100"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
