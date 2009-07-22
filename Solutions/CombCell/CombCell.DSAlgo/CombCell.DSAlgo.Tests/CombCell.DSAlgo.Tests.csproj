@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0259E5AF-9000-4B32-8A44-E00D11C3F4E0}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -123,7 +123,13 @@
     <Compile Include="GraphTTest.RemoveEdge.g.cs">
       <DependentUpon>GraphTTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="GraphTTest.RemoveEdgeFc01.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="GraphTTest.RemoveVertex.g.cs">
+      <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphTTest.RemoveVertexFc01.g.cs">
       <DependentUpon>GraphTTest.cs</DependentUpon>
     </Compile>
     <Compile Include="GraphTTest.VertexesGet.g.cs">
@@ -131,6 +137,12 @@
     </Compile>
     <Compile Include="GraphTTest.VertexMapGet.g.cs">
       <DependentUpon>GraphTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HamiltonSlowTTest.CalcFc01.g.cs">
+      <DependentUpon>HamiltonSlowTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HamiltonSlowTTest.Constructor.g.cs">
+      <DependentUpon>HamiltonSlowTTest.cs</DependentUpon>
     </Compile>
     <Compile Include="HamiltonSlowTTest.cs" />
     <Compile Include="HamiltonSlowTTest.HasNextPermutation.g.cs">
@@ -144,6 +156,9 @@
     </Compile>
     <Compile Include="HamiltonSlowTTest.NextPermutationFc.g.cs">
       <DependentUpon>HamiltonSlowTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HamiltonTTest.CalcFc01.g.cs">
+      <DependentUpon>HamiltonTTest.cs</DependentUpon>
     </Compile>
     <Compile Include="HamiltonTTest.Constructor.g.cs">
       <DependentUpon>HamiltonTTest.cs</DependentUpon>
@@ -225,6 +240,9 @@
     <Compile Include="SnakeTTest.Calc.g.cs">
       <DependentUpon>SnakeTTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="SnakeTTest.CalcFc01.g.cs">
+      <DependentUpon>SnakeTTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="SnakeTTest.CanCalcGet.g.cs">
       <DependentUpon>SnakeTTest.cs</DependentUpon>
     </Compile>
@@ -249,6 +267,9 @@
       <DependentUpon>VertexTTest.cs</DependentUpon>
     </Compile>
     <Compile Include="VertexTTest.IsConnect.g.cs">
+      <DependentUpon>VertexTTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VertexTTest.IsConnectFc01.g.cs">
       <DependentUpon>VertexTTest.cs</DependentUpon>
     </Compile>
     <Compile Include="VertexTTest.KeyGetSet.g.cs">

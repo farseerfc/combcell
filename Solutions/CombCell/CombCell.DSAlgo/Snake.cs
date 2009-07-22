@@ -29,7 +29,7 @@ namespace CombCell.DSAlgo
 
         public override bool CanCalc
         {
-            get { return Selected.Count > 1; }
+            get { return Selected==null||Selected.Count > 1; }
         }
 
         public override void Calc()

@@ -42,7 +42,7 @@ namespace CombCell.DSAlgo
         public override void Calc()
         {
             //first calculate distance between every two selected vertexes
-            calcDistance();
+            CalcDistance();
 
             List<int> selectIndex = new List<int>();
             for (int i = 0; i < Selected.Count; ++i)
@@ -122,8 +122,12 @@ namespace CombCell.DSAlgo
         }
 
 
-        private void calcDistance()
+        public void CalcDistance()
         {
+            if (Graph == null) throw new InvalidOperationException();
+            if (Selected == null) throw new InvalidOperationException();
+            if (Selected.Count <= 1) throw new InvalidOperationException();
+
             distanceMap = new Dictionary<T, Dictionary<T, int>>();
             preMap = new Dictionary<T, Dictionary<Vertex<T>, Vertex<T>>>();
             int longest = 0;

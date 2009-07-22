@@ -9,8 +9,8 @@ namespace CombCell.DSAlgo
     {
         public PathAlgorithm()
         {
-            selected = new List<T>();
-            path = new GraphPath<T>();
+            Selected = new List<T>();
+            Path = new GraphPath<T>();
         }
 
         public abstract bool CanCalc

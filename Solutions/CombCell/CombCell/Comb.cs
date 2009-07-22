@@ -84,7 +84,12 @@ namespace CombCell
         /// <returns>cell int given row and column</returns>
         public Cell this[int row, int column]
         {
-            get { return cells[row][column]; }
+            get 
+            {
+                if (!(row < cells.Count)) throw new ArgumentOutOfRangeException("row");
+                if (!(column < cells[row].Count)) throw new ArgumentOutOfRangeException("column");
+                return cells[row][column]; 
+            }
         }
 
         /// <summary>
@@ -94,7 +99,7 @@ namespace CombCell
         /// <returns>cell int given row and column</returns>
         public Cell this[Pair<int> pos]
         {
-            get { return cells[pos.first][pos.second];}
+            get { return this[pos.first,pos.second];}
         }
 
 
@@ -131,6 +136,7 @@ namespace CombCell
         /// <param name="yCount">at least yCount row</param>
         public void EnsureCells(int xCount, int yCount)
         {
+            if (arranger == null) throw new InvalidOperationException();
             bool isAdd = false;
             while (cells.Count < yCount)
             {
