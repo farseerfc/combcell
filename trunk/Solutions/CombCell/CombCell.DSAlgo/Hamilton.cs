@@ -41,7 +41,7 @@ namespace CombCell.DSAlgo
         public override void Calc()
         {
             //first calculate distance between every two selected vertexes
-            calcDistance();
+            CalcDistance();
             //now that we got distance between every 2 vertex of selected
             //this can be thought as a complete-graph with value on edge
             //then build a minimum tree on this complete graph using prim algorithm
@@ -53,8 +53,12 @@ namespace CombCell.DSAlgo
 
         }
 
-        private void calcDistance()
+        public void CalcDistance()
         {
+            if (Graph == null) throw new InvalidOperationException();
+            if (Selected == null) throw new InvalidOperationException();
+            if (Selected.Count <= 1) throw new InvalidOperationException();
+            
             distanceMap = new Dictionary<T, Dictionary<T, int>>();
             preMap = new Dictionary<T, Dictionary<Vertex<T>, Vertex<T>>>();
             int longest = 0;

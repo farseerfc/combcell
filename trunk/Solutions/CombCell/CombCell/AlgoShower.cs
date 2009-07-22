@@ -20,6 +20,7 @@ namespace CombCell
 
         public override string ToString()
         {
+            if (Algorithm == null) return "";
             return Algorithm.Name;
         }
         public AlgoShower(PathAlgorithm<Pair<int>> algo)

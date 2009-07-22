@@ -50,6 +50,7 @@ namespace CombCell.DSAlgo
 
         private void Initialize()
         {
+            if (!Graph.VertexMap.ContainsKey(Selected[0])) throw new InvalidOperationException();
             startPos = Selected[0];
             start = Graph.VertexMap[startPos];
 

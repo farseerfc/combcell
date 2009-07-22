@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C0BBA604-2411-4D00-982A-579EF12AEC3B}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -80,6 +80,9 @@
     <Compile Include="AlgoShowerTest.cs" />
     <Compile Include="AlgoShowerTest.ToString.g.cs">
       <DependentUpon>AlgoShowerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArrangerTest.Arrange.g.cs">
+      <DependentUpon>ArrangerTest.cs</DependentUpon>
     </Compile>
     <Compile Include="ArrangerTest.CellSizeGetSet.g.cs">
       <DependentUpon>ArrangerTest.cs</DependentUpon>
@@ -318,19 +321,6 @@
     </Compile>
     <Compile Include="TriArrangerTest.NearBy.g.cs">
       <DependentUpon>TriArrangerTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VertexTTest.cs" />
-    <Compile Include="VertexTTest.IsConnect.g.cs">
-      <DependentUpon>VertexTTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VertexTTest.ToString.g.cs">
-      <DependentUpon>VertexTTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VertexTTest.ToStringbyString.g.cs">
-      <DependentUpon>VertexTTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VertexTTest.ToStringbyString2.g.cs">
-      <DependentUpon>VertexTTest.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
