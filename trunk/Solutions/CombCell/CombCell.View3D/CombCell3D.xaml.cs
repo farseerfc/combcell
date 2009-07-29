@@ -24,6 +24,8 @@ namespace CombCell.View3D
         public CombCell3DWindow()
         {
             InitializeComponent();
+
+
             loadAlgorithms();
             Arranger arranger = new HexArranger() ;
             ResetArranger(arranger);

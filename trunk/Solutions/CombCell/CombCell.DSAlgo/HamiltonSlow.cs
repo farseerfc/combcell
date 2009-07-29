@@ -73,6 +73,17 @@ namespace CombCell.DSAlgo
 
         }
 
+        /// <summary>
+        /// Determine whether the given permutation has next,
+        /// translated from C++ STL algorithms.h next_permutation
+        /// 1,2,3=>true
+        /// 3,1,2=>true
+        /// 3,2,1=>false
+        /// </summary>
+        /// <param name="list">contains the given permutation</param>
+        /// <param name="begin">the begin index of the given permutation</param>
+        /// <param name="end">the end, i.e. the next of last item index of the given permutation</param>
+        /// <returns>whether the given permutation has next</returns>
         public static bool HasNextPermutation(List<int> list, int begin, int end)
         {
             if (list == null) throw new ArgumentNullException("list");
@@ -86,6 +97,21 @@ namespace CombCell.DSAlgo
             return false;
         }
 
+        /// <summary>
+        /// Generate the next permutation of the given permutation,
+        /// translated from C++ STL algorithms.h next_permutation
+        /// The method directly changes the given list, the return value indicates whether has the next.
+        /// 1,2,3=>1,3,2(true)
+        /// 1,3,2=>2,1,3(true)
+        /// 2,1,3=>2,3,1(true)
+        /// 2,3,1=>3,1,2(true)
+        /// 3,1,2=>3,2,1(true)
+        /// 3,2,1=>1,2,3(false)
+        /// </summary>
+        /// <param name="list">contains the given permutation</param>
+        /// <param name="begin">the begin index of the given permutation</param>
+        /// <param name="end">the end, i.e. the next of last item index of the given permutation</param>
+        /// <returns>whether the given permutation has next</returns>
         public static bool NextPermutation(List<int> list, int begin, int end)
         {
             if (list == null) throw new ArgumentNullException("list");
@@ -179,9 +205,10 @@ namespace CombCell.DSAlgo
 
                 //crossPath.Add(start);
                 List<T> singlePath = new List<T>();
-                while (pre != Graph.VertexMap[start])
+                while (pre!=null && pre != Graph.VertexMap[start])
                 {
                     pre = preMap[start][pre];
+                    if (pre == null) continue;
                     if (!keyPath.Contains(pre.Key) && !path.Contains(pre.Key))
                     {
                         path.Add(pre.Key);

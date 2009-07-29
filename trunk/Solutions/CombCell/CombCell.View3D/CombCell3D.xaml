@@ -2,7 +2,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cc="clr-namespace:CombCell;assembly=CombCell"
-    Title="3D View of Comb Cell Project by farseerfc@sjtu" Height="620" Width="1000"  Loaded="Window_Loaded">
+    Title="3D View of Comb Cell Project by farseerfc@sjtu"
+    Icon="CombCell3D.ico"
+    Height="620" Width="1000"
+    Loaded="Window_Loaded">
 
 
     <Window.Resources>
