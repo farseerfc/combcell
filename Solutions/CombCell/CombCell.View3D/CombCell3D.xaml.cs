@@ -27,7 +27,7 @@ namespace CombCell.View3D
 
 
             loadAlgorithms();
-            Arranger arranger = new HexArranger() ;
+            Arranger arranger = new HexArranger();
             ResetArranger(arranger);
         }
 
@@ -43,16 +43,19 @@ namespace CombCell.View3D
 
         private void radioButton2_Checked(object sender, RoutedEventArgs e)
         {
+            if (combView == null) return;
             combView.State = CombViewState.MarkIndex;
         }
 
         private void radioButton3_Checked(object sender, RoutedEventArgs e)
         {
+            if (combView == null) return;
             combView.State = CombViewState.SelectCells;
         }
 
         private void radioButton4_Checked(object sender, RoutedEventArgs e)
         {
+            if (combView == null) return;
             combView.State = CombViewState.BlockCells;
         }
 
@@ -117,10 +120,10 @@ namespace CombCell.View3D
 
             combView.ResetArranger();
 
-            for (int i = 0; i < algorithms.Count;++i )
+            for (int i = 0; i < algorithms.Count; ++i)
             {
                 RadioButton rd = stackAlgorithms.Children[i] as RadioButton;
-                if((bool)rd.IsChecked)
+                if ((bool)rd.IsChecked)
                 {
                     PathAlgorithm<Pair<int>> pathAlgo = (PathAlgorithm<Pair<int>>)algorithms[i].MakeGenericType(typeof(Pair<int>)).GetConstructor(Type.EmptyTypes).Invoke(null);
                     combView.Arranger.Comb.ChoosedAlgorithm = pathAlgo;
@@ -140,6 +143,8 @@ namespace CombCell.View3D
             trackball.Attach(gridViewport3D);
             trackball.Slaves.Add(viewport3D);
             trackball.IsEnabled = true;
+
+            chk3DView.IsChecked = true;
         }
 
         private void loadAlgorithms()
@@ -147,9 +152,9 @@ namespace CombCell.View3D
             algorithms = new List<Type>();
             Type pathAlgorithm = typeof(PathAlgorithm<>);
             Assembly assembly = Assembly.GetAssembly(pathAlgorithm);
-            foreach(Type type in assembly.GetTypes())
+            foreach (Type type in assembly.GetTypes())
             {
-                if(type.BaseType.Name==pathAlgorithm.Name)
+                if (type.BaseType.Name == pathAlgorithm.Name)
                 {
                     algorithms.Add(type);
 
@@ -157,7 +162,8 @@ namespace CombCell.View3D
                     PathAlgorithm<Pair<int>> pathAlgo = (PathAlgorithm<Pair<int>>)type.MakeGenericType(typeof(Pair<int>)).GetConstructor(Type.EmptyTypes).Invoke(null);
                     rdb.Content = new AlgoShower(pathAlgo);
                     rdb.Margin = new Thickness(3);
-                    rdb.Checked+=delegate(object sender,RoutedEventArgs e)
+                    if (pathAlgo.Name.Equals("Hamilton(Slow)")) rdb.IsChecked = true;
+                    rdb.Checked += delegate(object sender, RoutedEventArgs e)
                     {
                         RadioButton btn = sender as RadioButton;
                         AlgoShower algo = btn.Content as AlgoShower;
@@ -179,16 +185,37 @@ namespace CombCell.View3D
             saveDialog.DefaultExt = "png";
             saveDialog.AddExtension = true;
             saveDialog.ValidateNames = true;
-            saveDialog.Filter = "Portable Network Graphics (*.png) |*.png|"+
+            saveDialog.Filter = "Portable Network Graphics (*.png) |*.png|" +
                 "Joint Picture Experts Group (*.jpg;*.jpeg) |*.jpg;*.jpeg|" +
-                "Windows or OS/2 Bitmap (*.bmp) |*.bmp|"+
-                "Graphics Interchange Format (*.gif) |*.gif|"+
+                "Windows or OS/2 Bitmap (*.bmp) |*.bmp|" +
+                "Graphics Interchange Format (*.gif) |*.gif|" +
                 "Tagged Image File Format (*.tif;*.tiff) |*.tif;*.tiff|" +
                 "Windows Media Picture (*.wdp)|*.wdp";
             saveDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            System.Windows.Forms.DialogResult result=saveDialog.ShowDialog();
+            System.Windows.Forms.DialogResult result = saveDialog.ShowDialog();
             if (result != System.Windows.Forms.DialogResult.OK) return;
             combView.RenderToFile(saveDialog.FileName);
+        }
+
+
+
+        private void chk3DView_Checked(object sender, RoutedEventArgs e)
+        {
+            if (viewport2DVisual3D == null) return;
+            viewport2DVisual3D.Visual = null;
+            gridViewport3D.Children.Clear();
+            gridViewport3D.Children.Add(viewport3D);
+            viewport2DVisual3D.Visual = combView;
+            trackball.IsEnabled = true;
+        }
+
+        private void chk3DView_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (viewport2DVisual3D == null) return;
+            viewport2DVisual3D.Visual = null;
+            gridViewport3D.Children.Clear();
+            gridViewport3D.Children.Add(combView);
+            trackball.IsEnabled = false;
         }
     }
 }
