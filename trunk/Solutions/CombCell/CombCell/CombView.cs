@@ -125,7 +125,7 @@ namespace CombCell
         public static readonly DependencyProperty StateProperty=
             DependencyProperty.Register(
                 "State",typeof(CombViewState),typeof(CombView),
-                new FrameworkPropertyMetadata(CombViewState.Ready));
+                new FrameworkPropertyMetadata(CombViewState.SelectCells));
 
 
         /// <summary>

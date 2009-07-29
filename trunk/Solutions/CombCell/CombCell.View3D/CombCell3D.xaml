@@ -4,7 +4,7 @@
     xmlns:cc="clr-namespace:CombCell;assembly=CombCell"
     Title="3D View of Comb Cell Project by farseerfc@sjtu"
     Icon="CombCell3D.ico"
-    Height="620" Width="1000"
+    Height="620" Width="800"
     Loaded="Window_Loaded">
 
 
@@ -61,164 +61,169 @@
 
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="150"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
 
             <Grid Margin="0,0,5,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="90"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
-                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" Offset="0"/>
-                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ScrollBarColorKey}}" Offset="0.612"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}" Offset="0"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}" Offset="0.20"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}" Offset="0.81"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>
 
-                <Button Grid.Row="0" Grid.Column="0" Name="saveImage" Click="saveImage_Click" Margin="10,3,10,3">
-                    Save
-                </Button>
 
-                <CheckBox Grid.Row="0" Grid.Column="1" Name="useEffect" IsChecked="{Binding ElementName=combView, Path=IsUsingEffect}" Margin="5">
-                    Use effect
-                </CheckBox>
+                <Grid Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-                <GroupBox Grid.Row="1" Grid.Column="0" Header="Arranger" Name="groupBox2" Margin="5">
+                    <Button Grid.Row="0" Name="saveImage" Click="saveImage_Click" Margin="10,3,10,3">
+                        Save
+                    </Button>
+                    <CheckBox Grid.Row="1" Name="useEffect" IsChecked="{Binding ElementName=combView, Path=IsUsingEffect}" Margin="5">
+                        Use effect
+                    </CheckBox>
+                    <CheckBox Grid.Row="2" Name="chk3DView"  Margin="5" IsChecked="True" Checked="chk3DView_Checked" Unchecked="chk3DView_Unchecked">
+                        3D View
+                    </CheckBox>
+                </Grid>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" >
 
-                    <StackPanel Name="stackPanel3">
-                        <RadioButton Name="rdobtn1" Checked="TriArranger_Checked" Margin="5">
-                            <cc:TriCell Width="60" Height="50">
-                                <cc:TriCell.Cell>
-                                    <cc:Cell State="Normal"/>
-                                </cc:TriCell.Cell>
-                            </cc:TriCell>
-                        </RadioButton>
-                        <RadioButton Name="rdobtn2" Checked="RectArranger_Checked" Margin="5">
-                            <cc:RectCell Width="50" Height="50">
-                                <cc:RectCell.Cell>
-                                    <cc:Cell State="Normal"/>
-                                </cc:RectCell.Cell>
-                            </cc:RectCell>
-                        </RadioButton>
-                        <RadioButton Name="rdobtn3" Checked="HexArranger_Checked" Margin="5" IsChecked="True" >
-                            <cc:HexCell Width="60" Height="50">
-                                <cc:HexCell.Cell>
-                                    <cc:Cell State="Normal"/>
-                                </cc:HexCell.Cell>
-                            </cc:HexCell>
-                        </RadioButton>
+                    <StackPanel>
+                        <Expander Header="Arranger" Name="groupBox2" Margin="5">
+                            <StackPanel Name="stackPanel3">
+                                <RadioButton Name="rdobtn1" Checked="TriArranger_Checked" Margin="5">
+                                    <cc:TriCell Width="60" Height="50">
+                                        <cc:TriCell.Cell>
+                                            <cc:Cell State="Normal"/>
+                                        </cc:TriCell.Cell>
+                                    </cc:TriCell>
+                                </RadioButton>
+                                <RadioButton Name="rdobtn2" Checked="RectArranger_Checked" Margin="5">
+                                    <cc:RectCell Width="50" Height="50">
+                                        <cc:RectCell.Cell>
+                                            <cc:Cell State="Normal"/>
+                                        </cc:RectCell.Cell>
+                                    </cc:RectCell>
+                                </RadioButton>
+                                <RadioButton Name="rdobtn3" Checked="HexArranger_Checked" Margin="5" IsChecked="True" >
+                                    <cc:HexCell Width="60" Height="50">
+                                        <cc:HexCell.Cell>
+                                            <cc:Cell State="Normal"/>
+                                        </cc:HexCell.Cell>
+                                    </cc:HexCell>
+                                </RadioButton>
 
 
-                    </StackPanel>
+                            </StackPanel>
 
-                </GroupBox>
-                <GroupBox Grid.Row="1" Grid.Column="1" Header="Mouse Behavior" Name="groupBox1" Margin="5">
-                    <StackPanel Name="stackPanel2">
-                        <RadioButton Name="radioButton1" Checked="Ready_Checked" Margin="2" IsChecked="True" />
-                        <RadioButton Name="radioButton2" Checked="radioButton2_Checked" Margin="2"/>
-                        <RadioButton Name="radioButton4" Checked="radioButton4_Checked" Margin="2"/>
-                        <RadioButton Name="radioButton3" Checked="radioButton3_Checked" Margin="2"/>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox Grid.Row="2" Grid.Column="0" Header="Algorithms" Name="groupBox3" Margin="5">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="100"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
+                        </Expander>
+                        <Expander Header="Mouse Behavior" Name="groupBox1" Margin="5">
+                            <StackPanel Name="stackPanel2">
+                                <RadioButton Name="radioButton1" Checked="Ready_Checked" Margin="2"  />
+                                <RadioButton Name="radioButton2" Checked="radioButton2_Checked" Margin="2"/>
+                                <RadioButton Name="radioButton4" Checked="radioButton4_Checked" Margin="2"/>
+                                <RadioButton Name="radioButton3" Checked="radioButton3_Checked" Margin="2" IsChecked="True"/>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Header="Algorithms" Name="groupBox3" Margin="5" IsExpanded="True">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
 
-                        <StackPanel Name="stackAlgorithms" Grid.Row="0"/>
-                        <ScrollViewer VerticalScrollBarVisibility="Auto"  Grid.Row="1">
-                            <TextBlock
-                            Name="algorithmDiscription"
-                            Margin="5"
-                            FontSize="12" 
-                            Foreground="Black" 
-                            TextWrapping="Wrap"
-                            />
-                        </ScrollViewer>
-                    </Grid>
-                </GroupBox>
-                <ScrollViewer  Grid.Row="2" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" >
+                                <StackPanel Name="stackAlgorithms" Grid.Row="0"/>
+                                <TextBlock Grid.Row="1"
+                                        Name="algorithmDiscription"
+                                        Margin="5"
+                                        FontSize="12" 
+                                        Foreground="Black" 
+                                        TextWrapping="Wrap"
+                                    />
+                            </Grid>
+                        </Expander>
 
-                    <TextBlock 
+                        <TextBlock 
                     Margin="5"
                     FontSize="12" 
                     Foreground="Black" 
                     TextWrapping="Wrap"
                     Text="{Binding ElementName=combView, Path=Arranger.Comb.PathDescription}"
                 />
+               
+                </StackPanel>
                 </ScrollViewer>
-
             </Grid>
             <GridSplitter Grid.Column="0" Width="5"/>
 
             <Grid Grid.Column="1" Grid.Row="0" Name="gridViewport3D" Background="White">
                 <Viewport3D Focusable="true" Name="viewport3D" ClipToBounds="true">
-                <Viewport3D.Camera>
-                    <PerspectiveCamera 
+                    <Viewport3D.Camera>
+                        <PerspectiveCamera 
 				Position="0,0,2" 
 				LookDirection="0,0,-1"
 				UpDirection="0,1,0"
 				NearPlaneDistance="0.1"
 				FarPlaneDistance="20"
 				FieldOfView="60" />
-                </Viewport3D.Camera>
+                    </Viewport3D.Camera>
 
 
-                <Viewport2DVisual3D>
+                    <Viewport2DVisual3D x:Name="viewport2DVisual3D">
 
-                    <Viewport2DVisual3D.Transform>
-                        <Transform3DGroup>
-                            <Transform3DGroup.Children>
-                                <Transform3DCollection >
+                        <Viewport2DVisual3D.Transform>
+                            <Transform3DGroup>
+                                <Transform3DGroup.Children>
+                                    <Transform3DCollection >
 
-                                    <ScaleTransform3D ScaleX="1" ScaleY="1"  ScaleZ="1" />
-                                    <RotateTransform3D>
-                                        <RotateTransform3D.Rotation>
-                                            <AxisAngleRotation3D Axis="0 1 0" Angle="0" />
-                                        </RotateTransform3D.Rotation>
-                                    </RotateTransform3D>
-                                    <TranslateTransform3D OffsetX="0" OffsetY="0" OffsetZ="0" />
+                                        <ScaleTransform3D ScaleX="1" ScaleY="1"  ScaleZ="1" />
+                                        <RotateTransform3D>
+                                            <RotateTransform3D.Rotation>
+                                                <AxisAngleRotation3D Axis="0 1 0" Angle="0" />
+                                            </RotateTransform3D.Rotation>
+                                        </RotateTransform3D>
+                                        <TranslateTransform3D OffsetX="0" OffsetY="0" OffsetZ="0" />
 
-                                </Transform3DCollection>
-                            </Transform3DGroup.Children>
-                        </Transform3DGroup>
-                    </Viewport2DVisual3D.Transform>
+                                    </Transform3DCollection>
+                                </Transform3DGroup.Children>
+                            </Transform3DGroup>
+                        </Viewport2DVisual3D.Transform>
 
 
 
-                    <!-- The Geometry, Material, and Visual for the Viewport2DVisual3D -->
-                    <Viewport2DVisual3D.Geometry>
-                        <MeshGeometry3D Positions="-1,1,0 -1,-1,0 1,-1,0 1,1,0"
+                        <!-- The Geometry, Material, and Visual for the Viewport2DVisual3D -->
+                        <Viewport2DVisual3D.Geometry>
+                            <MeshGeometry3D Positions="-1,1,0 -1,-1,0 1,-1,0 1,1,0"
                                     TextureCoordinates="0,0 0,1 1,1 1,0" TriangleIndices="0 1 2 0 2 3"/>
-                    </Viewport2DVisual3D.Geometry>
+                        </Viewport2DVisual3D.Geometry>
 
-                    <Viewport2DVisual3D.Material>
-                        <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True" Brush="White"/>
-                    </Viewport2DVisual3D.Material>
-                    
-                    
-                    
-                    <cc:CombView x:Name="combView" Width="{Binding ElementName=gridViewport3D, Path=ActualWidth}" Height="{Binding ElementName=gridViewport3D, Path=ActualHeight}"/>
-                </Viewport2DVisual3D>
+                        <Viewport2DVisual3D.Material>
+                            <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True" Brush="White"/>
+                        </Viewport2DVisual3D.Material>
 
-                <ModelVisual3D>
-                    <ModelVisual3D.Content>
-                        <DirectionalLight Color="White" Direction="0,0,-1"/>
+                        <cc:CombView x:Name="combView" Width="{Binding ElementName=gridViewport3D, Path=ActualWidth}" Height="{Binding ElementName=gridViewport3D, Path=ActualHeight}"/>
+                    </Viewport2DVisual3D>
 
-                    </ModelVisual3D.Content>
-                </ModelVisual3D>
-            </Viewport3D>
-</Grid>
+                    <ModelVisual3D>
+                        <ModelVisual3D.Content>
+                            <DirectionalLight Color="White" Direction="0,0,-1"/>
+
+                        </ModelVisual3D.Content>
+                    </ModelVisual3D>
+                </Viewport3D>
+            </Grid>
         </Grid>
     </DockPanel>
 </Window>
