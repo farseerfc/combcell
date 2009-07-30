@@ -21,6 +21,21 @@ namespace CombCell.View3D
     /// </summary>
     public partial class CombCell3DWindow : Window
     {
+        public bool IsUsingGlass
+        {
+            get { return (bool)GetValue(IsUsingGlassProperty); }
+            set
+            {
+
+                SetValue(IsUsingGlassProperty, value);
+            }
+        }
+        public static readonly DependencyProperty IsUsingGlassProperty =
+            DependencyProperty.Register(
+                "IsUsingGlass", typeof(bool), typeof(CombCell3DWindow),
+                new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.AffectsRender));
+
+
         public CombCell3DWindow()
         {
             InitializeComponent();
@@ -29,10 +44,15 @@ namespace CombCell.View3D
             loadAlgorithms();
             Arranger arranger = new HexArranger();
             ResetArranger(arranger);
+
         }
 
         private List<Type> algorithms;
         private Trackball trackball;
+        private Brush brushSidebar;
+        private Brush background;
+        private Brush brushSaveImage;
+        private bool glassEnabled;
 
 
         private void Ready_Checked(object sender, RoutedEventArgs e)
@@ -145,6 +165,8 @@ namespace CombCell.View3D
             trackball.IsEnabled = true;
 
             chk3DView.IsChecked = true;
+
+            TryMakeGlass();
         }
 
         private void loadAlgorithms()
@@ -216,6 +238,89 @@ namespace CombCell.View3D
             gridViewport3D.Children.Clear();
             gridViewport3D.Children.Add(combView);
             trackball.IsEnabled = false;
+        }
+
+        private void TryMakeGlass()
+        {
+            brushSidebar = sidebar.Background;
+            background = this.Background;
+            brushSaveImage = saveImage.Background;
+            sidebar.Background = Brushes.Transparent;
+            this.Background = Brushes.Transparent;
+            saveImage.Background = Brushes.Transparent;
+            glassEnabled = true;
+            if (!MakeGlass())
+            {
+                glassEnabled = false;
+                sidebar.Background = brushSidebar;
+                this.Background = background;
+                saveImage.Background = brushSaveImage;
+            }
+        }
+
+        private bool MakeGlass()
+        {
+            if (Environment.OSVersion.Version.Major < 6) return false;
+
+            try
+            {
+                Assembly thisAss = Assembly.GetAssembly(typeof(CombCell3DWindow));
+                if (thisAss == null) return false;
+
+                string location = thisAss.Location;
+                location = location.Substring(0, location.LastIndexOf("\\"));
+                Assembly glassAss = Assembly.LoadFile(location + "\\VistaGlass.dll");
+                if (glassAss == null) return false;
+
+                Type vistaGlass = null;
+                foreach (Module module in glassAss.GetModules())
+                {
+                    foreach (Type type in module.GetTypes())
+                    {
+                        if (type.Name.Equals("VistaGlass"))
+                            vistaGlass = type;
+                    }
+                }
+                if (vistaGlass == null) return false;
+
+                MethodBase isSupported = vistaGlass.GetMethod("IsSupported");
+                if (isSupported == null) return false;
+                bool supported = (bool)isSupported.Invoke(null, null);
+                if (!supported) return false;
+
+                MethodBase makeGlass = vistaGlass.GetMethod("MakeGlass");
+                if (makeGlass == null) return false;
+                makeGlass.Invoke(null, new object[] { this });
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        protected override void OnStateChanged(EventArgs e)
+        {
+            InvalidateVisual();
+            base.OnStateChanged(e);
+        }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+            if (IsUsingGlass && WindowState != WindowState.Maximized)
+            {
+                if (!glassEnabled) return;
+                this.Background = Brushes.Transparent;
+                sidebar.Background = Brushes.Transparent;
+                saveImage.Background = Brushes.Transparent;
+            }
+            else
+            {
+                this.Background = background;
+                sidebar.Background = brushSidebar;
+                saveImage.Background = brushSaveImage;
+            }
         }
     }
 }

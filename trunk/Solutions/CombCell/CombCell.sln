@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombCell.View3D", "CombCell
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{69E28730-D91C-4F9F-8077-9492A61AEB6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VistaGlass", "VistaGlass\VistaGlass.csproj", "{96F1EE8F-7791-400F-BB97-B1068FCFC4BE}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = CombCell.vsmdi
@@ -51,6 +53,10 @@ Global
 		{6212E784-F9C6-4DD9-B07D-E66DFDCAE0A0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{69E28730-D91C-4F9F-8077-9492A61AEB6D}.Debug|Any CPU.ActiveCfg = Debug
 		{69E28730-D91C-4F9F-8077-9492A61AEB6D}.Release|Any CPU.ActiveCfg = Release
+		{96F1EE8F-7791-400F-BB97-B1068FCFC4BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96F1EE8F-7791-400F-BB97-B1068FCFC4BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96F1EE8F-7791-400F-BB97-B1068FCFC4BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96F1EE8F-7791-400F-BB97-B1068FCFC4BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
