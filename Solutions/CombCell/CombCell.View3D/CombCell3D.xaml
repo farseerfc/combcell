@@ -4,7 +4,7 @@
     xmlns:cc="clr-namespace:CombCell;assembly=CombCell"
     Title="3D View of Comb Cell Project by farseerfc@sjtu"
     Icon="CombCell3D.ico"
-    Height="620" Width="800"
+    Height="600" Width="800"
     Loaded="Window_Loaded"
     Name="window"
         >
@@ -121,7 +121,7 @@
             </Grid.Resources>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="180"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
@@ -193,6 +193,26 @@
                             </StackPanel>
 
                         </Expander>
+
+                        <Expander Header="Algorithms" Name="groupBox3" Margin="5" IsExpanded="True">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Name="stackAlgorithms" Grid.Row="0"/>
+                                <TextBlock Grid.Row="1"
+                                        Name="algorithmDiscription"
+                                        Margin="5"
+                                        FontSize="12" 
+                                        TextWrapping="Wrap"
+                                    />
+                                
+                            </Grid>
+                        </Expander>
+
+
                         <Expander Header="Mouse Behavior" Name="groupBox1" Margin="5">
                             <StackPanel Name="stackPanel2">
                                 <TextBlock Grid.Row="1" Margin="5"  FontSize="12" TextWrapping="Wrap">
@@ -224,30 +244,12 @@
                                 </TextBlock>
                             </StackPanel>
                         </Expander>
-                        <Expander Header="Algorithms" Name="groupBox3" Margin="5" IsExpanded="True">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="100"/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-
-                                <StackPanel Name="stackAlgorithms" Grid.Row="0"/>
-                                <TextBlock Grid.Row="1"
-                                        Name="algorithmDiscription"
-                                        Margin="5"
-                                        FontSize="12" 
-                                        TextWrapping="Wrap"
-                                    />
-                            </Grid>
-                        </Expander>
-
                         <TextBlock 
                     Margin="5"
                     FontSize="12" 
                     TextWrapping="Wrap"
                     Text="{Binding ElementName=combView, Path=Arranger.Comb.PathDescription}"
                 />
-               
                 </StackPanel>
                 </ScrollViewer>
             </Grid>
