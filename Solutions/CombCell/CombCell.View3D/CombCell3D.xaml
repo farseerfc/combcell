@@ -5,7 +5,9 @@
     Title="3D View of Comb Cell Project by farseerfc@sjtu"
     Icon="CombCell3D.ico"
     Height="620" Width="800"
-    Loaded="Window_Loaded">
+    Loaded="Window_Loaded"
+    Name="window"
+        >
 
 
     <Window.Resources>
@@ -60,23 +62,81 @@
     <DockPanel>
 
         <Grid DockPanel.Dock="Bottom">
+            <Grid.Resources>
+                <Style TargetType="{x:Type RadioButton}">
+                    <!-- This BitmapEffect is targeted by the Property Trigger. -->
+                    <Setter Property="BitmapEffect">
+                        <Setter.Value>
+                            <OuterGlowBitmapEffect 
+            GlowColor="{x:Static SystemColors.HighlightColor}" 
+            GlowSize="0" Noise="0" Opacity="0.7" />
+                        </Setter.Value>
+                    </Setter>
+
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1" ScaleY="1" CenterX="0.5" CenterY="0.5"/>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Name="IsCheckedStoryboard">
+                                    <Storyboard>
+                                        <DoubleAnimation 
+                  Storyboard.TargetProperty="BitmapEffect.GlowSize"
+                  To="15" Duration="0:0:0.5" />
+                                        <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                            From="1" To="1.2" Duration="0:0:0.1"/>
+                                        <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                            From="1" To="1.2" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard >
+                                        <DoubleAnimation 
+                  Storyboard.TargetProperty="BitmapEffect.GlowSize"
+                  To="0" Duration="0:0:0.5" />
+                                        <DoubleAnimation 
+                  Storyboard.TargetProperty="BitmapEffect.Opacity"
+                  To="0.7" />
+                                        <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                            From="1.2" To="1" Duration="0:0:0.1"/>
+                                        <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                            From="1.2" To="1" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </Style.Triggers>
+
+                </Style>
+            </Grid.Resources>
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
 
-            <Grid Margin="0,0,5,0">
+            <Grid Margin="0,0,5,0" Name="sidebar">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="120"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
                         <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}" Offset="0"/>
-                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}" Offset="0.20"/>
-                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}" Offset="0.81"/>
-                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}" Offset="1"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}" Offset="0.20"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}" Offset="0.81"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>
 
@@ -86,16 +146,20 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
 
                     <Button Grid.Row="0" Name="saveImage" Click="saveImage_Click" Margin="10,3,10,3">
                         Save
                     </Button>
                     <CheckBox Grid.Row="1" Name="useEffect" IsChecked="{Binding ElementName=combView, Path=IsUsingEffect}" Margin="5">
-                        Use effect
+                        Drop Shadow
                     </CheckBox>
                     <CheckBox Grid.Row="2" Name="chk3DView"  Margin="5" IsChecked="True" Checked="chk3DView_Checked" Unchecked="chk3DView_Unchecked">
                         3D View
+                    </CheckBox>
+                    <CheckBox Grid.Row="3" Name="chkGlass"  Margin="5" IsChecked="{Binding ElementName=window, Path=IsUsingGlass, Mode=Default}" >
+                        Aero Glass
                     </CheckBox>
                 </Grid>
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" >
@@ -131,10 +195,33 @@
                         </Expander>
                         <Expander Header="Mouse Behavior" Name="groupBox1" Margin="5">
                             <StackPanel Name="stackPanel2">
+                                <TextBlock Grid.Row="1" Margin="5"  FontSize="12" TextWrapping="Wrap">
+                                    Left Buttom:
+                                </TextBlock>
                                 <RadioButton Name="radioButton1" Checked="Ready_Checked" Margin="2"  />
                                 <RadioButton Name="radioButton2" Checked="radioButton2_Checked" Margin="2"/>
                                 <RadioButton Name="radioButton4" Checked="radioButton4_Checked" Margin="2"/>
                                 <RadioButton Name="radioButton3" Checked="radioButton3_Checked" Margin="2" IsChecked="True"/>
+                                <TextBlock Grid.Row="1" Margin="5"  FontSize="12" TextWrapping="Wrap">
+                                    Right Buttom:
+                                    Rotate in 3D view
+                                </TextBlock>
+                                <TextBlock Grid.Row="1" Margin="5"  FontSize="12" TextWrapping="Wrap">
+                                    Middle Button:
+                                    Translate in 3D view
+                                </TextBlock>
+                                <TextBlock Grid.Row="1" Margin="5"  FontSize="12" TextWrapping="Wrap">
+                                    Wheel: 
+                                    Add / Remove Cells
+                                </TextBlock>
+                                <TextBlock Grid.Row="1" Margin="5"  FontSize="12" TextWrapping="Wrap">
+                                    Right Buttom + Wheel: 
+                                    Zoom in/out in 3D view
+                                </TextBlock>
+                                <TextBlock Grid.Row="1" Margin="5"  FontSize="12" TextWrapping="Wrap">
+                                    Right Buttom + Middle Button: 
+                                    Reset to default
+                                </TextBlock>
                             </StackPanel>
                         </Expander>
                         <Expander Header="Algorithms" Name="groupBox3" Margin="5" IsExpanded="True">
@@ -149,7 +236,6 @@
                                         Name="algorithmDiscription"
                                         Margin="5"
                                         FontSize="12" 
-                                        Foreground="Black" 
                                         TextWrapping="Wrap"
                                     />
                             </Grid>
@@ -158,7 +244,6 @@
                         <TextBlock 
                     Margin="5"
                     FontSize="12" 
-                    Foreground="Black" 
                     TextWrapping="Wrap"
                     Text="{Binding ElementName=combView, Path=Arranger.Comb.PathDescription}"
                 />
@@ -168,7 +253,43 @@
             </Grid>
             <GridSplitter Grid.Column="0" Width="5"/>
 
-            <Grid Grid.Column="1" Grid.Row="0" Name="gridViewport3D" Background="White">
+            <Grid Grid.Column="1" Grid.Row="0" Name="gridViewport3D" >
+                <Grid.Background>
+                    <DrawingBrush Viewbox="0,0,20,20" ViewboxUnits="Absolute">
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing>
+                                    <GeometryDrawing.Brush>
+                                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
+                                    </GeometryDrawing.Brush>
+                                    <GeometryDrawing.Geometry>
+                                        <RectangleGeometry Rect="0,0,20,20"/>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                                <GeometryDrawing>
+                                    <GeometryDrawing.Brush>
+                                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                                    </GeometryDrawing.Brush>
+                                    <GeometryDrawing.Geometry>
+                                        <EllipseGeometry Center="20,40" RadiusX="40" RadiusY="40"/>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                                <GeometryDrawing>
+                                    <GeometryDrawing.Brush>
+                                        <LinearGradientBrush StartPoint="1,0" EndPoint="1,0.3">
+                                            <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}" Offset="0"/>
+                                            <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}" Offset="0.8"/>
+                                            <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </GeometryDrawing.Brush>
+                                    <GeometryDrawing.Geometry>
+                                        <EllipseGeometry Center="20,30" RadiusX="30" RadiusY="30"/>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Grid.Background>
                 <Viewport3D Focusable="true" Name="viewport3D" ClipToBounds="true">
                     <Viewport3D.Camera>
                         <PerspectiveCamera 

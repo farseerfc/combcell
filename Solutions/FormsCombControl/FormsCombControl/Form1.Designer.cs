@@ -1,4 +1,6 @@
-﻿namespace FormsCombControl
+﻿
+
+namespace FormsCombControl
 {
     partial class Form1
     {
@@ -70,7 +72,6 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.splitContainer1.ResumeLayout(false);
@@ -84,6 +85,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TextBox textBox1;
+
 
     }
 }
