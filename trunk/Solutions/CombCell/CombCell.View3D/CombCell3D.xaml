@@ -141,7 +141,7 @@
                 </Grid.Background>
 
 
-                <Grid Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                <Grid Name="gridCheckBoxs"  Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -262,7 +262,7 @@
                             <DrawingGroup>
                                 <GeometryDrawing>
                                     <GeometryDrawing.Brush>
-                                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
+                                        <SolidColorBrush Color="#00FFFFFF"/>
                                     </GeometryDrawing.Brush>
                                     <GeometryDrawing.Geometry>
                                         <RectangleGeometry Rect="0,0,20,20"/>
@@ -270,22 +270,22 @@
                                 </GeometryDrawing>
                                 <GeometryDrawing>
                                     <GeometryDrawing.Brush>
-                                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                                        <SolidColorBrush Color="#99DDDDDD"/>
                                     </GeometryDrawing.Brush>
                                     <GeometryDrawing.Geometry>
-                                        <EllipseGeometry Center="20,40" RadiusX="40" RadiusY="40"/>
+                                        <EllipseGeometry Center="20,38" RadiusX="40" RadiusY="40"/>
                                     </GeometryDrawing.Geometry>
                                 </GeometryDrawing>
                                 <GeometryDrawing>
                                     <GeometryDrawing.Brush>
                                         <LinearGradientBrush StartPoint="1,0" EndPoint="1,0.3">
-                                            <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}" Offset="0"/>
-                                            <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}" Offset="0.8"/>
-                                            <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}" Offset="1"/>
+                                            <GradientStop Color="#99CCCCCC" Offset="0"/>
+                                            <GradientStop Color="#FFBBBBBB" Offset="0.8"/>
+                                            <GradientStop Color="#FF999999" Offset="1"/>
                                         </LinearGradientBrush>
                                     </GeometryDrawing.Brush>
                                     <GeometryDrawing.Geometry>
-                                        <EllipseGeometry Center="20,30" RadiusX="30" RadiusY="30"/>
+                                        <EllipseGeometry Center="20,28" RadiusX="30" RadiusY="30"/>
                                     </GeometryDrawing.Geometry>
                                 </GeometryDrawing>
                             </DrawingGroup>

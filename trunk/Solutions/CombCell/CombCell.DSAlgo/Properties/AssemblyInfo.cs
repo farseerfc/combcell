@@ -6,13 +6,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CombCell.DSAlgo")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("CombCell")]
+[assembly: AssemblyDescription("A sophomore summer project 2009 in SJTU")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CombCell.DSAlgo")]
-[assembly: AssemblyCopyright("Copyright ©  2009")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("SJTU")]
+[assembly: AssemblyProduct("CombCell")]
+[assembly: AssemblyCopyright("farseerfc@sjtu Copyright ©  2009")]
+[assembly: AssemblyTrademark("SJTU")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -38,4 +38,3 @@ using System.Runtime.InteropServices;
 
 
 [assembly: CLSCompliant(true)]
-[assembly: InternalsVisibleTo("CombCell.DSAlgo.Tests")]
