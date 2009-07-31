@@ -13,7 +13,7 @@ using System;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SJTU")]
 [assembly: AssemblyProduct("CombCell")]
-[assembly: AssemblyCopyright("Copyright ©  2009")]
+[assembly: AssemblyCopyright("farseerfc@sjtu Copyright ©  2009")]
 [assembly: AssemblyTrademark("SJTU")]
 [assembly: AssemblyCulture("")]
 
@@ -56,4 +56,3 @@ using System;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: CLSCompliant(true)]
-[assembly: InternalsVisibleTo("CombCell.Tests")]

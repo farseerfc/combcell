@@ -33,6 +33,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_AF85C525538E400F8D2B22501982616C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B54C4FE081DD40B29F40ADAEC822D8EA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -70,7 +76,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E4562F48E91402FDA0A5265170C2AE19"
+        "OwnerKey" = "8:_6D24B316506749DF86AC828D83C88BC3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_AF85C525538E400F8D2B22501982616C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E08BEEBA39164514A7831E24981FF597"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,13 +106,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E08BEEBA39164514A7831E24981FF597"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6D24B316506749DF86AC828D83C88BC3"
+        "OwnerKey" = "8:_E4562F48E91402FDA0A5265170C2AE19"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -115,6 +127,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -131,6 +151,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -923,7 +951,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6D24B316506749DF86AC828D83C88BC3"
             {
-            "SourcePath" = "8:..\\CombCell\\obj\\Release\\CombCell.exe"
+            "SourcePath" = "8:..\\CombCell\\obj\\Release\\CombCell.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_AFA5748AF3F741B5BA344562193163FE"
@@ -1000,6 +1028,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:LocalizedResourceDlls"
             "OutputProjectGuid" = "8:{6212E784-F9C6-4DD9-B07D-E66DFDCAE0A0}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_AF85C525538E400F8D2B22501982616C"
+            {
+            "SourcePath" = "8:..\\VistaGlass\\obj\\Release\\VistaGlass.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_AFA5748AF3F741B5BA344562193163FE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{96F1EE8F-7791-400F-BB97-B1068FCFC4BE}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

@@ -255,6 +255,7 @@ namespace CombCell.View3D
                 sidebar.Background = brushSidebar;
                 this.Background = background;
                 saveImage.Background = brushSaveImage;
+                gridCheckBoxs.Children.Remove(chkGlass);
             }
         }
 
