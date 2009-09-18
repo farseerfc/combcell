@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace CombCell
@@ -457,43 +454,6 @@ namespace CombCell
             AnimateChildren();
         }
 
-        /// <summary>
-        /// Render the displaying comb into a picture file
-        /// </summary>
-        /// <param name="fileName">fileName</param>
-        public void RenderToFile(string fileName)
-        {
-            VisualBrush brush=new VisualBrush(this);
-            DrawingVisual drawingVisual = new DrawingVisual();
-            DrawingContext drawingContext = drawingVisual.RenderOpen();
-            drawingContext.DrawRectangle(Brushes.White, null, new Rect(0, 0, ActualWidth, ActualHeight));
-            drawingContext.DrawRectangle(brush, null, new Rect(0, 0, ActualWidth, ActualHeight));
-            drawingContext.Close();
-
-            RenderTargetBitmap bmp = new RenderTargetBitmap((int)ActualWidth, (int)ActualHeight, 120, 120, PixelFormats.Pbgra32);
-            bmp.Render(drawingVisual);
-
-            string[] nameSplit= fileName.Split('.');
-            string extName = nameSplit[nameSplit.Length-1].ToLower();
-
-            FileStream stream = new FileStream(fileName, FileMode.Create);
-            BitmapEncoder encoder = null ;
-            switch (extName)
-            {
-                case "bmp": encoder = new BmpBitmapEncoder(); break;
-                case "jpg":
-                case "jpeg": encoder = new JpegBitmapEncoder(); break;
-                case "png": encoder = new PngBitmapEncoder(); break;
-                case "gif": encoder = new GifBitmapEncoder(); break;
-                case "tif":
-                case "tiff": encoder = new TiffBitmapEncoder(); break;
-                case "wmp":
-                case "wdp": encoder = new WmpBitmapEncoder(); break;
-            }
-            encoder.Frames.Add(BitmapFrame.Create(bmp));
-            encoder.Save(stream);
-            stream.Close();
-        }
 
         /// <summary>
         /// Draw the background to capture mouse event
