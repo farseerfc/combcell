@@ -7,6 +7,7 @@
     Height="600" Width="800"
     Loaded="Window_Loaded"
     Name="window"
+    
         >
 
 
@@ -58,6 +59,20 @@
             </cc:CombView.Arranger>
         </cc:CombView>
     </Window.Resources>
+    
+    <Window.InputBindings>
+        <KeyBinding Key="F1" Command="ApplicationCommands.Help"/>
+        <KeyBinding Key="S" Modifiers="Control" Command="ApplicationCommands.Save"/>
+    </Window.InputBindings>
+    
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help"
+                  Executed="HelpCmdExecuted"
+                  CanExecute="HelpCmdCanExecute"/>
+        <CommandBinding Command="ApplicationCommands.Save"
+                  Executed="saveImageExecuted"
+                  CanExecute="canSaveImage"/>
+    </Window.CommandBindings>
 
     <DockPanel>
 
@@ -72,6 +87,8 @@
             GlowSize="0" Noise="0" Opacity="0.7" />
                         </Setter.Value>
                     </Setter>
+                    
+                    <Setter Property="Foreground" Value="White"/>
 
                     <Setter Property="RenderTransform">
                         <Setter.Value>
@@ -127,16 +144,36 @@
 
 
             <Grid Margin="0,0,5,0" Name="sidebar">
+                <Grid.Resources>
+                        <Style TargetType="{x:Type Expander}">
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                        <Style TargetType="{x:Type CheckBox}">
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                        <Style TargetType="{x:Type ToggleButton}">
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                </Grid.Resources>
+                <!--<Grid.BitmapEffect>
+                    <OuterGlowBitmapEffect GlowColor="White"  GlowSize="10" Noise="0" Opacity="0.7" />
+                </Grid.BitmapEffect>-->
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="130"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
-                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}" Offset="0"/>
-                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}" Offset="0.20"/>
-                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}" Offset="0.81"/>
-                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}" Offset="1"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}" Offset="0"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}" Offset="0.20"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}" Offset="0.81"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>
 
@@ -147,19 +184,24 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Button Grid.Row="0" Name="saveImage" Click="saveImage_Click" Margin="10,3,10,3">
-                        Save
+                    <ToggleButton Grid.Row="0" Name="helpButton" Checked="helpButton_Checked" Unchecked="helpButton_Unchecked" Margin="10,3,10,3">
+                        _Help
+                    </ToggleButton>
+
+                    <Button Grid.Row="1" Name="saveImage" Command="ApplicationCommands.Save" Margin="10,3,10,3">
+                        _Save
                     </Button>
-                    <CheckBox Grid.Row="1" Name="useEffect" IsChecked="{Binding ElementName=combView, Path=IsUsingEffect}" Margin="5">
-                        Drop Shadow
+                    <CheckBox Grid.Row="2" Name="useEffect" IsChecked="{Binding ElementName=combView, Path=IsUsingEffect}" Margin="5">
+                        _Drop Shadow
                     </CheckBox>
-                    <CheckBox Grid.Row="2" Name="chk3DView"  Margin="5" IsChecked="True" Checked="chk3DView_Checked" Unchecked="chk3DView_Unchecked">
-                        3D View
+                    <CheckBox Grid.Row="3" Name="chk3DView"  Margin="5" IsChecked="True" Checked="chk3DView_Checked" Unchecked="chk3DView_Unchecked">
+                        3D _View
                     </CheckBox>
-                    <CheckBox Grid.Row="3" Name="chkGlass"  Margin="5" IsChecked="{Binding ElementName=window, Path=IsUsingGlass, Mode=Default}" >
-                        Aero Glass
+                    <CheckBox Grid.Row="4" Name="chkGlass"  Margin="5" IsChecked="{Binding ElementName=window, Path=IsUsingGlass, Mode=Default}" >
+                        _Aero Glass
                     </CheckBox>
                 </Grid>
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" >
@@ -208,7 +250,7 @@
                                         FontSize="12" 
                                         TextWrapping="Wrap"
                                     />
-                                
+
                             </Grid>
                         </Expander>
 
@@ -250,12 +292,12 @@
                     TextWrapping="Wrap"
                     Text="{Binding ElementName=combView, Path=Arranger.Comb.PathDescription}"
                 />
-                </StackPanel>
+                    </StackPanel>
                 </ScrollViewer>
             </Grid>
             <GridSplitter Grid.Column="0" Width="5"/>
 
-            <Grid Grid.Column="1" Grid.Row="0" Name="gridViewport3D" >
+            <Grid Grid.Column="1" Grid.Row="0" Name="gridView" >
                 <Grid.Background>
                     <DrawingBrush Viewbox="0,0,20,20" ViewboxUnits="Absolute">
                         <DrawingBrush.Drawing>
@@ -292,60 +334,68 @@
                         </DrawingBrush.Drawing>
                     </DrawingBrush>
                 </Grid.Background>
-                <Viewport3D Focusable="true" Name="viewport3D" ClipToBounds="true">
-                    <Viewport3D.Camera>
-                        <PerspectiveCamera 
+
+                
+
+                <Grid Name="gridViewport3D" >
+                    
+                    <Viewport3D Focusable="true" Name="viewport3D" ClipToBounds="true">
+                        <Viewport3D.Camera>
+                            <PerspectiveCamera 
 				Position="0,0,2" 
 				LookDirection="0,0,-1"
 				UpDirection="0,1,0"
 				NearPlaneDistance="0.1"
 				FarPlaneDistance="20"
 				FieldOfView="60" />
-                    </Viewport3D.Camera>
+                        </Viewport3D.Camera>
 
 
-                    <Viewport2DVisual3D x:Name="viewport2DVisual3D">
+                        <Viewport2DVisual3D x:Name="viewport2DVisual3D">
 
-                        <Viewport2DVisual3D.Transform>
-                            <Transform3DGroup>
-                                <Transform3DGroup.Children>
-                                    <Transform3DCollection >
+                            <Viewport2DVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <Transform3DGroup.Children>
+                                        <Transform3DCollection >
 
-                                        <ScaleTransform3D ScaleX="1" ScaleY="1"  ScaleZ="1" />
-                                        <RotateTransform3D>
-                                            <RotateTransform3D.Rotation>
-                                                <AxisAngleRotation3D Axis="0 1 0" Angle="0" />
-                                            </RotateTransform3D.Rotation>
-                                        </RotateTransform3D>
-                                        <TranslateTransform3D OffsetX="0" OffsetY="0" OffsetZ="0" />
+                                            <ScaleTransform3D ScaleX="1" ScaleY="1"  ScaleZ="1" />
+                                            <RotateTransform3D>
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D Axis="0 1 0" Angle="0" />
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                            <TranslateTransform3D OffsetX="0" OffsetY="0" OffsetZ="0" />
 
-                                    </Transform3DCollection>
-                                </Transform3DGroup.Children>
-                            </Transform3DGroup>
-                        </Viewport2DVisual3D.Transform>
+                                        </Transform3DCollection>
+                                    </Transform3DGroup.Children>
+                                </Transform3DGroup>
+                            </Viewport2DVisual3D.Transform>
 
 
 
-                        <!-- The Geometry, Material, and Visual for the Viewport2DVisual3D -->
-                        <Viewport2DVisual3D.Geometry>
-                            <MeshGeometry3D Positions="-1,1,0 -1,-1,0 1,-1,0 1,1,0"
+                            <!-- The Geometry, Material, and Visual for the Viewport2DVisual3D -->
+                            <Viewport2DVisual3D.Geometry>
+                                <MeshGeometry3D Positions="-1,1,0 -1,-1,0 1,-1,0 1,1,0"
                                     TextureCoordinates="0,0 0,1 1,1 1,0" TriangleIndices="0 1 2 0 2 3"/>
-                        </Viewport2DVisual3D.Geometry>
+                            </Viewport2DVisual3D.Geometry>
 
-                        <Viewport2DVisual3D.Material>
-                            <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True" Brush="White"/>
-                        </Viewport2DVisual3D.Material>
+                            <Viewport2DVisual3D.Material>
+                                <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True" Brush="White"/>
+                            </Viewport2DVisual3D.Material>
 
-                        <cc:CombView x:Name="combView" Width="{Binding ElementName=gridViewport3D, Path=ActualWidth}" Height="{Binding ElementName=gridViewport3D, Path=ActualHeight}"/>
-                    </Viewport2DVisual3D>
+                            <cc:CombView x:Name="combView" Width="{Binding ElementName=gridViewport3D, Path=ActualWidth}" Height="{Binding ElementName=gridViewport3D, Path=ActualHeight}"/>
+                        </Viewport2DVisual3D>
 
-                    <ModelVisual3D>
-                        <ModelVisual3D.Content>
-                            <DirectionalLight Color="White" Direction="0,0,-1"/>
+                        <ModelVisual3D>
+                            <ModelVisual3D.Content>
+                                <DirectionalLight Color="White" Direction="0,0,-1"/>
 
-                        </ModelVisual3D.Content>
-                    </ModelVisual3D>
-                </Viewport3D>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+                    </Viewport3D>
+                </Grid>
+                
+                <DocumentViewer Name="helpViewer" Background="Transparent"></DocumentViewer>
             </Grid>
         </Grid>
     </DockPanel>
