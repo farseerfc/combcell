@@ -1,0 +1,18 @@
+#2010 07 06 Daily Report of farseerfc
+
+= Introduction =
+
+今天的主要任务是搭建CentOS环境
+
+
+= Details =
+
+日期	工作内容
+（也包括请假及原因、提交文档）	工作完成情况（也包括提交文档名称）	存在问题	自我状态评价
+2010-07-06
+安装CentOS、熟悉操作系统	完成	Update的时候出现subversion的不同软件仓库间的版本冲突	幼稚
+	在CentOS上配置环境	编写了安装脚本/Download/install_list.sh	有一台机器上rapidsvn运行出现段错误
+部分依赖包名称不一致	粗糙
+	为Xen的安装准备tarball	部分，/download/*.tar	相当多的软件包找不到
+相当多的网站被墙	GFW！！！
+	Make Xen	成功	尚未测试	Target xen is new~
